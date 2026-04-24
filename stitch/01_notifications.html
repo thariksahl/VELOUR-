@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VELOUR - Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdeae",
+                    "tertiary-container": "#8f6f3c",
+                    "primary-fixed": "#ffdbcc",
+                    "background": "#faf9f5",
+                    "on-secondary-fixed-variant": "#5d4037",
+                    "primary-fixed-dim": "#ffb595",
+                    "outline": "#87736b",
+                    "on-background": "#1b1c1a",
+                    "on-primary-fixed": "#351000",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "outline-variant": "#dac1b8",
+                    "on-tertiary-fixed-variant": "#5d4213",
+                    "on-tertiary-fixed": "#281800",
+                    "surface-variant": "#e3e2df",
+                    "surface-tint": "#944a24",
+                    "inverse-surface": "#2f312e",
+                    "on-primary-container": "#fffbff",
+                    "surface-container-low": "#f4f4f0",
+                    "primary-container": "#af5f38",
+                    "surface-dim": "#dbdad6",
+                    "secondary-fixed-dim": "#e7bdb1",
+                    "surface-container-high": "#e9e8e4",
+                    "surface": "#faf9f5",
+                    "tertiary-fixed-dim": "#e8c086",
+                    "secondary-container": "#fed3c7",
+                    "on-secondary": "#ffffff",
+                    "primary": "#914722",
+                    "inverse-primary": "#ffb595",
+                    "secondary-fixed": "#ffdbd0",
+                    "on-surface-variant": "#54433c",
+                    "on-surface": "#1b1c1a",
+                    "on-secondary-container": "#795950",
+                    "secondary": "#77574d",
+                    "on-tertiary-container": "#fffbff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e3e2df",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#2c160e",
+                    "surface-container": "#efeeea",
+                    "surface-bright": "#faf9f5",
+                    "on-primary-fixed-variant": "#76330f",
+                    "tertiary": "#745726",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Be Vietnam Pro", "sans-serif"],
+                    "label": ["Be Vietnam Pro", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .font-newsreader { font-family: 'Newsreader', serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-[#faf9f5] py-4 docked full-width">
+<div class="flex justify-between items-center px-8 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer">menu</span>
+<h1 class="text-2xl font-newsreader italic tracking-widest text-[#1b1c1a]">Notifications</h1>
+</div>
+<button class="text-[#C06C44] text-[10px] font-bold tracking-widest hover:opacity-70 transition-opacity uppercase">
+            MARK ALL READ
+        </button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-8 mt-6">
+<!-- Category Filter -->
+<nav class="flex gap-3 overflow-x-auto pb-4 no-scrollbar">
+<button class="px-6 py-2 bg-surface-container-low text-on-surface-variant rounded-full text-xs font-medium whitespace-nowrap">All</button>
+<button class="px-6 py-2 bg-primary text-on-primary rounded-full text-xs font-medium whitespace-nowrap">Orders</button>
+<button class="px-6 py-2 bg-surface-container-low text-on-surface-variant rounded-full text-xs font-medium whitespace-nowrap">Offers</button>
+<button class="px-6 py-2 bg-surface-container-low text-on-surface-variant rounded-full text-xs font-medium whitespace-nowrap">New Arrivals</button>
+</nav>
+<!-- Notification List -->
+<div class="mt-8 space-y-6">
+<!-- Notification Item 1 -->
+<div class="flex items-start gap-4 group">
+<div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-emerald-600" data-icon="description">description</span>
+</div>
+<div class="flex-1 border-b border-outline-variant/10 pb-6">
+<div class="flex justify-between items-start">
+<h3 class="text-sm font-semibold text-on-surface">Your order has been shipped!</h3>
+<div class="w-2 h-2 bg-primary rounded-full mt-1"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-1">Your order #7732 is on its way to you.</p>
+<span class="text-[10px] text-outline mt-2 block uppercase tracking-wider">2 hours ago</span>
+</div>
+</div>
+<!-- Notification Item 2 -->
+<div class="flex items-start gap-4 group">
+<div class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-amber-600" data-icon="sell">sell</span>
+</div>
+<div class="flex-1 border-b border-outline-variant/10 pb-6">
+<div class="flex justify-between items-start">
+<h3 class="text-sm font-semibold text-on-surface">Flash Sale! 40% Off Dresses</h3>
+<div class="w-2 h-2 bg-primary rounded-full mt-1"></div>
+</div>
+<p class="text-xs text-on-surface-variant mt-1">Don't miss out on our biggest sale of the season.</p>
+<span class="text-[10px] text-outline mt-2 block uppercase tracking-wider">2 hours ago</span>
+</div>
+</div>
+<!-- Notification Item 3 -->
+<div class="flex items-start gap-4 group">
+<div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-blue-600" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="flex-1 border-b border-outline-variant/10 pb-6">
+<div class="flex justify-between items-start">
+<h3 class="text-sm font-medium text-on-surface/80">New Arrivals Just Dropped</h3>
+</div>
+<p class="text-xs text-on-surface-variant/70 mt-1">Check out our latest collection of sustainable fabrics.</p>
+<span class="text-[10px] text-outline mt-2 block uppercase tracking-wider">Yesterday</span>
+</div>
+</div>
+<!-- Notification Item 4 -->
+<div class="flex items-start gap-4 group">
+<div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-emerald-600" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex-1 border-b border-outline-variant/10 pb-6">
+<div class="flex justify-between items-start">
+<h3 class="text-sm font-medium text-on-surface/80">Your order has been shipped!</h3>
+</div>
+<p class="text-xs text-on-surface-variant/70 mt-1">Order #6921 is being delivered today.</p>
+<span class="text-[10px] text-outline mt-2 block uppercase tracking-wider">2 days ago</span>
+</div>
+</div>
+<!-- Notification Item 5 -->
+<div class="flex items-start gap-4 group">
+<div class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-amber-600" data-icon="trending_down">trending_down</span>
+</div>
+<div class="flex-1 pb-6">
+<div class="flex justify-between items-start">
+<h3 class="text-sm font-medium text-on-surface/80">Price Drop Alert!</h3>
+</div>
+<p class="text-xs text-on-surface-variant/70 mt-1">Items in your cart are now at a lower price.</p>
+<span class="text-[10px] text-outline mt-2 block uppercase tracking-wider">3 days ago</span>
+</div>
+</div>
+<!-- Recommended Section -->
+<section class="py-12 border-t border-outline-variant/10 mt-8">
+<h2 class="text-3xl font-newsreader italic text-on-surface mb-6">Recommended for You</h2>
+<div class="relative rounded-xl overflow-hidden aspect-[3/4] group cursor-pointer shadow-sm">
+<img alt="Summer Chic Collection" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/ADBb0ujUHpHWWX9qoA_oexBa6lfoi_EZfkyyXm2wn9DSR3oSQ_9PD0jx3OEwbgbIL3tFgeuczRnX8QXTIkKWO3WBqG3vFQCG-x_q8JuXwZpkhmP0d-mcUBbuNBbgo2TvumUHy1G9pY3DwQN9AxAEerCrXgIACFbtQ6bnR4wcAE5pjrIk9zX2_EOsvlkyLz5fcan4b5sPMJi4Mw3MC55veYWE7zk5RSxP_U8zLUNpEHdyvx1gw5-uyUXVa9hYM0WqbL2mShxFf7lH8UuiGw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="absolute bottom-8 left-8 text-white">
+<p class="text-[10px] uppercase tracking-[0.2em] font-medium opacity-80">The Summer Edit</p>
+<h4 class="text-3xl font-newsreader italic mt-2">Effortless Elegance</h4>
+<button class="mt-4 px-6 py-2 bg-white text-black text-[10px] font-bold tracking-widest uppercase rounded-full hover:bg-primary hover:text-white transition-colors">
+                        Shop Now
+                    </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-4 shadow-sm">
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-black text-[28px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold text-black tracking-wider uppercase">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">search</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">EXPLORE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">favorite</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">FAVOURITE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">shopping_cart</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">CART</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">person</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">PROFILE</span>
+</a>
+</nav>
+</body></html>

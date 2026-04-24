@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VELOUR - Home Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700;6..72,800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C06C44",
+                        "on-surface": "#1b1c1a",
+                        "surface": "#faf9f5",
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Be Vietnam Pro", "sans-serif"],
+                        "label": ["Be Vietnam Pro", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #faf9f5; }
+        .logo-text { font-family: 'Newsreader', serif; font-weight: 700; letter-spacing: 0.1em; }
+        h1, h2, h3 { font-family: 'Newsreader', serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-[#faf9f5] flex justify-between items-center w-full px-4 h-16">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-stone-200">
+<span class="material-symbols-outlined text-stone-900" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="logo-text text-xl text-stone-900 uppercase">VELOUR</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-stone-200">
+<span class="material-symbols-outlined text-stone-900" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-md mx-auto">
+<!-- Category Tabs -->
+<section class="px-4 py-4 overflow-x-auto no-scrollbar">
+<div class="flex space-x-2 items-center">
+<span class="px-5 py-2 text-[10px] font-bold tracking-wider bg-stone-200 text-stone-900 rounded-full whitespace-nowrap">NEW IN</span>
+<span class="px-8 py-2 text-[10px] font-bold tracking-wider bg-[#C06C44] text-white rounded-full whitespace-nowrap">MEN</span>
+<span class="px-5 py-2 text-[10px] font-bold tracking-wider bg-stone-200 text-stone-900 rounded-full whitespace-nowrap">WOMEN</span>
+<span class="px-5 py-2 text-[10px] font-bold tracking-wider bg-stone-200 text-stone-900 rounded-full whitespace-nowrap">BEAUTY</span>
+<span class="px-5 py-2 text-[10px] font-bold tracking-wider bg-stone-200 text-stone-900 rounded-full whitespace-nowrap">KIDS</span>
+</div>
+</section>
+<!-- Hero Banner -->
+<section class="px-4 py-2">
+<div class="relative overflow-hidden rounded-2xl bg-[#404040] flex min-h-[160px]">
+<div class="w-7/12 p-5 flex flex-col justify-center text-white z-10">
+<h2 class="text-2xl font-bold leading-tight logo-text">VELOUR</h2>
+<p class="text-sm font-bold uppercase tracking-tight mt-0.5">FORMAL SHOE</p>
+<p class="text-[9px] leading-relaxed mt-1 opacity-90 font-light">Lorem this design this look made by indian designers themetrial was good</p>
+<button class="mt-3 bg-[#2D333E] text-white text-[10px] font-bold py-2 px-5 rounded-md w-fit uppercase tracking-wider">SHOP NOW</button>
+</div>
+<div class="w-5/12 relative">
+<img alt="Hero star jeans" class="absolute inset-0 w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnuCTT7j0ocEORhQtsRIGwYztF5-kYX772It-xyE3G4LCFk4lyHMqRwO935gYuHrtv6kqy0mUzrJWiv5FNSba3XfhQPwTmClaI7fmc94XWzs8Y5vrFe5B9CpDqTLh0BzxWjyhpHnwwC5CNMxQ8fGkym-muWFUTEFWyhzBBCRg2Rkf4gQ3fElDPa5WpO-jqSptsIqEyfWIwuRCnEIxKryv2ONqj5q7NW3xHnIGfUkZ7VMA0QPZgUBzKrmcrB2j4AnwFBpktcO4qc9U"/>
+</div>
+</div>
+</section>
+<!-- Sub-category Scroll -->
+<section class="px-4 py-6">
+<div class="flex justify-between items-start">
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 rounded-full border border-stone-300 flex items-center justify-center mb-2 overflow-hidden bg-white">
+<img alt="Shirts" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVtD5A9PRInNaR97zH-uXbanf6n8Kl1X-fdMqYv129fcQC1vxfMjaLNrmpGtSFD8h_wJjdeX8vaeUOMxk-QsSnl1gHSR-m0GTy3D1nhhyuBbD5xnSnxMksk5woLAPx8KpUfrtNhG0AJduN7rXQnphacJIkQTQ3egUly95qjKmVESmrpiE67b-_T4yG3a5M_NOHLCQZcJJfQlRfPxoPnv1BBxykqUAlVGPv8O04AtHvmXaRp047kghicoqZ2yCA9tUIjFNKgKgALEQ"/>
+</div>
+<span class="text-[10px] font-bold text-stone-900">Shirts</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 rounded-full border border-stone-300 flex items-center justify-center mb-2 overflow-hidden bg-white">
+<img alt="T-Shirt" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLasCe5Y5WhNjbbeqUMPHqVm48kANbSjdPtOgzdhNxVYeyHMnoEvBkhvvYVcDhxTKFahwZREkfvsAXfqQUZQuh285SHLiSz-m2aKOih76PYdi_T1ZFyZFuxzBGScV5UDhlTSf8HJf2aFd0blxDnJdk6gV2C2shTKqrtoAGYMoaiSCqY7r_UNWjXuyPfzflLad5gLPVbi17s09UCWTh_0Y9SBwKSVrNY9IS4O1Fuq7EymQ6qT3idC7Yk5ahMoj1yACMkIKFynY1M6Y"/>
+</div>
+<span class="text-[10px] font-bold text-stone-900">T-Shirt</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 rounded-full border-2 border-[#C06C44] flex items-center justify-center mb-2 overflow-hidden bg-white">
+<img alt="Jeans" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzCn6Ivy9dQhCymjqmpuLlSN-voK9DLlkDzob3DrB_VdsOLsqIbV1TWRZT--LgSHkDLNJmtZS_q25OvAYQkzfMBWzkfLBjFll0cgOAdd_x3nVV7srfT0KDb8VaQwVAECiUv5ky8lodPmPKm064nxojB6K42WZr7Vij3IUmxy8cSowW2cBusE2nGRf1H6MPLn3h3mP_NMozVgXMqS70fcC2cEnL-bM-ECqxiZDlW2K250N21eijsmQtBhwR6P7SW710-cnNnPj_McM"/>
+</div>
+<span class="text-[10px] font-bold text-stone-900">Jeans</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 rounded-full border border-stone-300 flex items-center justify-center mb-2 overflow-hidden bg-white">
+<img alt="Inner wears" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBScGRPxFsYDGXqdZkzbklG6L-11g5mri4fhWxenNCxnqFb9V0KIj-mo8IGViPGvSC4sXsGZsSwNTI4HA-siX2on5tSkMxhp83cZ4jPz4RzoShokiStLBj94aI_NXj2AOh0hIRYLWPGl9BvnhaU_NVVbqGCvQqHFVATnW5DTaDan9loTAUGjAV-iTUBmT7NfTUAi_XMov8yBCNptccjnKWehJECi_j37Pdc1fbuTnOqtO3dYxCulnAJf-m55z9uul-ydWt5yHmSaag"/>
+</div>
+<span class="text-[10px] font-bold text-stone-900">Inner wears</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 rounded-full border border-stone-300 flex items-center justify-center mb-2 overflow-hidden bg-white">
+<img alt="Knitwear" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCV0045a8a3aFYc2dDgkJpPjHW9tZ4LbryjJMlYK8sP_NBx6hXLtiON20FK1WoQnf_eoixoaKrcvWbgHHx-bqIRyRiX1e3W76GUTIlkkcw9UsW4hK5dbc3QhD4vSZE2b2Poeum1cmcFIg8klzq9aY-A1ufcsPf5_DQ9ZX1C51qy1K9wOI4BH1G8KxE8MJCGdHMefHkU8Yh_wm5AjYrYHheJVzive1h9AQcjfAhvIMMvGv77HpbbyKgKtPunaHcgRir168OyzZ56a4"/>
+</div>
+<span class="text-[10px] font-bold text-stone-900">Knitwear</span>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="px-5 py-6 grid grid-cols-2 gap-x-4 gap-y-6">
+<!-- Product 1: Casual Shirt -->
+<div class="flex flex-col bg-stone-200/50 rounded-2xl p-0 overflow-hidden relative shadow-sm">
+<div class="absolute top-2 right-2 z-10">
+<span class="material-symbols-outlined text-[20px] text-stone-900">favorite</span>
+</div>
+<div class="aspect-[1/1.2] w-full overflow-hidden bg-stone-100">
+<img alt="Casual Shirt" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uh1CATIBFhhyxFJf8r0DxWmljQajzlLkAb_efM_qTWbOq6hvZVxKPx9wn0_A3Oti8F4M69hhu6o5au6BpgYQDGjmrT4OwHTpwpc_FThL5Ye7yedYGh1U8bji40f8IJxGBGozJu7VLCm-SYkFUmqSgzACjmZu9rQBaHjnuX9BUSKeLMBVHZ9LNXyvfB0gamLhCWs1wf1b4Dq5X3w7Yv4044QEsaZivEsOhxso9USxYmI6gpfReb8jjU0645QsoDbN9ijQGDiGQ8-mg"/>
+</div>
+<div class="p-3 bg-stone-200/80">
+<h3 class="text-[13px] font-bold text-stone-900">Casual Shirt</h3>
+<p class="text-[9px] text-stone-500 line-clamp-2 mt-0.5 leading-tight">Countary to popular breifLorem Ipsum most simply random text</p>
+<div class="flex justify-between items-end mt-2">
+<p class="text-[13px] font-bold text-stone-900/80 uppercase">LKR 5890.00</p>
+<button class="w-8 h-8 bg-[#636E72] rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 2: Wide-Leg Jeans -->
+<div class="flex flex-col bg-stone-200/50 rounded-2xl p-0 overflow-hidden relative shadow-sm">
+<div class="absolute top-2 right-2 z-10">
+<span class="material-symbols-outlined text-[20px] text-stone-900">favorite</span>
+</div>
+<div class="aspect-[1/1.2] w-full overflow-hidden bg-stone-100">
+<img alt="Wide-Leg Jeans" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uj81_RL4tEc_W36ziECyvFjbyr4lB7NyQzMdv8qeZbs3VWMsx7qOYvVz5D6QuNz7bVAc4pYzSckU3lCDbFa-VXr9CMPfRyT_yp1Oy0scmqAUS9OvbMYQpK-JKo7_AR8e7OxSXgpg_pQb43kpIHKlYIK1Ng6LHKPOG0lrotXU1vm8k8AJFqTS3nch75RtrBVCyijvzNDbL77bOosmRTmU_HWdzRUA-vZ_ZngqBVhwwMZVOkizJIHjX3cdHrfCSak7a7Qpnq7GmfcUg"/>
+</div>
+<div class="p-3 bg-stone-200/80">
+<h3 class="text-[13px] font-bold text-stone-900">Wide-Leg Jeans</h3>
+<p class="text-[9px] text-stone-500 line-clamp-2 mt-0.5 leading-tight">Countary to popular breifLorem Ipsum most simply random text</p>
+<div class="flex justify-between items-end mt-2">
+<p class="text-[13px] font-bold text-stone-900/80 uppercase">LKR 4390.00</p>
+<button class="w-8 h-8 bg-[#636E72] rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 3: Winter Sweater -->
+<div class="flex flex-col bg-stone-200/50 rounded-2xl p-0 overflow-hidden relative shadow-sm">
+<div class="absolute top-2 right-2 z-10">
+<span class="material-symbols-outlined text-[20px] text-stone-900">favorite</span>
+</div>
+<div class="aspect-[1/1.2] w-full overflow-hidden bg-stone-100">
+<img alt="Winter Sweater" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiWaKgas07cnYTWqqJeTwJknwHpl8BEO91vZi3aUDkbL5u3dR6idk_t-R3JVcYzhwtCk9WeT0VOphD0KKihBH9lgB8AgkSjTWcRssm_5RTAtS-emNr42D8aVpFUyhb3qGgbcZdU5Lbls79YNOgWPrIuuNd1PPjj1pLOhJx8fmWEjwMkkycV7yQkxs_7VQn-YfyzrCRyVkRbJgPri8JxnDR1t3Dk5kaCMCtYkrnKll7dRBF6KM-bnl-R6craizwd9W_0Tc1Ffwoh4g"/>
+</div>
+<div class="p-3 bg-stone-200/80">
+<h3 class="text-[13px] font-bold text-stone-900">Winter Sweater</h3>
+<p class="text-[9px] text-stone-500 line-clamp-2 mt-0.5 leading-tight">Countary to popular breifLorem Ipsum most simply random text</p>
+<div class="flex justify-between items-end mt-2">
+<p class="text-[13px] font-bold text-stone-900/80 uppercase">LKR 5390.00</p>
+<button class="w-8 h-8 bg-[#636E72] rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 4: Half Sleeve T-Shirt -->
+<div class="flex flex-col bg-stone-200/50 rounded-2xl p-0 overflow-hidden relative shadow-sm">
+<div class="absolute top-2 right-2 z-10">
+<span class="material-symbols-outlined text-[20px] text-stone-900">favorite</span>
+</div>
+<div class="aspect-[1/1.2] w-full overflow-hidden bg-stone-100">
+<img alt="Half Sleeve T-Shirt" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ui3Q1GHe2FQzem0ESKqheA0-iOFv_TZfAy2aThzOiwtCHdv1R8u8c8P8tupeOL26V74FJmS6FA9Fz1eJVunsy8ttawm48XPjgEmuKIZpviWpO8p7xPjxIZaF9YHocCd6dq4YuPnIDHDdRXiinPYFWM-y0pkaYZcXK8t31D40wNAwM4OKhpWZq5Qqcfyu0Htt71RxVXFEadSGN2irGTMOobXAfFXKjFFv60IZwy5ouArs5899Rjt-pMev0fQrBjdskxZapgPm7yJQQ"/>
+</div>
+<div class="p-3 bg-stone-200/80">
+<h3 class="text-[13px] font-bold text-stone-900">Half Sleeve T-Shirt</h3>
+<p class="text-[9px] text-stone-500 line-clamp-2 mt-0.5 leading-tight">Countary to popular breifLorem Ipsum most simply random text</p>
+<div class="flex justify-between items-end mt-2">
+<p class="text-[13px] font-bold text-stone-900/80 uppercase">LKR 3840.00</p>
+<button class="w-8 h-8 bg-[#636E72] rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-white flex justify-around items-center px-2 pb-safe pt-3 border-t border-stone-100">
+<a class="flex flex-col items-center justify-center text-black w-1/5" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="home" style="font-variation-settings: 'FILL' 1, 'wght' 400;">home</span>
+<span class="text-[9px] font-bold tracking-tight uppercase mt-1">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 w-1/5" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="explore">search</span>
+<span class="text-[9px] font-bold tracking-tight uppercase mt-1">EXPLORE</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 w-1/5" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="favorite">favorite</span>
+<span class="text-[9px] font-bold tracking-tight uppercase mt-1">FAVOURITE</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 w-1/5" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-[9px] font-bold tracking-tight uppercase mt-1">CART</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 w-1/5" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="text-[9px] font-bold tracking-tight uppercase mt-1">PROFILE</span>
+</a>
+</nav>
+</body></html>

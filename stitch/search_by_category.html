@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VELOUR - Explore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "velour-terracotta": "#C06C44",
+                        "velour-gray": "#E2E2E2",
+                        "secondary-fixed-dim": "#e7bdb1",
+                        "secondary": "#77574d",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#faf9f5",
+                        "on-tertiary-fixed": "#281800",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#efeeea",
+                        "primary-container": "#af5f38",
+                        "background": "#faf9f5",
+                        "surface-variant": "#e3e2df",
+                        "surface-dim": "#dbdad6",
+                        "tertiary-fixed-dim": "#e8c086",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-surface": "#2f312e",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-primary-fixed": "#351000",
+                        "outline": "#87736b",
+                        "on-secondary-fixed-variant": "#5d4037",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#2c160e",
+                        "surface-container-low": "#f4f4f0",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#fffbff",
+                        "surface-container-high": "#e9e8e4",
+                        "secondary-container": "#fed3c7",
+                        "on-surface": "#1b1c1a",
+                        "on-secondary-container": "#795950",
+                        "on-primary-fixed-variant": "#76330f",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e3e2df",
+                        "on-tertiary-fixed-variant": "#5d4213",
+                        "inverse-primary": "#ffb595",
+                        "secondary-fixed": "#ffdbd0",
+                        "primary-fixed": "#ffdbcc",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#745726",
+                        "surface": "#faf9f5",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#8f6f3c",
+                        "surface-tint": "#944a24",
+                        "tertiary-fixed": "#ffdeae",
+                        "primary-fixed-dim": "#ffb595",
+                        "primary": "#914722",
+                        "outline-variant": "#dac1b8",
+                        "on-surface-variant": "#54433c",
+                        "on-background": "#1b1c1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "display": ["Newsreader"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #faf9f5;
+            -webkit-font-smoothing: antialiased;
+        }
+        .serif {
+            font-family: 'Newsreader', serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .pb-safe-bottom {
+            padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#faf9f5]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<button class="p-2">
+<span class="material-symbols-outlined text-[#914722]">menu</span>
+</button>
+<h1 class="text-2xl font-serif font-bold uppercase tracking-[0.2em] text-[#1b1c1a]">VELOUR</h1>
+<button class="p-2">
+<span class="material-symbols-outlined text-[#914722]">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-safe-bottom px-6 max-w-7xl mx-auto">
+<!-- Search Bar -->
+<section class="mt-4 mb-6">
+<div class="relative">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant/50 text-xl">search</span>
+</div>
+<input class="w-full bg-white border border-outline-variant/10 rounded-full py-4 pl-12 pr-6 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none font-body placeholder:text-on-surface-variant/40 shadow-sm" placeholder="Search for pieces..." type="text"/>
+</div>
+</section>
+<!-- Category Tabs -->
+<nav class="flex overflow-x-auto py-2 mb-8 space-x-3 hide-scrollbar" data-purpose="category-nav">
+<button class="px-6 py-2.5 bg-velour-gray/50 text-[#1b1c1a] rounded-full text-[13px] font-bold uppercase tracking-wider whitespace-nowrap">NEW IN</button>
+<button class="px-6 py-2.5 bg-velour-gray/50 text-[#1b1c1a] rounded-full text-[13px] font-bold uppercase tracking-wider whitespace-nowrap">MEN</button>
+<button class="px-6 py-2.5 bg-velour-terracotta text-white rounded-full text-[13px] font-bold uppercase tracking-wider whitespace-nowrap">WOMEN</button>
+<button class="px-6 py-2.5 bg-velour-gray/50 text-[#1b1c1a] rounded-full text-[13px] font-bold uppercase tracking-wider whitespace-nowrap">BEAUTY</button>
+</nav>
+<!-- Main Categories Grid (4 cards) -->
+<div class="grid grid-cols-1 gap-6">
+<!-- Denim & Jeans -->
+<div class="relative group h-[480px] overflow-hidden rounded-3xl bg-surface-container-low cursor-pointer">
+<img alt="Denim &amp; Jeans" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ui3Q1GHe2FQzem0ESKqheA0-iOFv_TZfAy2aThzOiwtCHdv1R8u8c8P8tupeOL26V74FJmS6FA9Fz1eJVunsy8ttawm48XPjgEmuKIZpviWpO8p7xPjxIZaF9YHocCd6dq4YuPnIDHDdRXiinPYFWM-y0pkaYZcXK8t31D40wNAwM4OKhpWZq5Qqcfyu0Htt71RxVXFEadSGN2irGTMOobXAfFXKjFFv60IZwy5ouArs5899Rjt-pMev0fQrBjdskxZapgPm7yJQQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h2 class="serif text-4xl text-white italic tracking-tight mb-1">Denim &amp; Jeans</h2>
+<p class="text-white/70 text-[10px] tracking-[0.3em] uppercase font-bold">Heritage Indigo</p>
+</div>
+</div>
+<!-- Tailored Classics -->
+<div class="relative group h-[480px] overflow-hidden rounded-3xl bg-surface-container-low cursor-pointer">
+<img alt="Tailored Classics" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uh1CATIBFhhyxFJf8r0DxWmljQajzlLkAb_efM_qTWbOq6hvZVxKPx9wn0_A3Oti8F4M69hhu6o5au6BpgYQDGjmrT4OwHTpwpc_FThL5Ye7yedYGh1U8bji40f8IJxGBGozJu7VLCm-SYkFUmqSgzACjmZu9rQBaHjnuX9BUSKeLMBVHZ9LNXyvfB0gamLhCWs1wf1b4Dq5X3w7Yv4044QEsaZivEsOhxso9USxYmI6gpfReb8jjU0645QsoDbN9ijQGDiGQ8-mg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h2 class="serif text-4xl text-white italic tracking-tight mb-1">Tailored Classics</h2>
+<p class="text-white/70 text-[10px] tracking-[0.3em] uppercase font-bold">Precision Cuts</p>
+</div>
+</div>
+<!-- Outerwear -->
+<div class="relative group h-[480px] overflow-hidden rounded-3xl bg-surface-container-low cursor-pointer">
+<img alt="Outerwear" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugOX4AmGOxnBLllFpKjLGKKyHbzOOxqo-K4c9KactexAy0bCXifNoIAJo6wA5ULHMKE-GoFKhuJ4usHjZUUZT9xtIUNO-c-Rygok0-DPpSPEp5f8vdlVA5kjnxkizP0G8I9r95-yZU9MDcuK-9lnA0QzArfNB-SsN0ulp9IsF2k8cnGU3mchuc2PUsLnshVhoox12g9ZgimFIPYUvl6TaNH9qhgarrc0KhqHpswis9Oktj9QV9FoUUf0a0h9_uR3STLo_uedkRr4Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h2 class="serif text-4xl text-white italic tracking-tight mb-1">Outerwear</h2>
+<p class="text-white/70 text-[10px] tracking-[0.3em] uppercase font-bold">The Seasonal Coat</p>
+</div>
+</div>
+<!-- Little Velour -->
+<div class="relative group h-[480px] overflow-hidden rounded-3xl bg-surface-container-low cursor-pointer">
+<img alt="Little Velour" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujpVxdFTbFmQoEou1HzvsKoD122qr4kKvzShydq_yF1YhbduXRRmNnpSUo1aH14CI_dZTYJwuhjWDl1PU_6kYSTgSsreYoWThgZlJr8WV_uzlxMfKCKKhs6xB38ZCc4e0bhLY_4t9-aqS_woEjpgg-rlInk8Zwlbp7GII-ny4HzRGga3Sq15GXh-H9R3LRxcEW06V0dxpmTNy6DODruSHY741WyEWj_KY6NFIBnaIqHRz3MFsMmUBiJHckzxJw3aDQhRn2oosZj"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h2 class="serif text-4xl text-white italic tracking-tight mb-1">Little Velour</h2>
+<p class="text-white/70 text-[10px] tracking-[0.3em] uppercase font-bold">Miniature Luxury</p>
+</div>
+</div>
+</div>
+<!-- Curated Series Section -->
+<section class="mt-16 mb-12">
+<h3 class="serif text-3xl mb-10 tracking-tight italic text-on-surface">Curated Series</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-8 bg-[#f4f4f0] rounded-[2rem] flex flex-col justify-between aspect-square cursor-pointer hover:bg-stone-200 transition-colors">
+<p class="text-[11px] tracking-[0.3em] uppercase font-bold text-[#914722]">01</p>
+<p class="font-body font-semibold text-lg leading-tight text-on-surface">The Terracotta Edit</p>
+</div>
+<div class="p-8 bg-[#f4f4f0] rounded-[2rem] flex flex-col justify-between aspect-square cursor-pointer hover:bg-stone-200 transition-colors">
+<p class="text-[11px] tracking-[0.3em] uppercase font-bold text-[#914722]">02</p>
+<p class="font-body font-semibold text-lg leading-tight text-on-surface">Sculptural Jewelry</p>
+</div>
+<div class="p-8 bg-[#f4f4f0] rounded-[2rem] flex flex-col justify-between aspect-square cursor-pointer hover:bg-stone-200 transition-colors">
+<p class="text-[11px] tracking-[0.3em] uppercase font-bold text-[#914722]">03</p>
+<p class="font-body font-semibold text-lg leading-tight text-on-surface">Winter Cashmere</p>
+</div>
+<div class="p-8 bg-[#f4f4f0] rounded-[2rem] flex flex-col justify-between aspect-square cursor-pointer hover:bg-stone-200 transition-colors">
+<p class="text-[11px] tracking-[0.3em] uppercase font-bold text-[#914722]">04</p>
+<p class="font-body font-semibold text-lg leading-tight text-on-surface">Evening Wear</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center py-4 px-4 z-50 pb-[env(safe-area-inset-bottom)]" data-purpose="bottom-nav">
+<button class="flex flex-col items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[26px]">home</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">HOME</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-black">
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">EXPLORE</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[26px]">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">FAVOURITE</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[26px]">shopping_cart</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">CART</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[26px]">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">PROFILE</span>
+</button>
+</footer>
+</body></html>

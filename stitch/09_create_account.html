@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700;6..72,800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#C56E42",
+                    "primary-end": "#BD926E",
+                    "brand-dark": "#5D4925",
+                    "on-surface": "#231F14",
+                    "on-surface-variant": "#716E64",
+                    "background": "#F9F8F5",
+                    "outline-subtle": "#EBE9E4",
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.75rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Be Vietnam Pro", "sans-serif"],
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Be Vietnam Pro', sans-serif;
+        background-color: #F9F8F5;
+      }
+      .serif-headline {
+        font-family: 'Newsreader', serif;
+      }
+      .logo-text {
+        font-family: 'Newsreader', serif;
+        letter-spacing: 0.15em;
+        font-weight: 600;
+      }
+      .custom-gradient {
+        background: linear-gradient(90deg, #C56E42 0%, #BD926E 100%);
+      }
+    </style>
+</head>
+<body class="text-on-surface">
+<div class="min-h-screen flex flex-col max-w-md mx-auto relative px-8 pt-8 pb-10">
+<!-- Header -->
+<header class="flex justify-between items-center w-full mb-12">
+<div class="flex items-center justify-center w-8 h-8 rounded-full border border-on-surface/10 cursor-pointer">
+<span class="material-symbols-outlined text-on-surface text-lg" style="font-variation-settings: 'wght' 700;">arrow_back</span>
+</div>
+<div class="logo-text text-xl text-brand-dark">VELOUR</div>
+<div class="w-8"></div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col">
+<div class="mb-8 text-center">
+<h1 class="serif-headline text-[34px] font-bold text-brand-dark leading-tight mb-2">Create Account</h1>
+<p class="text-on-surface-variant text-[15px]">Join us and start your style journey</p>
+</div>
+<!-- Form -->
+<form class="space-y-4 mb-10">
+<div>
+<input class="w-full h-[56px] px-4 bg-white border border-outline-subtle rounded-xl focus:outline-none focus:border-primary transition-all placeholder:text-on-surface-variant/70 text-[15px]" placeholder="Full Name" type="text"/>
+</div>
+<div>
+<input class="w-full h-[56px] px-4 bg-white border border-outline-subtle rounded-xl focus:outline-none focus:border-primary transition-all placeholder:text-on-surface-variant/70 text-[15px]" placeholder="Email Address" type="email"/>
+</div>
+<div class="relative">
+<input class="w-full h-[56px] px-4 bg-white border border-outline-subtle rounded-xl focus:outline-none focus:border-primary transition-all placeholder:text-on-surface-variant/70 text-[15px]" placeholder="Password" type="password"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-xl" data-icon="visibility">visibility</span>
+</div>
+<div class="relative">
+<input class="w-full h-[56px] px-4 bg-white border border-outline-subtle rounded-xl focus:outline-none focus:border-primary transition-all placeholder:text-on-surface-variant/70 text-[15px]" placeholder="Confirm Password" type="password"/>
+</div>
+<div class="pt-4">
+<button class="w-full h-[60px] custom-gradient text-white font-bold text-lg rounded-full shadow-lg shadow-primary/20 active:scale-[0.98] transition-all" type="submit">
+                    Sign Up
+                </button>
+</div>
+</form>
+<!-- Divider -->
+<div class="flex items-center gap-4 mb-8">
+<div class="h-[1px] flex-grow bg-on-surface/5"></div>
+<span class="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase">OR CONTINUE WITH</span>
+<div class="h-[1px] flex-grow bg-on-surface/5"></div>
+</div>
+<!-- Social Buttons -->
+<div class="grid grid-cols-2 gap-4 mb-12">
+<button class="flex items-center justify-center gap-3 h-[58px] bg-white border border-outline-subtle rounded-xl hover:bg-gray-50 transition-colors">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="text-on-surface font-semibold text-sm">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-[58px] bg-white border border-outline-subtle rounded-xl hover:bg-gray-50 transition-colors">
+<svg class="w-5 h-5 mb-1" viewbox="0 0 384 512">
+<path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor"></path>
+</svg>
+<span class="text-on-surface font-semibold text-sm">Apple</span>
+</button>
+</div>
+<!-- Footer -->
+<div class="mt-auto text-center py-4">
+<p class="text-on-surface-variant/70 text-sm font-medium">
+                Already have an account? 
+                <a class="text-brand-dark font-bold ml-1 hover:underline underline-offset-2" href="#">Log In</a>
+</p>
+</div>
+</main>
+</div>
+</body></html>

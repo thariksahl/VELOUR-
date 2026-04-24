@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VELOUR - Favorites</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Be+Vietnam+Pro:wght@100;300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e9e8e4",
+                    "on-surface-variant": "#54433c",
+                    "surface": "#faf9f5",
+                    "on-primary-container": "#fffbff",
+                    "primary": "#914722",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#fffbff",
+                    "on-tertiary-fixed": "#281800",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f312e",
+                    "surface-container-highest": "#e3e2df",
+                    "secondary-fixed-dim": "#e7bdb1",
+                    "surface-container": "#efeeea",
+                    "primary-container": "#af5f38",
+                    "error": "#ba1a1a",
+                    "secondary": "#77574d",
+                    "surface-tint": "#944a24",
+                    "inverse-primary": "#ffb595",
+                    "outline-variant": "#dac1b8",
+                    "surface-variant": "#e3e2df",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dbdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1b1c1a",
+                    "primary-fixed": "#ffdbcc",
+                    "on-primary-fixed": "#351000",
+                    "outline": "#87736b",
+                    "on-secondary-fixed": "#2c160e",
+                    "on-secondary-container": "#795950",
+                    "on-tertiary-fixed-variant": "#5d4213",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#fed3c7",
+                    "on-surface": "#1b1c1a",
+                    "on-secondary-fixed-variant": "#5d4037",
+                    "primary-fixed-dim": "#ffb595",
+                    "tertiary-fixed-dim": "#e8c086",
+                    "background": "#faf9f5",
+                    "surface-bright": "#faf9f5",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffdeae",
+                    "tertiary-container": "#8f6f3c",
+                    "surface-container-low": "#f4f4f0",
+                    "tertiary": "#745726",
+                    "secondary-fixed": "#ffdbd0",
+                    "on-primary-fixed-variant": "#76330f",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "display": ["Newsreader", "serif"],
+                    "body": ["Be Vietnam Pro", "sans-serif"],
+                    "label": ["Be Vietnam Pro", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #faf9f5;
+        }
+        .serif-italic {
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+        }
+        .serif-regular {
+            font-family: 'Newsreader', serif;
+        }
+        .serif-bold {
+            font-family: 'Newsreader', serif;
+            font-weight: 700;
+        }
+        .editorial-shadow {
+            box-shadow: 0 24px 40px -12px rgba(27, 28, 26, 0.05);
+        }
+    </style>
+</head>
+<body class="text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#FAF9F5] dark:bg-stone-950 flex justify-between items-center px-6 py-4">
+<div class="flex items-center">
+<button class="hover:opacity-70 transition-opacity text-on-surface">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_back">arrow_back</span>
+</button>
+</div>
+<h1 class="serif-bold text-2xl tracking-[0.1em] uppercase" style="color: #8B6914;">VELOUR</h1>
+<div class="flex items-center">
+<button class="hover:opacity-70 transition-opacity text-on-surface">
+<span class="material-symbols-outlined text-2xl" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-7xl mx-auto">
+<!-- Wishlist Count/Summary -->
+<div class="mb-6 text-center">
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant opacity-60">Curated Collection</p>
+<h2 class="serif-regular text-2xl mt-1 text-on-surface">Your Saved Pieces</h2>
+</div>
+<!-- 2x2 Grid -->
+<div class="grid grid-cols-2 gap-x-4 gap-y-8">
+<!-- Item 1: Casual Shirt -->
+<div class="group relative flex flex-col">
+<div class="relative overflow-hidden rounded-lg aspect-[3/4] bg-surface-container-low transition-all duration-700 ease-out">
+<img alt="Wide-Leg Jeans" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/ADBb0uhn_jiFQoKWt--MifNFU_xIytSD_ieDOpy0ufhzzlYw5gwZH6jqO4C8SES3Gkt8kmYitpFzGoNJ6a6nY7jOnoYnzSs6SjQWJ0M5-Py8kBYkjd2CymeuGC-BUPcRMYWUARNal6-_LBOhkPHUQHdEPE7W0_cVltYoYYYR3mqPRkbHF_Ifty6ahuvC08m_jikOvBGXusV0VmWzgNWWHizu8CIk3G5OpMZHVX_Qs6W--vQvOpZ0drRBOdjih7PPByklWvTQVB2BZhIUgg"/>
+<button class="absolute top-2 right-2 z-10"><span class="material-symbols-outlined text-[20px] text-black" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+<button class="absolute bottom-2 right-2 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px] text-[#636E72]">shopping_cart</span>
+</button>
+</div>
+<div class="mt-3 flex flex-col items-start gap-0.5">
+<h3 class="serif-regular text-sm group-hover:opacity-60 transition-opacity truncate w-full">Wide-Leg Jeans</h3>
+<p class="font-body text-on-surface-variant text-xs font-medium">LKR 4,390.00</p>
+</div>
+</div>
+<!-- Item 2: Wide-Leg Jeans -->
+<div class="group relative flex flex-col">
+<div class="relative overflow-hidden rounded-lg aspect-[3/4] bg-surface-container-low transition-all duration-700 ease-out">
+<img alt="Classic Light Blue Button-Up" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/ADBb0ujsZzlon7zpU9FeqTwHAJmVFI4Lc1RncOZHIRStIjxzDd8q1IJ7eZl86-XENl_4mkSL2YkoPmnlFVtw1LO9EAAR5HUtCv6HV7K5OADs3n4RMG963zwyeBbD8E5jfDkvzsCJyjlS6BTgQajsF5Cwx2ZBmV59PHAQJPgbhbHzxWIhe0yvP6YG47CxOJXwkinV6nsxyI0KYmOjZBVeJoogpoLwC7ta7vYlE56KTN-yRjk71GyHOQO5jr_KinvICoPxCy6gvDRcgTUjDQ"/>
+<button class="absolute top-2 right-2 z-10"><span class="material-symbols-outlined text-[20px] text-black" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+<button class="absolute bottom-2 right-2 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px] text-[#636E72]">shopping_cart</span>
+</button>
+</div>
+<div class="mt-3 flex flex-col items-start gap-0.5">
+<h3 class="serif-regular text-sm group-hover:opacity-60 transition-opacity truncate w-full">Classic Light Blue Button-Up</h3>
+<p class="font-body text-on-surface-variant text-xs font-medium">LKR 3,840.00</p>
+</div>
+</div>
+<!-- Item 3: Monochrome Patterned Blouse -->
+<div class="group relative flex flex-col">
+<div class="relative overflow-hidden rounded-lg aspect-[3/4] bg-surface-container-low transition-all duration-700 ease-out">
+<img alt="Monochrome Blouse" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0VrPztXolplO5oELDPzm4x0odFPQRL3lYJp25HVdSg5bECNRYN5L1cY68u122ruhV_Ut9Cs1005OyadCJvYxjm_CLdRuYDrxCeMRmWMZhWqKhPISKgQbgpWc7xpQ4VQVmS4-ER-Xwc_Nvbsp-W9gmfzQxwzv2_xxpRV3kjGhojlPcHQ6qeVJ6zSP-WvJbSj3lQrNdMvH2N7EUS_xCoVnFIXqThMkM19GNUCnbVJtRbwOZnFjmtkHNh32GGb9S2eMcx4KEYD5xDMw"/>
+<button class="absolute top-2 right-2 z-10"><span class="material-symbols-outlined text-[20px] text-black" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+<button class="absolute bottom-2 right-2 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px] text-[#636E72]">shopping_cart</span>
+</button>
+</div>
+<div class="mt-3 flex flex-col items-start gap-0.5"><h3 class="serif-regular text-sm group-hover:opacity-60 transition-opacity truncate w-full">Monochrome Blouse</h3>
+<p class="font-body text-on-surface-variant text-xs font-medium">LKR 5,390.00</p></div>
+</div>
+<!-- Item 4: Essential Ribbed Crop Top -->
+<div class="group relative flex flex-col">
+<div class="relative overflow-hidden rounded-lg aspect-[3/4] bg-surface-container-low transition-all duration-700 ease-out">
+<img alt="Ribbed Crop Top" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzeUc24guWbfU9rz-QYGrg9htq-ynoQgMfvSIYHby8HAenKfroqPMyN-Lopvkc-jW8JzOM8pGBixxxgROjk1-2xs1hh1JF-mi73NkRZ0HD6TBzT06s4qOJL-DLZXJN-n8x-7wiVCMZUmUZQHarc7U_ZJQbv4l3AA1mBUjmSR2DJjsym9q_SEkvQq6DEQqEh2_g9OP0lIFBs0q5tcwc7XUu9V4-ttFdo1_95hvlIUrq0XPJX9rjJRT3qyRhW_H3k_w5LQWsWKmUSwk"/>
+<button class="absolute top-2 right-2 z-10"><span class="material-symbols-outlined text-[20px] text-black" style="font-variation-settings: 'FILL' 1;">favorite</span></button>
+<button class="absolute bottom-2 right-2 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px] text-[#636E72]">shopping_cart</span>
+</button>
+</div>
+<div class="mt-3 flex flex-col items-start gap-0.5"><h3 class="serif-regular text-sm group-hover:opacity-60 transition-opacity truncate w-full">Ribbed Crop Top</h3>
+<p class="font-body text-on-surface-variant text-xs font-medium">LKR 2,450.00</p></div>
+</div>
+</div>
+<!-- Empty State Suggestion (Subtle) -->
+<div class="mt-20 border-t border-outline-variant/20 pt-12 text-center">
+<h4 class="serif-regular text-xl text-on-surface">Discover more of Velour</h4>
+<button class="mt-6 px-8 py-3 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-body text-xs tracking-widest uppercase hover:shadow-xl transition-all duration-300">
+            Continue Shopping
+        </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-4 shadow-sm">
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">home</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">search</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">EXPLORE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-black text-[28px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-[10px] font-bold text-black tracking-wider uppercase">FAVOURITE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">shopping_cart</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">CART</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">person</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">PROFILE</span>
+</a>
+</nav>
+</body></html>

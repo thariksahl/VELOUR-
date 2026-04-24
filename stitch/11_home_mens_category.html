@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velour Editorial - Women</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Newsreader Font (from Design System) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'velour-terracotta': '#C06C44',
+            'velour-gray': '#E2E2E2',
+            'velour-bg-cream': '#F9F9F9',
+            'velour-card-bg': '#D9D9D9',
+          },
+          fontFamily: {
+            'newsreader': ['Newsreader', 'serif'],
+          },
+        }
+      }
+    }
+  </script>
+<style data-purpose="typography">
+    body {
+      font-family: 'Newsreader', serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .letter-spacing-wide {
+      letter-spacing: 0.1em;
+    }
+  </style>
+<style data-purpose="layout-adjustments">
+    /* Custom scrollbar hiding for horizontal navigation */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Fixed bottom navigation padding */
+    .pb-safe-bottom {
+      padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    }
+  </style>
+</head>
+<body class="bg-white text-black selection:bg-velour-terracotta selection:text-white">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 bg-white flex items-center justify-between px-4 py-4" data-purpose="main-header">
+<!-- Back Button -->
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-center border border-black rounded-full">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Logo -->
+<h1 class="text-2xl font-bold tracking-[0.2em] uppercase">Velour</h1>
+<!-- Notifications Button -->
+<button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center bg-velour-bg-cream border border-gray-100 rounded-full relative">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<!-- Notification Dot -->
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-black border border-white rounded-full"></span>
+</button>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: CategoryNavigation -->
+<nav class="flex overflow-x-auto px-4 py-2 space-x-2 hide-scrollbar" data-purpose="category-nav">
+<button class="px-6 py-2 bg-velour-gray rounded-full text-sm font-semibold whitespace-nowrap">NEW IN</button>
+<button class="px-6 py-2 bg-velour-gray rounded-full text-sm font-semibold whitespace-nowrap">MEN</button>
+<button class="px-6 py-2 bg-velour-terracotta text-white rounded-full text-sm font-semibold whitespace-nowrap">WOMEN</button>
+<button class="px-6 py-2 bg-velour-gray rounded-full text-sm font-semibold whitespace-nowrap">BEAUTY</button>
+<button class="px-6 py-2 bg-velour-gray rounded-full text-sm font-semibold whitespace-nowrap">KIDS</button>
+</nav>
+<!-- END: CategoryNavigation -->
+<main class="pb-safe-bottom">
+<!-- BEGIN: HeroBanner -->
+<section class="px-4 py-4" data-purpose="hero-banner">
+<div class="relative bg-[#97A7D8] rounded-[2rem] overflow-hidden flex items-center min-h-[220px]">
+<div class="z-10 pl-6 w-3/5">
+<h2 class="text-white text-4xl font-bold tracking-tight mb-0">VELOUR</h2>
+<h3 class="text-white text-lg font-bold uppercase mb-2">Formal Shoe</h3>
+<p class="text-white text-xs leading-tight mb-6 opacity-90 max-w-[160px]">
+            Lorem this design this look made by indian designers themetrial was good
+          </p>
+<button class="px-4 py-2 bg-[#2D3E50] text-white text-[10px] font-bold uppercase rounded border border-white/20">
+            Shop Now
+          </button>
+</div>
+<!-- Hero Model Image Overlay -->
+<div class="absolute right-0 bottom-0 h-full w-[180px]">
+<img alt="Campaign Model" class="h-full w-full object-cover object-top" src="https://lh3.googleusercontent.com/aida/ADBb0ujv9JGU3CzVoJ8gj2zyVfDVClEj18TBZ86DJlSuNXI1HsoeiDHMzx_038jqV8bb3aztnjch4s0znnpxA3-F7aifWialdRupjCWLUzdyNbjGiof1er1rMcwTg9icSuwDOwLSLSYvLwGrYZELef2q_Cylt95q38pqn2kJ-LflLZzLnK-qMgUcQkC7mX7azwK1XzbzC25YGcpl6v0T4MUizXXDPZYaZwNinR5BfJht6utf6BbS8kULhPh0wEIL1qtEQFhGkNuDrfUo" style="object-position: center top;"/>
+</div>
+</div>
+</section>
+<!-- END: HeroBanner -->
+<!-- BEGIN: SubCategories -->
+<section class="px-4 py-4" data-purpose="sub-categories">
+<div class="flex justify-between items-start gap-2">
+<!-- Category Item 1 -->
+<div class="flex flex-col items-center gap-2 w-16">
+<div class="w-14 h-14 rounded-full border border-gray-300 overflow-hidden bg-gray-50">
+<img alt="Shirts" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7AbG6W2UjYoTIu_NKf2snUzrilDvfou31ndhXovlmSbmUxKCjy37UEJRBIImOsMXbhFQlXn838BCIUGWlfRUe1dQXY_2d4eyKYaGMsDqtnWDuLVrLal_nlw5-k0CKlbnxcgI7SyVgw0AG3y5MXmHr1z28tFkqXFVWtHIZKybiWLYZ6x4yHeagO5Rh4ECnAi1z3THParxUnItCq3L0H2gL6pZcNma0GZLlYzG451CXuHm4fSWhoIRQ0zrh4BLNAesfr5U1_eToId0"/>
+</div>
+<span class="text-[9px] font-bold text-center leading-tight">Shirts &amp; t-shirts</span>
+</div>
+<!-- Category Item 2 -->
+<div class="flex flex-col items-center gap-2 w-16">
+<div class="w-14 h-14 rounded-full border border-gray-300 overflow-hidden bg-gray-50">
+<img alt="Tops" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTqhdDGvYQ4bG_jf-V7l7iobpjyxChnR_RKqqi5wUmnJE5dFyaa0JwuYED7UilnMxTaainncZDd32zB1jCNOOBwn80AeENF929ds_tdqGSKCfgmFyrsOQqIpkM7zPUI3_g1IdfctvXu-6Xb8qk9C6U32cuNqzK2mXvfj0AM72bgHlw3kOw4qMpqOfxRN7JPY9m5CO4_7FhikAmGEx3Oq9YKNMSyE5Yop1sujjoj4gaToBd2_zRrp3g4YXg6yS_y_DalSHVU9xUdMM"/>
+</div>
+<span class="text-[9px] font-bold text-center leading-tight">Tops</span>
+</div>
+<!-- Category Item 3 -->
+<div class="flex flex-col items-center gap-2 w-16">
+<div class="w-14 h-14 rounded-full border border-gray-300 overflow-hidden bg-gray-50">
+<img alt="Jeans" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB-kDTl04AXVJBK65Wvfe3YW89cryb5kvbeIvn6ZhEy7pTq5RJHnkNASK5uo6TJT9TYSmvfKppdKrMV84s3Olwr3_NfTxR4Bn9bxlnUf7oFSgZHDDce_2RABc89QRYA7xByB6MiWrOK83GGHA-9QnUgS_kmM0gt_fKJV1bKyMCY8-_bP4XugJAH7TUo0vNZmyoMNr2yXzZ8luxfTYgYz4-sIXVcAEFn57eSHSKSgPjzTmwbIEvRWhQhVyRJLtj7PVr9YmIzRXcOAg"/>
+</div>
+<span class="text-[9px] font-bold text-center leading-tight">Jeans</span>
+</div>
+<!-- Category Item 4 -->
+<div class="flex flex-col items-center gap-2 w-16">
+<div class="w-14 h-14 rounded-full border border-gray-300 overflow-hidden bg-gray-50">
+<img alt="Inner wear" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJFcT-W9sYOz-xEeQRgIepLyfCtXa_jQGYGKDZN8seUwozapKdLVpULG6xkR469_VNHaY-b_CnOqc5oAZtRwyqsP98PmN_TsfiJkqnUKoHiTsBJeB8-K6iwdPJlhCScic60OnsauKjQSuSx5F7aFwPZLfgSfRaS_ElInDJldL-Pl9aH7mpVFeVSAfLCj-q3Hk02K4df-qdrzpYG2lEzHydvTCjpH-wAqnN6ffdhNvzQIb3tcFe5lfebp4V-LZqSgF_nqrEDZoKUVc"/>
+</div>
+<span class="text-[9px] font-bold text-center leading-tight">Inner wear</span>
+</div>
+<!-- Category Item 5 -->
+<div class="flex flex-col items-center gap-2 w-16">
+<div class="w-14 h-14 rounded-full border border-gray-300 overflow-hidden bg-gray-50">
+<img alt="Sarees" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGOQpn7UooNycDDUt29NNnpd9xlNp8zDC7exP8PgHHXzR5Ui88_FaQ0QPzNmaWGVueWU0Ml2YARE9Lyp6QlCvHwToWwOYSQPgXDzb81SF30oe5VZkNK_8B91hf48WY-Rt_B7gnfTHLvP0fhrLjkTO58oUz9sK84T2iUB9wzDljVUxmpCEEf1UfQuwhexZieOIQ2wThssBUbjrovuXf_xeUnALTTBNrRg-jpnt3Q68DvAuAgNrZNCFR9BvRU_beVE5gZGPijTImMZY"/>
+</div>
+<span class="text-[9px] font-bold text-center leading-tight">Sarees</span>
+</div>
+</div>
+</section>
+<!-- END: SubCategories -->
+<!-- BEGIN: ProductGrid -->
+<section class="px-4 py-4 grid grid-cols-2 gap-4" data-purpose="product-grid">
+<!-- Product Card 1 -->
+<div class="flex flex-col">
+<div class="relative bg-velour-card-bg rounded-2xl aspect-[3/4] mb-2 overflow-hidden">
+<img alt="Essential Ribbed Crop Top" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujGTLidAvMTCBfQLRksNXuw9j-EMCvDj_OtZtaTVYZrpRu7L2Hn4n66k-Cwy9mzRUGuXh_DEBYuPfxpPtsNM7eHEpabrrCMJJS2EZhhKevKSOc1lH7_2CiN08CLvX-BhA2j3aTkm3uujPjEXeZGnkS4fqrhptzXSUbAK6XB-ON3ccibnr9lsSlTAO0zqdWLQ3KfyENR1heibbkkpX20yDG2T0d1PBq7qYUOLQTp1nEsvpO2Aj9Q3L8FU3tAjaBd8Uj-Psz_haPcUQ"/>
+<button aria-label="Add to favourites" class="absolute top-2 right-2 p-1.5 bg-white/80 rounded-full flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<div class="flex flex-col pr-1">
+<h4 class="font-bold text-sm">Essential Ribbed Crop Top</h4>
+<p class="text-[9px] text-gray-500 leading-tight mb-1">Modern silhouette with ultra-soft ribbed fabric for everyday comfort.</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-sm text-gray-700">LKR 2,450.00</span>
+<button class="bg-[#4D4D4D] text-white p-2 rounded-full">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="flex flex-col">
+<div class="relative bg-velour-card-bg rounded-2xl aspect-[3/4] mb-2 overflow-hidden">
+<img alt="Tie-Dye 'Happy' Hoodie" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uj1rFrZml3gs_zgFAMy3bdFFM_wMZ9vxGJ1hV7nBJzOsgg6Kpd1VRXw82iK7XQWFtczNPttC6otoqcejxfaV0qhXTLLPYnj4kwQYqMVAgGpbRHBFSeAPQjwcPfDWi_QyCjLHjnhPnogxn1tMqyjX32CPeDXjrI7vyZxVkySadcruYWW_ETnpzaATqz4iaKLY6gVRggDwKJaycJ-Co43PBs1ogIEh8z0RtzwxmZQ9I8d8T8pQKM1p0sZSFLYrSu9I5ufrIWIS-TnMQ"/>
+<button aria-label="Add to favourites" class="absolute top-2 right-2 p-1.5 bg-white/80 rounded-full flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<div class="flex flex-col pr-1">
+<h4 class="font-bold text-sm">Tie-Dye "Happy" Hoodie</h4>
+<p class="text-[9px] text-gray-500 leading-tight mb-1">Vibrant cropped hoodie featuring a playful typographic detail.</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-sm text-gray-700">LKR 4,890.00</span>
+<button class="bg-[#4D4D4D] text-white p-2 rounded-full">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="flex flex-col">
+<div class="relative bg-velour-card-bg rounded-2xl aspect-[3/4] mb-2 overflow-hidden">
+<img alt="Monochrome Patterned Blouse" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugBczwjG_MjsjCYPai63IaW9T6hRiac0HQOx06A7LLzLRoKwW_-BnBbPqmZ7LtBA0fxiB4OHQUdlaLWMz-edyENsJsknaokdQIkrmsF1c0BoHJjoO5t39f_O3q38G0wM2GBXIW2zXJ0DsXD_Vy21CoB3noj2LkHF5bM1NCd86t4Zy270qrDOfZsY9xjiml450U8QgCX4Oi_o1vYtzxsrR6HQxONe2gKkikVmF8gxPrB2rpRbx-9x4Y-zhXuDTlDEaBnwVIC_cze"/>
+<button aria-label="Add to favourites" class="absolute top-2 right-2 p-1.5 bg-white/80 rounded-full flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<div class="flex flex-col pr-1">
+<h4 class="font-bold text-sm">Monochrome Patterned Blouse</h4>
+<p class="text-[9px] text-gray-500 leading-tight mb-1">Elegant geometric print shirt for a sophisticated professional look.</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-sm text-gray-700">LKR 5,390.00</span>
+<button class="bg-[#4D4D4D] text-white p-2 rounded-full">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="flex flex-col">
+<div class="relative bg-velour-card-bg rounded-2xl aspect-[3/4] mb-2 overflow-hidden">
+<img alt="Classic Light Blue Button-Up" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujBGpreqlTv40Fe3hnF-eECHLQbGHfVAcG29PIWRlP6y1z3FA6Q_LxBhF4ilma8M2fU4syl-v1K3gliNqjdHOI92DgxcUdh0lpjmvSETm0hkQl14B1k-vflPkKQtWgT4yHZrx-yyIhmrW_N7MnBwvC4dnHpy85yC6J4gYFRAdVT73Ip1uZ8Zfwtw4NSSIf3GvFOvakpV3FmRvjGFJb8Z5T6vNJAmV-5OirvGuIkstJz_S9mjY7nPva5I-uF0MnDHNdIYyEQKBVXaQ"/>
+<button aria-label="Add to favourites" class="absolute top-2 right-2 p-1.5 bg-white/80 rounded-full flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<div class="flex flex-col pr-1">
+<h4 class="font-bold text-sm">Classic Light Blue Button-Up</h4>
+<p class="text-[9px] text-gray-500 leading-tight mb-1">Tailored cotton blend shirt in a timeless pastel blue shade.</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-sm text-gray-700">LKR 3,840.00</span>
+<button class="bg-[#4D4D4D] text-white p-2 rounded-full">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ProductGrid -->
+</main>
+<!-- BEGIN: BottomNavigation -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center py-3 px-4 z-50 pb-[env(safe-area-inset-bottom)]" data-purpose="bottom-nav">
+<button class="flex flex-col items-center gap-1 text-black">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z"></path>
+<path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z"></path>
+</svg>
+<span class="text-[10px] font-bold uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-bold uppercase">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-bold uppercase">Favourite</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-bold uppercase">Cart</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-bold uppercase">Profile</span>
+</button>
+</footer>
+<!-- END: BottomNavigation -->
+</body></html>

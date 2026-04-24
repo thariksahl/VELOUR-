@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&amp;family=Be+Vietnam+Pro:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e9e8e4",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-fixed-dim": "#e8c086",
+                    "primary-fixed": "#ffdbcc",
+                    "surface-container": "#efeeea",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#77574d",
+                    "on-secondary-fixed": "#2c160e",
+                    "inverse-primary": "#ffb595",
+                    "tertiary-container": "#8f6f3c",
+                    "primary-fixed-dim": "#ffb595",
+                    "background": "#faf9f5",
+                    "surface-dim": "#dbdad6",
+                    "surface": "#faf9f5",
+                    "on-primary-fixed-variant": "#76330f",
+                    "on-secondary-fixed-variant": "#5d4037",
+                    "on-surface": "#1b1c1a",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#fed3c7",
+                    "tertiary-fixed": "#ffdeae",
+                    "tertiary": "#745726",
+                    "surface-container-low": "#f4f4f0",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f1ed",
+                    "secondary-fixed-dim": "#e7bdb1",
+                    "on-tertiary-fixed": "#281800",
+                    "on-background": "#1b1c1a",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2f312e",
+                    "surface-variant": "#e3e2df",
+                    "primary-container": "#af5f38",
+                    "outline-variant": "#dac1b8",
+                    "primary": "#914722",
+                    "on-primary-container": "#fffbff",
+                    "on-surface-variant": "#54433c",
+                    "on-primary-fixed": "#351000",
+                    "surface-container-highest": "#e3e2df",
+                    "surface-tint": "#944a24",
+                    "secondary-fixed": "#ffdbd0",
+                    "outline": "#87736b",
+                    "on-secondary-container": "#795950",
+                    "on-tertiary-fixed-variant": "#5d4213",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Be Vietnam Pro", "sans-serif"],
+                    "label": ["Be Vietnam Pro", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="bg-[#faf9f5] dark:bg-[#1b1c1a] fixed top-0 left-0 w-full z-50">
+<div class="flex items-center justify-between px-8 py-6 w-full max-w-7xl mx-auto">
+<div class="flex items-center justify-center w-10 h-10 rounded-full border border-on-surface/10 hover:opacity-70 transition-opacity duration-300 cursor-pointer">
+<span class="material-symbols-outlined text-[#1b1c1a] dark:text-[#faf9f5]">arrow_back</span>
+</div>
+<h1 class="font-['Newsreader'] text-2xl tracking-[0.2em] uppercase text-[#1b1c1a] dark:text-[#faf9f5] font-bold">VELOUR</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="pt-32 pb-32 px-6 max-w-2xl mx-auto min-h-screen">
+<!-- User Profile Section -->
+<section class="flex flex-col items-center mb-16">
+<div class="relative mb-6">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container-low p-1 shadow-sm">
+<img alt="User profile" class="w-full h-full object-cover rounded-full" data-alt="Close-up portrait of a stylish woman with soft natural lighting, high-end fashion editorial style, warm tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwUCO1Q2-6GqH78G1ZB_AqPZ1VuIKCLIfs7mwmmIc6qxLhoMiCrSTiONNBcYkTO0dQwkillDLfM9rRWu92pVUtKXPrPLo1SBEZ2xkcsFu2JBVgAK4LCHcirGmszAYP7mYLjSJe1u6OcX18lN1AgamHCbbRTBxIU3b_YuhFw4QEmruyHMw6IuD6KzaSh9LyzZzPLa2eSfh7kAEbeAWxd73c3pZf0CeD8mwu4ivXZx6Yg_tH6itVoINkz-Y9zYiykfwVLKy2a-k66K4"/>
+</div>
+<button class="absolute bottom-1 right-1 bg-surface-container-lowest text-on-surface p-2 rounded-full shadow-md border border-outline-variant/20 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-1">Adeline Velasquez</h2>
+<p class="font-body text-sm text-on-surface-variant tracking-wide">mohammedsahlvelour01@gmail.com</p>
+</section>
+<!-- Section 1: Account -->
+<section class="mb-12">
+<h3 class="font-label text-[10px] tracking-[0.2em] uppercase text-on-surface-variant mb-6 px-2 opacity-60">Account</h3>
+<div class="space-y-1">
+<a class="flex items-center justify-between p-4 rounded-lg bg-surface hover:bg-surface-container-low transition-all duration-300 group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant font-light">receipt_long</span>
+<span class="font-body text-[15px] text-on-surface">My Orders</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm transition-transform group-hover:translate-x-1">chevron_right</span>
+</a>
+<div class="h-[1px] bg-outline-variant/10 mx-4"></div>
+<a class="flex items-center justify-between p-4 rounded-lg bg-surface hover:bg-surface-container-low transition-all duration-300 group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant font-light">person_outline</span>
+<span class="font-body text-[15px] text-on-surface">My Details</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm transition-transform group-hover:translate-x-1">chevron_right</span>
+</a>
+<div class="h-[1px] bg-outline-variant/10 mx-4"></div>
+<a class="flex items-center justify-between p-4 rounded-lg bg-surface hover:bg-surface-container-low transition-all duration-300 group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant font-light">local_shipping</span>
+<span class="font-body text-[15px] text-on-surface">Shipping Address</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm transition-transform group-hover:translate-x-1">chevron_right</span>
+</a>
+<div class="h-[1px] bg-outline-variant/10 mx-4"></div>
+<a class="flex items-center justify-between p-4 rounded-lg bg-surface hover:bg-surface-container-low transition-all duration-300 group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant font-light">credit_card</span>
+<span class="font-body text-[15px] text-on-surface">Payment Methods</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm transition-transform group-hover:translate-x-1">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Section 2: Settings -->
+<section class="mb-16">
+<h3 class="font-label text-[10px] tracking-[0.2em] uppercase text-on-surface-variant mb-6 px-2 opacity-60">Settings</h3>
+<div class="space-y-1">
+<a class="flex items-center justify-between p-4 rounded-lg bg-surface hover:bg-surface-container-low transition-all duration-300 group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant font-light">notifications</span>
+<span class="font-body text-[15px] text-on-surface">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm transition-transform group-hover:translate-x-1">chevron_right</span>
+</a>
+<div class="h-[1px] bg-outline-variant/10 mx-4"></div>
+<a class="flex items-center justify-between p-4 rounded-lg bg-surface hover:bg-surface-container-low transition-all duration-300 group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant font-light">language</span>
+<span class="font-body text-[15px] text-on-surface">Language</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm transition-transform group-hover:translate-x-1">chevron_right</span>
+</a>
+<div class="h-[1px] bg-outline-variant/10 mx-4"></div>
+<a class="flex items-center justify-between p-4 rounded-lg bg-surface hover:bg-surface-container-low transition-all duration-300 group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant font-light">gavel</span>
+<span class="font-body text-[15px] text-on-surface">Privacy Policy</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm transition-transform group-hover:translate-x-1">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Logout Button -->
+<div class="flex justify-center mt-8 pb-12">
+<button class="font-label text-[13px] tracking-widest uppercase text-primary font-bold hover:opacity-60 transition-opacity flex items-center gap-2">
+                Log Out
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-4 shadow-sm">
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">home</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">search</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">EXPLORE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">favorite</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">FAVOURITE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">shopping_cart</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">CART</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-black text-[28px]" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold text-black tracking-wider uppercase">PROFILE</span>
+</a>
+</nav>
+</body></html>

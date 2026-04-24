@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VELOUR - Luxury Fashion Login</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#faf9f5",
+                    "secondary-fixed": "#ffdbd0",
+                    "surface-variant": "#e3e2df",
+                    "primary-fixed": "#ffdbcc",
+                    "outline": "#87736b",
+                    "surface": "#faf9f5",
+                    "tertiary-container": "#8f6f3c",
+                    "inverse-surface": "#2f312e",
+                    "primary": "#914722",
+                    "surface-container": "#efeeea",
+                    "primary-container": "#af5f38",
+                    "on-surface": "#1b1c1a",
+                    "outline-variant": "#dac1b8",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dbdad6",
+                    "on-secondary-fixed-variant": "#5d4037",
+                    "on-primary-fixed-variant": "#76330f",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#745726",
+                    "surface-container-highest": "#e3e2df",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffdeae",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e9e8e4",
+                    "on-primary-container": "#fffbff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f4f4f0",
+                    "secondary-fixed-dim": "#e7bdb1",
+                    "secondary-container": "#fed3c7",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-container": "#795950",
+                    "on-surface-variant": "#54433c",
+                    "on-secondary-fixed": "#2c160e",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#351000",
+                    "on-tertiary-fixed": "#281800",
+                    "secondary": "#77574d",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-tertiary-fixed-variant": "#5d4213",
+                    "tertiary-fixed-dim": "#e8c086",
+                    "primary-fixed-dim": "#ffb595",
+                    "surface-tint": "#944a24",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#fffbff",
+                    "background": "#faf9f5",
+                    "inverse-primary": "#ffb595"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Be Vietnam Pro", "sans-serif"],
+                    "label": ["Be Vietnam Pro", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .serif-headline {
+            font-family: 'Newsreader', serif;
+        }
+        /* Gradient for primary CTA as per Design System Strategy */
+        .cta-gradient {
+            background: linear-gradient(135deg, #914722 0%, #af5f38 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 no-border tonal-shift flex justify-between items-center w-full px-6 py-6 fixed top-0 left-0 z-50 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center justify-center w-10 h-10 rounded-full border border-outline-variant/30 hover:bg-stone-200/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-on-surface text-xl" data-icon="arrow_back">arrow_back</span>
+</div>
+<h1 class="font-['Newsreader'] text-2xl font-bold text-[#6D5D3E] tracking-[0.25em] ml-[-40px]">VELOUR</h1>
+<div class="w-10"></div> <!-- Spacer to maintain center -->
+</header>
+<main class="w-full max-w-md px-8 pt-32 pb-12 flex flex-col flex-grow">
+<!-- Header Text Section -->
+<section class="mb-10">
+<h2 class="serif-headline text-5xl font-semibold text-on-surface tracking-tight mb-3">Create Account</h2>
+<p class="text-on-surface-variant text-sm font-medium tracking-wide">Sign in to continue shopping</p>
+</section>
+<!-- Login Form -->
+<form class="space-y-6">
+<div class="space-y-2">
+<div class="relative">
+<input class="w-full h-14 px-6 bg-surface-container-lowest border border-outline-variant/20 rounded-lg text-on-surface placeholder:text-on-surface-variant/60 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all duration-300" placeholder="Email Address" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="relative flex items-center">
+<input class="w-full h-14 px-6 bg-surface-container-lowest border border-outline-variant/20 rounded-lg text-on-surface placeholder:text-on-surface-variant/60 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all duration-300" placeholder="Password" type="password"/>
+<button class="absolute right-4 text-on-surface-variant/60" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+<div class="flex justify-end">
+<a class="text-tertiary font-semibold text-xs tracking-wider" href="#">Forgot Password?</a>
+</div>
+</div>
+<button class="w-full h-14 cta-gradient text-on-primary font-bold rounded-full text-lg shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all duration-300 active:scale-95" type="submit">
+                Log In
+            </button>
+</form>
+<!-- Divider -->
+<div class="my-10 flex items-center gap-4">
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+<span class="text-[10px] font-bold text-on-surface-variant/60 tracking-[0.2em]">OR CONTINUE WITH</span>
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+</div>
+<!-- Social Logins -->
+<div class="flex gap-4">
+<button class="flex-1 h-14 flex items-center justify-center bg-surface-container-lowest border border-outline-variant/20 rounded-lg hover:bg-surface-container-low transition-colors duration-300 group">
+<svg class="w-5 h-5 mr-3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>
+<span class="text-on-surface font-semibold text-sm">Google</span>
+</button>
+<button class="flex-1 h-14 flex items-center justify-center bg-surface-container-lowest border border-outline-variant/20 rounded-lg hover:bg-surface-container-low transition-colors duration-300 group">
+<svg class="w-5 h-5 mr-3 mb-1" viewbox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" fill="currentColor"></path></svg>
+<span class="text-on-surface font-semibold text-sm">Apple</span>
+</button>
+</div>
+<!-- Spacer to push footer to bottom if screen is tall -->
+<div class="flex-grow"></div>
+<!-- Footer -->
+<footer class="mt-12 text-center pb-8">
+<p class="text-sm text-on-surface-variant">
+                Don't have an account? <a class="text-tertiary font-bold ml-1" href="#">Sign Up</a>
+</p>
+</footer>
+</main>
+<!-- Background Decorative Texture (Optional Editorial Touch) -->
+<div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden opacity-30">
+<div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary-container/10 blur-[120px]"></div>
+<div class="absolute top-1/2 -left-24 w-64 h-64 rounded-full bg-tertiary/5 blur-[100px]"></div>
+</div>
+</body></html>

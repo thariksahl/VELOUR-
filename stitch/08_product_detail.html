@@ -1,0 +1,128 @@
+<html class="light" lang="en"><head></head><body class="bg-background text-on-surface min-h-screen pb-32">```html
+
+
+
+    <meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#8C4B27", // Adjusted to match the brown in PNG
+                        "background": "#F9F9F7", // Match off-white/warm cream
+                        "on-surface": "#1A1A1A",
+                        "surface-variant": "#F2F2F0", // For badges
+                        "outline": "#D1D1D1"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Be Vietnam Pro", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #F9F9F7;
+        }
+    </style>
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#F9F9F7]/95 backdrop-blur-md flex justify-between items-center px-5 py-4">
+<button class="hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-2xl font-headline tracking-[0.25em] font-medium">VELOUR</h1>
+<button class="hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-2xl" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</header>
+<main class="pt-[64px]">
+<!-- Product Image Section -->
+<section class="relative w-full aspect-[4/5] bg-[#D9D9D9] overflow-hidden rounded-b-[2.5rem]">
+<img alt="Casual shirt" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uj81_RL4tEc_W36ziECyvFjbyr4lB7NyQzMdv8qeZbs3VWMsx7qOYvVz5D6QuNz7bVAc4pYzSckU3lCDbFa-VXr9CMPfRyT_yp1Oy0scmqAUS9OvbMYQpK-JKo7_AR8e7OxSXgpg_pQb43kpIHKlYIK1Ng6LHKPOG0lrotXU1vm8k8AJFqTS3nch75RtrBVCyijvzNDbL77bOosmRTmU_HWdzRUA-vZ_ZngqBVhwwMZVOkizJIHjX3cdHrfCSak7a7Qpnq7GmfcUg"/>
+<!-- Pagination Dots -->
+<div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-white/50"></div>
+<div class="w-2 h-2 rounded-full bg-white/50"></div>
+</div>
+</section>
+<!-- Product Details -->
+<section class="px-6 py-8 space-y-6">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h2 class="text-[28px] font-headline font-bold leading-none">Casual Shirt</h2>
+<div class="flex flex-col items-start">
+<div class="flex items-center gap-0.5 text-primary">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-[11px] text-zinc-500 font-medium mt-1">Rating &amp; Reviews</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-[22px] font-bold tracking-tight">LKR 5999.99</p>
+</div>
+</div>
+<!-- Free Delivery Info -->
+<div class="inline-flex items-center gap-3 py-3 px-6 bg-[#F2F2F0] rounded-full">
+<span class="material-symbols-outlined text-primary scale-x-[-1]" data-icon="local_shipping">local_shipping</span>
+<span class="text-sm font-medium">Free delivery</span>
+</div>
+<!-- Description -->
+<div class="space-y-2">
+<p class="text-zinc-600 text-[15px] leading-relaxed">
+                Discover effortless elegance with our signature piece. Crafted from premium breathable fabrics, this essential combines modern tailoring with timeless comfort for an elevated daily ensemble.
+            </p>
+</div>
+<!-- Colors -->
+<div class="space-y-3">
+<h3 class="text-xs font-bold uppercase tracking-widest text-zinc-500">COLORS</h3>
+<div class="flex gap-4">
+<!-- Light Blue (Selected) -->
+<button class="w-9 h-9 rounded-full border-[1.5px] border-primary p-[3px]">
+<div class="w-full h-full rounded-full bg-[#A5C7E1]"></div>
+</button>
+<!-- Dark Blue -->
+<button class="w-9 h-9 rounded-full bg-[#1A3A5F]"></button>
+<!-- Black -->
+<button class="w-9 h-9 rounded-full bg-[#222222]"></button>
+</div>
+</div>
+<!-- Size Selection -->
+<div class="space-y-3">
+<h3 class="text-xs font-bold uppercase tracking-widest text-zinc-500">SELECT SIZE</h3>
+<div class="flex gap-3">
+<button class="w-14 h-14 flex items-center justify-center rounded-full bg-primary text-white text-lg font-bold">M</button>
+<button class="w-14 h-14 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-lg font-medium">L</button>
+<button class="w-14 h-14 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-lg font-medium">XL</button>
+<button class="w-14 h-14 flex items-center justify-center rounded-full border border-zinc-200 bg-white text-lg font-medium">XXL</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Actions -->
+<div class="fixed bottom-0 left-0 w-full px-6 py-6 bg-background/80 backdrop-blur-lg flex items-center gap-4">
+<button class="w-16 h-16 rounded-full border border-zinc-200 flex items-center justify-center bg-white shadow-sm active:bg-zinc-50 transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="flex-1 h-16 bg-[#1A1A1A] text-white rounded-full font-bold text-lg flex items-center justify-center gap-2 shadow-xl active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'wght' 600;">add</span>
+        Add to Cart
+    </button>
+</div>
+
+```</body></html>

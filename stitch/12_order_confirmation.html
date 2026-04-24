@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VELOUR | Order Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .font-newsreader { font-family: 'Newsreader', serif; }
+        .font-be-vietnam-pro { font-family: 'Be Vietnam Pro', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#5d4037",
+                        "on-primary-fixed-variant": "#76330f",
+                        "surface": "#faf9f5",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#745726",
+                        "surface-tint": "#944a24",
+                        "secondary": "#77574d",
+                        "tertiary-fixed-dim": "#e8c086",
+                        "surface-variant": "#e3e2df",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e2df",
+                        "surface-container-high": "#e9e8e4",
+                        "secondary-fixed-dim": "#e7bdb1",
+                        "on-tertiary-fixed-variant": "#5d4213",
+                        "inverse-primary": "#ffb595",
+                        "tertiary-container": "#8f6f3c",
+                        "surface-container-low": "#f4f4f0",
+                        "outline-variant": "#dac1b8",
+                        "surface-bright": "#faf9f5",
+                        "surface-dim": "#dbdad6",
+                        "on-background": "#1b1c1a",
+                        "surface-container": "#efeeea",
+                        "on-surface-variant": "#54433c",
+                        "on-surface": "#1b1c1a",
+                        "primary-container": "#af5f38",
+                        "tertiary-fixed": "#ffdeae",
+                        "secondary-container": "#fed3c7",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ffb595",
+                        "on-tertiary-fixed": "#281800",
+                        "inverse-surface": "#2f312e",
+                        "secondary-fixed": "#ffdbd0",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "primary": "#914722",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed": "#351000",
+                        "on-tertiary-container": "#fffbff",
+                        "primary-fixed": "#ffdbcc",
+                        "outline": "#87736b",
+                        "on-secondary-fixed": "#2c160e",
+                        "on-secondary-container": "#795950",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "display": ["Newsreader"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen pb-12">
+<!-- TopAppBar Navigation Cluster -->
+<!-- Rule: The "Destination" Rule - Suppress BottomNavBar for Transactional Confirmation screens -->
+<header class="flex justify-between items-center w-full px-8 py-6 bg-surface z-50">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity text-primary">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<h1 class="text-2xl font-headline font-serif tracking-[0.2em] text-primary uppercase">VELOUR</h1>
+<div class="w-6"></div> <!-- Spacer for balance -->
+</header>
+<main class="max-w-2xl mx-auto px-6 mt-4">
+<!-- Success Animation/Icon State -->
+<div class="flex flex-col items-center text-center mb-12">
+<div class="w-24 h-24 bg-gradient-to-br from-tertiary to-tertiary-container rounded-full flex items-center justify-center mb-8 shadow-xl shadow-tertiary/10">
+<span class="material-symbols-outlined text-white text-5xl" data-icon="check" style="font-variation-settings: 'wght' 600;">check</span>
+</div>
+<h2 class="text-4xl font-headline font-bold text-on-surface mb-3 tracking-tight">Order Placed!</h2>
+<div class="flex flex-col items-center gap-4">
+<p class="text-xl font-headline text-on-surface-variant italic">Thank you, Sarah! 🥳</p>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">#VLR-20250413</span>
+</div>
+</div>
+<!-- Editorial Grid Layout for Confirmation Details -->
+<div class="space-y-8">
+<!-- Order Summary Section -->
+<section class="bg-surface-container-low p-8 rounded-lg">
+<h3 class="font-headline text-lg font-bold uppercase tracking-widest text-primary mb-8">Order Summary</h3>
+<div class="space-y-6">
+<!-- Item 1 -->
+<div class="flex items-center gap-6">
+<div class="w-20 h-24 bg-surface-container-highest rounded-lg overflow-hidden shrink-0">
+<img alt="Luxury Cashmere Sweater" class="w-full h-full object-cover" data-alt="close-up of a premium soft beige cashmere sweater folded neatly on a clean white surface with soft editorial lighting" src="https://lh3.googleusercontent.com/aida/ADBb0uj81_RL4tEc_W36ziECyvFjbyr4lB7NyQzMdv8qeZbs3VWMsx7qOYvVz5D6QuNz7bVAc4pYzSckU3lCDbFa-VXr9CMPfRyT_yp1Oy0scmqAUS9OvbMYQpK-JKo7_AR8e7OxSXgpg_pQb43kpIHKlYIK1Ng6LHKPOG0lrotXU1vm8k8AJFqTS3nch75RtrBVCyijvzNDbL77bOosmRTmU_HWdzRUA-vZ_ZngqBVhwwMZVOkizJIHjX3cdHrfCSak7a7Qpnq7GmfcUg"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline text-lg leading-tight mb-1">Cashmere Blend Sweater</h4>
+<p class="text-sm text-on-surface-variant font-medium">Beige • M</p>
+</div>
+<div class="text-right">
+<p class="font-bold">LKR 7,885</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-6">
+<div class="w-20 h-24 bg-surface-container-highest rounded-lg overflow-hidden shrink-0">
+<img alt="Artisan Leather Sneakers" class="w-full h-full object-cover" data-alt="luxury minimal white leather sneakers displayed in a high-end boutique setting with warm neutral background tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBsiC8RU1Hh89IpZzUrDZBeb4rc1aw5XQz5jHbHhP7bpxXhX-JXYD9t46AeDuequvWOP87bUiDILZhFpH_siLTn7rZyrga-IihpKruICOIBRI0aYuCKKkagUMEUHswbj_4Ge53QNHK6lQg2AID0-Okaj5mHyImd_eC-21HYTkA_k-rJXiDiUjl2vbc7KnLuCt6pqSv2Bx6LIYCcDvxU738Rgf3Fh9h8YKD_pr95Ydmri5uzLegs0DWu6XMenHvETBieqCx50NOYbg"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline text-lg leading-tight mb-1">Artisan Leather Sneakers</h4>
+<p class="text-sm text-on-surface-variant font-medium">White • 43</p>
+</div>
+<div class="text-right">
+<p class="font-bold">LKR 5,345</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/30 flex justify-between items-center">
+<p class="font-headline text-xl font-bold">Total Paid</p>
+<p class="font-headline text-2xl font-bold text-primary">LKR 13,230</p>
+</div>
+</section>
+<!-- Delivery Section -->
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-outline-variant/10">
+<div class="flex items-start gap-4 mb-6">
+<div class="bg-tertiary/10 p-3 rounded-full">
+<span class="material-symbols-outlined text-tertiary" data-icon="package_2">package_2</span>
+</div>
+<div>
+<h3 class="font-headline text-lg font-bold uppercase tracking-widest text-on-surface mb-1">Estimated Delivery</h3>
+<p class="text-primary font-bold text-lg">April 18 - 20, 2025</p>
+</div>
+</div>
+<div class="pl-[3.75rem] space-y-2">
+<p class="text-xs font-bold tracking-widest text-on-surface-variant uppercase">Shipping Address</p>
+<p class="text-on-surface-variant leading-relaxed max-w-xs">
+                        Sarah Williams<br/>
+                        42nd Couture Avenue, Atelier District,<br/>
+                        Colombo 07
+                    </p>
+</div>
+</section>
+<!-- Action Cluster -->
+<div class="flex flex-col gap-4 mt-12">
+<button class="w-full py-5 px-8 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold text-lg hover:opacity-90 transition-all active:scale-[0.98] shadow-lg shadow-primary/20">
+                    Track My Order
+                </button>
+<button class="w-full py-5 px-8 rounded-full border border-outline-variant text-tertiary font-bold text-lg hover:bg-surface-container transition-all active:scale-[0.98]">
+                    Continue Shopping
+                </button>
+</div>
+<!-- Aesthetic Footer Note -->
+<div class="pt-8 text-center">
+<p class="text-xs tracking-[0.2em] uppercase text-on-surface-variant opacity-60">Handcrafted Excellence Since 2012</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Suppressed as per Linear/Transactional Rule -->
+</body></html>

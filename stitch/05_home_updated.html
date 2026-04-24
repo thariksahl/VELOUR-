@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VELOUR | Premium Fashion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#ffdeae",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#745726",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#8f6f3c",
+                      "outline-variant": "#dac1b8",
+                      "on-surface-variant": "#54433c",
+                      "on-secondary-fixed": "#2c160e",
+                      "inverse-surface": "#2f312e",
+                      "secondary-container": "#fed3c7",
+                      "on-primary-fixed-variant": "#76330f",
+                      "on-secondary": "#ffffff",
+                      "outline": "#87736b",
+                      "on-secondary-container": "#795950",
+                      "surface-dim": "#dbdad6",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#ffb595",
+                      "surface-container": "#efeeea",
+                      "on-background": "#1b1c1a",
+                      "surface-bright": "#faf9f5",
+                      "on-tertiary-fixed": "#281800",
+                      "tertiary-fixed-dim": "#e8c086",
+                      "inverse-on-surface": "#f2f1ed",
+                      "surface": "#faf9f5",
+                      "surface-container-highest": "#e3e2df",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#ffdbcc",
+                      "surface-tint": "#944a24",
+                      "inverse-primary": "#ffb595",
+                      "error": "#ba1a1a",
+                      "surface-variant": "#e3e2df",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#fffbff",
+                      "secondary-fixed-dim": "#e7bdb1",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed": "#351000",
+                      "primary-container": "#af5f38",
+                      "secondary-fixed": "#ffdbd0",
+                      "primary": "#914722",
+                      "background": "#faf9f5",
+                      "on-tertiary-fixed-variant": "#5d4213",
+                      "on-surface": "#1b1c1a",
+                      "on-primary-container": "#fffbff",
+                      "secondary": "#77574d",
+                      "surface-container-low": "#f4f4f0",
+                      "surface-container-high": "#e9e8e4",
+                      "on-secondary-fixed-variant": "#5d4037"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Newsreader"],
+                      "body": ["Be Vietnam Pro"],
+                      "label": ["Be Vietnam Pro"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .serif-header { font-family: 'Newsreader', serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Header with logo and actions -->
+<header class="sticky top-0 z-50 bg-[#faf9f5]/95 backdrop-blur-sm">
+<div class="flex justify-between items-center w-full px-6 py-5">
+<button class="hover:opacity-80 transition-opacity scale-95 duration-200 border border-gray-200 rounded-full w-10 h-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-black text-xl" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Be_Vietnam_Pro'] text-xl font-black tracking-tighter text-black">VELOUR</h1>
+<button class="hover:opacity-80 transition-opacity scale-95 duration-200 border border-gray-200 rounded-full w-10 h-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-black text-xl" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="space-y-8">
+<!-- Category Chips moved further down -->
+<div class="overflow-x-auto hide-scrollbar flex gap-2.5 whitespace-nowrap items-center px-6 mt-4">
+<button class="text-[12px] font-bold uppercase tracking-wider px-6 py-3 bg-black/5 text-on-surface/80 rounded-xl">NEW IN</button>
+<button class="text-[12px] font-bold uppercase tracking-wider px-8 py-3 bg-primary text-white rounded-xl" style="background-color: #C06C44;">MEN</button>
+<button class="text-[12px] font-bold uppercase tracking-wider px-6 py-3 bg-black/5 text-on-surface/80 rounded-xl">WOMEN</button>
+<button class="text-[12px] font-bold uppercase tracking-wider px-6 py-3 bg-black/5 text-on-surface/80 rounded-xl">BEAUTY</button>
+<button class="text-[12px] font-bold uppercase tracking-wider px-6 py-3 bg-black/5 text-on-surface/80 rounded-xl">KIDS</button>
+</div>
+<div class="px-6 space-y-8">
+<!-- Hero Banner -->
+<section class="relative h-56 w-full rounded-3xl overflow-hidden flex items-center shadow-sm">
+<div class="absolute inset-0 bg-[#e3eef4] -z-10"></div>
+<div class="w-1/2 p-6 z-10">
+<h2 class="serif-header text-2xl font-semibold text-on-surface leading-tight mb-4">
+                    VELOUR COLLECTION OF WEDDING
+                </h2>
+<button class="bg-primary text-white text-[11px] font-bold tracking-widest px-5 py-2.5 rounded-full uppercase transition-transform active:scale-95">
+                    SHOP NOW
+                </button>
+</div>
+<div class="w-1/2 h-full relative">
+<img alt="Men's wedding fashion" class="absolute bottom-0 right-0 h-[105%] w-full object-contain object-bottom" data-alt="Handsome male model in a tailored luxury light blue suit posing against a clean minimalist studio background with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsypGQ5zoyNlus7VIXvOaXgTj5CKzUSYHvnKTvRW-wfi3wlCwHH3sxcXpuak1mKNSirk2hTqv_GXtb7bzeWsZ0RGLIOzCjYm4il7arsGaWXjuZZWLdo4dZBkJ8SwO5WIkASDz7yi519ULpv8bFf8mFc78RyFatlsZY9hVvdc8mPqpWlIr5sMU2F21pEU_LQk7Xgb4MetW80OUyFR2BeQZWQUCDj8zp9CpD4j2Ogh2Ppy5xJCWLmE4uKMXp85OV4vVySapZeOy5i54"/>
+</div>
+</section>
+<!-- Sub-categories (Circular) -->
+<section class="flex justify-between items-start gap-4 overflow-x-auto hide-scrollbar py-2">
+<div class="flex flex-col items-center gap-2 shrink-0">
+<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant/20 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="close up of a crisp white dress shirt neatly folded on a light surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiWaE7CicWf0lpYWri0WIhiJ3k5-jnQznlHQ8I5mOL7upMZ2hIQIH2IPYCSLzD_8M4J-n5agjKyoL-RKYkbXtFyFFeyf-2vF5H5gyK5nVnFhp4KtQqG-2WtlN5nfSAu9nASPVS92iu7RHHNeCHXyVilF0z1GxP2DYu7JL6flocEfuiS5KehNee-fKMsW_FpnNQOkAUeUznT-EOBp_-uuXGDF5gVAPy-uPf73eO8_PbD4MKjuvo19Uv5FUl0KBxaZ69-mVjHark21U"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface/80 uppercase tracking-tighter">SHIRTS</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0">
+<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant/20 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="clean white basic t-shirt flat lay on a warm beige background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfmymYd3uHUW4Ovhp_uI_ycoTB9Nmp-c7dyWXv-cYsLcg-brU2I0qzXD3gf_g7UHclYd4GITjF-ML3Z4LfbzQ_u5SGglw0rzNq8qTAhnhXzxpkap_1N2CMOmVhupPXzw7kVCNGi4cIy6aITgeGVT_9ftdUyw1Uxxt9eNKvVdO1Yz9KqjPkjgSMijcWI1Rw9Dj0ro2oXtEl2XUxHAVmAZ78okWwYUxcXF49GE__2lpNR3udbRneVVM_7rFXtrBvoCOFKoOuuPj3YXI"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface/80 uppercase tracking-tighter">T-SHIRT</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0">
+<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant/20 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="folded pair of high quality blue denim jeans on a wooden surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6YKPjTBr8edBozAVH9gYXinDgdD1n8sNULJvtJ9vCbbUJthgqJplDGkmgF8_RfWw6UFRk6zZEQhjJ2b8z06BKsteZu6aLePoEhwCuUNaiTR_DSmKp8vNjajcGDlXsHCF6Qr8fobA2itGePJOLZZytuoUQ_Lt2nG5tDPgPf5KalWM0a4-ZVHg-8aRIItKmGAp3U5mZPUe5exmrmjQ7pzYzorrpYkcKmGNMHmHBa73TH-_sn5yOMxdfWgGyMxq5CkrJyUyu62tyMOg"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface/80 uppercase tracking-tighter">JEANS</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0">
+<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant/20 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="premium cotton inner wear essentials neatly stacked" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAixXwLbPkRBQ1RIU7Rs97vLqvjv55tFttRSTqrLyhdt1kBJeMFLOem737m4hf9BUdcFfVzZJthkD0P-BTUpkN7CgUA5r1vR9A0ExqCjFxZtU9tioG7lCjnADEiUgaNLZ3ybuLw0C_8SJZt2BMGPjauujQ3AUNPeYRGqgDJT00ujecJ-t7HvsbRAAZuRpdzy-Af_762NfmiuRl88S7sMAcU7i01uiWRmp15jI7ZzpO2cwlKk42C9xyC5gNmp88s1hEGeQcusRjHZbw"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface/80 uppercase tracking-tighter">INNER WEARS</span>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="grid grid-cols-2 gap-x-4 gap-y-10">
+<!-- Product 1 -->
+<div class="flex flex-col space-y-3">
+<div class="relative aspect-[3/4] bg-surface-container-low rounded-[2rem] overflow-hidden group shadow-sm"><img class="w-full h-full object-cover" data-alt="modern green casual button-down shirt worn by a male model in a stylish pose" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBemrxXDrZs69OwV-KX-NFoObNg1vCMQ6gRP309pEud_3BBeyRCKPWtI0tAafBa7mXkLjC13B7R2_EZuFT-amTsMLIs8Z-M6VEJUHrLJoXGxkv1YGcIi9vEnlwlJ-0rqzqyYA24NRdCS6NT6gqxVxYcchfyKeE_Xhk7zhAB19NLi2GN5RpoLPka7wg-ni_MD3zuXOh1c0iuiFk0sKVmg5S0x0ObvUCQ550hLvnVbpD4IHd82O-cj4WaIIlp1TGFillRdzlg5s8mOtI"/>
+<button class="absolute top-2.5 right-2.5 z-10">
+<span class="material-symbols-outlined text-xl text-black" data-icon="favorite">favorite</span>
+</button>
+<button class="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="shopping_cart">shopping_cart</span>
+</button></div>
+<div>
+<h3 class="text-[11px] font-bold text-on-surface tracking-wide uppercase">CASUAL SHIRT (GREEN)</h3>
+<p class="text-[11px] font-semibold text-on-surface/60 mt-0.5">LKR 5890.00</p>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="flex flex-col space-y-3">
+<div class="relative aspect-[3/4] bg-surface-container-low rounded-[2rem] overflow-hidden shadow-sm"><img class="w-full h-full object-cover" data-alt="Classic straight-leg blue denim jeans for boys" src="https://lh3.googleusercontent.com/aida/ADBb0uiWaKgas07cnYTWqqJeTwJknwHpl8BEO91vZi3aUDkbL5u3dR6idk_t-R3JVcYzhwtCk9WeT0VOphD0KKihBH9lgB8AgkSjTWcRssm_5RTAtS-emNr42D8aVpFUyhb3qGgbcZdU5Lbls79YNOgWPrIuuNd1PPjj1pLOhJx8fmWEjwMkkycV7yQkxs_7VQn-YfyzrCRyVkRbJgPri8JxnDR1t3Dk5kaCMCtYkrnKll7dRBF6KM-bnl-R6craizwd9W_0Tc1Ffwoh4g"/>
+<button class="absolute top-2.5 right-2.5 z-10">
+<span class="material-symbols-outlined text-xl text-black" data-icon="favorite">favorite</span>
+</button>
+<button class="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="shopping_cart">shopping_cart</span>
+</button></div>
+<div>
+<h3 class="text-[11px] font-bold text-on-surface tracking-wide uppercase">WIDE-LEG JEANS (BLUE)</h3>
+<p class="text-[11px] font-semibold text-on-surface/60 mt-0.5">LKR 7250.00</p>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="flex flex-col space-y-3">
+<div class="relative aspect-[3/4] bg-surface-container-low rounded-[2rem] overflow-hidden shadow-sm"><img class="w-full h-full object-cover" data-alt="premium slim fit white dress shirt under natural warm sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr6ebLnPshE5jXzcevjfSyN_m6aZRjcFVMs1NaY-NhRHFY00JZJJWR9KC9EpRHqyQITuF5j_AZxubm9bw29IEntY47xIWR7MzN-LSJin2_E7z3G6L6H0Q9nQRoUf2Wv6JWzLIaJ9Ulx3ZRTiUFaBrNrv12fTMIT9_xg7wGUEc2pbPZaWve2KSv4YxuqHG77opENWih3A_7p0PT1uHjhHSpd3kbz8rxw5vC4JvHzTXSXXGTHZRsMDLl1lcsId_FzZbMrpeFxbWM34Y"/>
+<button class="absolute top-2.5 right-2.5 z-10">
+<span class="material-symbols-outlined text-xl text-black" data-icon="favorite">favorite</span>
+</button>
+<button class="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="shopping_cart">shopping_cart</span>
+</button></div>
+<div>
+<h3 class="text-[11px] font-bold text-on-surface tracking-wide uppercase">DRESS SHIRT (WHITE)</h3>
+<p class="text-[11px] font-semibold text-on-surface/60 mt-0.5">LKR 4990.00</p>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="flex flex-col space-y-3">
+<div class="relative aspect-[3/4] bg-surface-container-low rounded-[2rem] overflow-hidden shadow-sm"><img class="w-full h-full object-cover" data-alt="minimalist black cotton t-shirt with premium texture shown on model" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUIkIVfGDlgJDNjoW4S70cAA0p4qyMJ50Wt5KYZNjshe_9Vf0wZTA5X8Xf57acIXrcympQRU1psFR8NfpDg77xIDza-FZsXeUKW54FEQ4fsyBJkXlUdnsLn09ylQ6BHIg6z55j_QVmd5Az6dBujzHhUHRipXKwiyhRZQ6iYjYG03vPXyq8_Pl7BbNQ_yWda3YCpbiyaqwX-5y5qoSLYzHws3Wth9Wbj4eXy858_PL6h0MCByzE-m69R21In_dp7rnmn6OjBpionK0"/>
+<button class="absolute top-2.5 right-2.5 z-10">
+<span class="material-symbols-outlined text-xl text-black" data-icon="favorite">favorite</span>
+</button>
+<button class="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="shopping_cart">shopping_cart</span>
+</button></div>
+<div>
+<h3 class="text-[11px] font-bold text-on-surface tracking-wide uppercase">BASIC TEE (BLACK)</h3>
+<p class="text-[11px] font-semibold text-on-surface/60 mt-0.5">LKR 2850.00</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-4 shadow-sm">
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-black text-[28px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold text-black tracking-wider uppercase">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">search</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">EXPLORE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">favorite</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">FAVOURITE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">shopping_cart</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">CART</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px]" href="#">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-[28px]">person</span>
+<span class="text-[10px] font-bold text-on-surface-variant/40 tracking-wider uppercase">PROFILE</span>
+</a>
+</nav>
+</body></html>

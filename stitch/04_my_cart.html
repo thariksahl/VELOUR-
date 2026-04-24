@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Cart - The Digital Atelier</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#54433c",
+                        "on-secondary-fixed": "#2c160e",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#faf9f5",
+                        "primary": "#914722",
+                        "surface-container-low": "#f4f4f0",
+                        "on-primary-fixed-variant": "#76330f",
+                        "on-tertiary-fixed": "#281800",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efeeea",
+                        "outline-variant": "#dac1b8",
+                        "on-tertiary-fixed-variant": "#5d4213",
+                        "surface": "#faf9f5",
+                        "outline": "#87736b",
+                        "surface-dim": "#dbdad6",
+                        "on-surface": "#1b1c1a",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-tint": "#944a24",
+                        "surface-container-high": "#e9e8e4",
+                        "tertiary-fixed": "#ffdeae",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e3e2df",
+                        "primary-container": "#af5f38",
+                        "secondary": "#77574d",
+                        "primary-fixed-dim": "#ffb595",
+                        "on-secondary-container": "#795950",
+                        "secondary-fixed": "#ffdbd0",
+                        "on-background": "#1b1c1a",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#8f6f3c",
+                        "tertiary": "#745726",
+                        "background": "#faf9f5",
+                        "on-secondary-fixed-variant": "#5d4037",
+                        "primary-fixed": "#ffdbcc",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#351000",
+                        "inverse-primary": "#ffb595",
+                        "secondary-fixed-dim": "#e7bdb1",
+                        "surface-variant": "#e3e2df",
+                        "inverse-surface": "#2f312e",
+                        "secondary-container": "#fed3c7",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#fffbff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#e8c086",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Be Vietnam Pro", "sans-serif"],
+                        "label": ["Be Vietnam Pro", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .font-serif { font-family: 'Newsreader', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .btn-primary-gradient {
+            background: linear-gradient(to right, #914722, #af5f38);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-[#faf9f5] dark:bg-[#1b1c1a] flex justify-between items-center px-8 py-6 w-full docked full-width top-0 sticky z-50">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-sm border border-stone-100 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-lg text-black" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-serif italic text-2xl tracking-tight text-[#1b1c1a] dark:text-[#faf9f5]">My Cart</h1>
+</div>
+<button class="text-[#914722] font-semibold font-label hover:opacity-80 transition-opacity">Edit</button>
+</header>
+<div class="bg-[#f4f4f0] dark:bg-[#2a2a28] h-[1px] w-full"></div>
+<main class="max-w-2xl mx-auto px-6 py-10 space-y-8 pb-32">
+<!-- Cart Items Cluster -->
+<section class="space-y-4">
+<!-- Item 1: Relaxed Wide-Leg Jeans -->
+<div class="bg-surface-container-lowest rounded-lg p-5 flex gap-5 items-center shadow-[0_4px_24px_rgba(27,28,26,0.02)] border border-outline-variant/10">
+<img alt="Relaxed Wide-Leg Jeans" class="w-24 h-28 object-cover rounded-md" src="https://lh3.googleusercontent.com/aida/ADBb0uhn_jiFQoKWt--MifNFU_xIytSD_ieDOpy0ufhzzlYw5gwZH6jqO4C8SES3Gkt8kmYitpFzGoNJ6a6nY7jOnoYnzSs6SjQWJ0M5-Py8kBYkjd2CymeuGC-BUPcRMYWUARNal6-_LBOhkPHUQHdEPE7W0_cVltYoYYYR3mqPRkbHF_Ifty6ahuvC08m_jikOvBGXusV0VmWzgNWWHizu8CIk3G5OpMZHVX_Qs6W--vQvOpZ0drRBOdjih7PPByklWvTQVB2BZhIUgg"/>
+<div class="flex-1 flex flex-col h-full justify-between">
+<div>
+<h3 class="font-headline text-lg font-semibold text-on-surface">Relaxed Wide-Leg Jeans</h3>
+<p class="text-on-surface-variant text-sm font-label">Washed Blue</p>
+</div>
+<div class="flex justify-between items-end mt-4">
+<span class="font-semibold text-primary">LKR 5,990.00</span>
+<div class="flex items-center gap-3 bg-surface-container-low px-3 py-1 rounded-full">
+<button class="material-symbols-outlined text-sm text-tertiary">remove</button>
+<span class="text-sm font-bold w-4 text-center">1</span>
+<button class="material-symbols-outlined text-sm text-tertiary">add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2: Essential Cotton Shirt -->
+<div class="bg-surface-container-lowest rounded-lg p-5 flex gap-5 items-center shadow-[0_4px_24px_rgba(27,28,26,0.02)] border border-outline-variant/10">
+<img alt="Essential Cotton Shirt" class="w-24 h-28 object-cover rounded-md" src="https://lh3.googleusercontent.com/aida/ADBb0ujsZzlon7zpU9FeqTwHAJmVFI4Lc1RncOZHIRStIjxzDd8q1IJ7eZl86-XENl_4mkSL2YkoPmnlFVtw1LO9EAAR5HUtCv6HV7K5OADs3n4RMG963zwyeBbD8E5jfDkvzsCJyjlS6BTgQajsF5Cwx2ZBmV59PHAQJPgbhbHzxWIhe0yvP6YG47CxOJXwkinV6nsxyI0KYmOjZBVeJoogpoLwC7ta7vYlE56KTN-yRjk71GyHOQO5jr_KinvICoPxCy6gvDRcgTUjDQ"/>
+<div class="flex-1 flex flex-col h-full justify-between">
+<div>
+<h3 class="font-headline text-lg font-semibold text-on-surface">Essential Cotton Shirt</h3>
+<p class="text-on-surface-variant text-sm font-label">Pastel Blue</p>
+</div>
+<div class="flex justify-between items-end mt-4">
+<span class="font-semibold text-primary">LKR 4,500.00</span>
+<div class="flex items-center gap-3 bg-surface-container-low px-3 py-1 rounded-full">
+<button class="material-symbols-outlined text-sm text-tertiary">remove</button>
+<span class="text-sm font-bold w-4 text-center">1</span>
+<button class="material-symbols-outlined text-sm text-tertiary">add</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Promo Code -->
+<section class="flex gap-4">
+<div class="relative flex-1">
+<input class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-5 py-4 focus:ring-1 focus:ring-primary focus:border-primary outline-none text-on-surface placeholder-on-surface-variant" placeholder="Enter promo code" type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-8 rounded-lg font-semibold hover:opacity-90 transition-opacity">Apply</button>
+</section>
+<!-- Order Summary -->
+<section class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_8px_32px_rgba(27,28,26,0.03)] border border-outline-variant/10">
+<h2 class="font-serif text-2xl text-on-surface mb-6">Order Summary</h2>
+<div class="space-y-4 font-label">
+<div class="flex justify-between text-on-surface-variant">
+<span>Subtotal</span>
+<span>LKR 10,490.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Discount</span>
+<span class="text-primary">-$0.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Delivery</span>
+<span>$0.00</span>
+</div>
+<div class="pt-6 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="text-on-surface font-semibold text-lg">Total</span>
+<span class="text-tertiary font-bold text-2xl">LKR 10,490.00</span>
+</div>
+</div>
+</section>
+<!-- Checkout Action -->
+<section class="pt-4">
+<button class="w-full btn-primary-gradient text-on-primary py-5 rounded-full text-lg font-semibold tracking-wide shadow-lg shadow-primary/20 hover:scale-[1.01] active:scale-95 transition-all">
+                Proceed to Checkout
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 shadow-sm">
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 text-2xl">home</span>
+<span class="text-[10px] font-bold text-gray-400 tracking-wider">HOME</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 text-2xl">search_check</span>
+<span class="text-[10px] font-bold text-gray-400 tracking-wider">EXPLORE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 text-2xl">favorite</span>
+<span class="text-[10px] font-bold text-gray-400 tracking-wider">FAVOURITE</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px] group" href="#">
+<span class="material-symbols-outlined text-black text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="text-[10px] font-bold text-black tracking-wider">CART</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 min-w-[64px] group" href="#">
+<span class="material-symbols-outlined text-gray-400 text-2xl">person</span>
+<span class="text-[10px] font-bold text-gray-400 tracking-wider">PROFILE</span>
+</a>
+</nav>
+</body></html>
