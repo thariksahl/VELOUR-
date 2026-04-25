@@ -100,7 +100,7 @@ class OrderConfirmationScreen extends StatelessWidget {
               end: Alignment.bottomRight,
               colors: [_tertiary, _tertiaryContainer],
             ),
-            boxShadow: [BoxShadow(color: _tertiary.withOpacity(0.10), blurRadius: 40, offset: const Offset(0, 8))],
+            boxShadow: [BoxShadow(color: _tertiary.withValues(alpha: 0.10), blurRadius: 40, offset: const Offset(0, 8))],
           ),
           child: const Icon(Icons.check_rounded, size: 48, color: Colors.white),
         ),
@@ -128,7 +128,29 @@ class OrderConfirmationScreen extends StatelessWidget {
   // HTML: bg-surface-container-low p-8 rounded-lg
 
   Widget _orderSummaryCard() {
-    final items = AppData.orderSummaryItems;
+    final cartItems = AppData.cartItems();
+
+    // Compute real total from cart item prices (strip 'LKR ' and commas)
+    double total = 0;
+    for (final item in cartItems) {
+      final raw = item.price.replaceAll('LKR', '').replaceAll(',', '').trim();
+      final value = double.tryParse(raw) ?? 0;
+      total += value * item.qty;
+    }
+    final totalStr = 'LKR ${total.toStringAsFixed(2).replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (m) => '${m[1]},')}' ;
+
+    if (cartItems.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(32),
+        decoration: BoxDecoration(
+          color: _surfaceContainerLow,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Center(
+          child: Text('Your cart is empty.', style: _bvp(14, FontWeight.w400, _onSurfaceVariant)),
+        ),
+      );
+    }
 
     return Container(
       padding: const EdgeInsets.all(32),
@@ -139,20 +161,17 @@ class OrderConfirmationScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header — uppercase tracking-widest text-primary
           Text('ORDER SUMMARY',
               style: _nr(18, FontWeight.w700, _primary, ls: 2.0)),
           const SizedBox(height: 32),
-          // Items
-          ...items.asMap().entries.map((e) {
+          ...cartItems.asMap().entries.map((e) {
             final i = e.key;
             final item = e.value;
             return Padding(
-              padding: EdgeInsets.only(bottom: i < items.length - 1 ? 24 : 0),
+              padding: EdgeInsets.only(bottom: i < cartItems.length - 1 ? 24 : 0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Product image — w-20 h-24 rounded-lg
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Container(
@@ -169,7 +188,8 @@ class OrderConfirmationScreen extends StatelessWidget {
                       children: [
                         Text(item.name, style: _nr(18, FontWeight.w400, _onSurface).copyWith(height: 1.2)),
                         const SizedBox(height: 4),
-                        Text(item.variant, style: _bvp(14, FontWeight.w500, _onSurfaceVariant)),
+                        Text('${item.variant} • Qty ${item.qty}',
+                            style: _bvp(14, FontWeight.w500, _onSurfaceVariant)),
                       ],
                     ),
                   ),
@@ -179,13 +199,13 @@ class OrderConfirmationScreen extends StatelessWidget {
             );
           }),
           const SizedBox(height: 32),
-          Divider(color: _outlineVariant.withOpacity(0.30), thickness: 1),
+          Divider(color: _outlineVariant.withValues(alpha: 0.30), thickness: 1),
           const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Total Paid', style: _nr(20, FontWeight.w700, _onSurface)),
-              Text('LKR 13,230', style: _nr(24, FontWeight.w700, _primary)),
+              Text(totalStr, style: _nr(24, FontWeight.w700, _primary)),
             ],
           ),
         ],
@@ -202,8 +222,8 @@ class OrderConfirmationScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _outlineVariant.withOpacity(0.10)),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 8)],
+        border: Border.all(color: _outlineVariant.withValues(alpha: 0.10)),
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 8)],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,7 +236,7 @@ class OrderConfirmationScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: _tertiary.withOpacity(0.10),
+                  color: _tertiary.withValues(alpha: 0.10),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.inventory_2_outlined, size: 24, color: _tertiary),
@@ -270,7 +290,7 @@ class OrderConfirmationScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: const LinearGradient(colors: [_primary, _primaryContainer]),
               borderRadius: BorderRadius.circular(9999),
-              boxShadow: [BoxShadow(color: _primary.withOpacity(0.20), blurRadius: 20, offset: const Offset(0, 6))],
+              boxShadow: [BoxShadow(color: _primary.withValues(alpha: 0.20), blurRadius: 20, offset: const Offset(0, 6))],
             ),
             alignment: Alignment.center,
             child: Text('Track My Order', style: _bvp(18, FontWeight.w700, Colors.white)),
@@ -302,7 +322,7 @@ class OrderConfirmationScreen extends StatelessWidget {
     return Text(
       'Handcrafted Excellence Since 2012',
       textAlign: TextAlign.center,
-      style: _bvp(12, FontWeight.w400, _onSurfaceVariant.withOpacity(0.60), ls: 3.0),
+      style: _bvp(12, FontWeight.w400, _onSurfaceVariant.withValues(alpha: 0.60), ls: 3.0),
     );
   }
 }

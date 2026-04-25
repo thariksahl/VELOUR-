@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'core/constants/app_colors.dart';
 import 'features/auth/auth_repository.dart';
 import 'features/auth/auth_provider.dart';
 import 'routes/app_router.dart';
+import 'core/theme/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,14 +49,7 @@ class _AppWithRouterState extends State<_AppWithRouter> {
       title: 'VELOUR',
       debugShowCheckedModeBanner: false,
       routerConfig: _router,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
-          surface: AppColors.surface,
-        ),
-        scaffoldBackgroundColor: AppColors.surface,
-        useMaterial3: true,
-      ),
+      theme: AppTheme.light,
     );
   }
 }

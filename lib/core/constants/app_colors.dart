@@ -82,7 +82,7 @@ abstract class AppColors {
   // ─── Shadows ──────────────────────────────────────────────────────────────
   static List<BoxShadow> cardShadow = [
     BoxShadow(
-      color: onSurface.withOpacity(0.05),
+      color: onSurface.withValues(alpha: 0.05),
       blurRadius: 32,
       offset: const Offset(0, 8),
     ),
@@ -90,7 +90,7 @@ abstract class AppColors {
 
   static List<BoxShadow> elevatedShadow = [
     BoxShadow(
-      color: onSurface.withOpacity(0.04),
+      color: onSurface.withValues(alpha: 0.04),
       blurRadius: 40,
       offset: const Offset(0, 12),
     ),

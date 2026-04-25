@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../data/app_data.dart';
+import '../../core/widgets/bottom_nav_bar.dart';
 import '../../routes/route_names.dart';
 
 // ── Screen ────────────────────────────────────────────────────────────────────
@@ -21,11 +22,10 @@ class _State extends State<WishlistScreen> {
   static const Color _surfaceContainerLow = Color(0xFFF4F4F0);
   static const Color _outlineVariant = Color(0xFFDAC1B8);
   static const Color _primary = Color(0xFF914722);
-  static const Color _primaryContainer = Color(0xFFAF5F38);
+  static const Color _primaryContainer = Color(0xFFDAC1B8);
 
+  final List<Product> _items = AppData.wishlistItems();
   int _navIndex = 2; // FAVOURITE active
-
-  final List<WishlistItem> _items = AppData.wishlistItems();
 
   TextStyle _nr(double s, FontWeight w, Color c, {double ls = 0}) =>
       GoogleFonts.newsreader(fontSize: s, fontWeight: w, color: c, letterSpacing: ls);
@@ -55,7 +55,10 @@ class _State extends State<WishlistScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: _bottomNav(context),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _navIndex,
+        onTap: (i) => setState(() => _navIndex = i),
+      ),
     );
   }
 
@@ -93,7 +96,7 @@ class _State extends State<WishlistScreen> {
       children: [
         Text(
           'CURATED COLLECTION',
-          style: _bvp(10, FontWeight.w400, _onSurfaceVariant.withOpacity(0.60), ls: 2.0),
+          style: _bvp(10, FontWeight.w400, _onSurfaceVariant.withValues(alpha: 0.60), ls: 2.0),
         ),
         const SizedBox(height: 4),
         Text('Your Saved Pieces', style: _nr(24, FontWeight.w400, _onSurface)),
@@ -118,10 +121,13 @@ class _State extends State<WishlistScreen> {
     );
   }
 
-  Widget _productCard(WishlistItem item) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+  Widget _productCard(Product item) {
+    final globalIndex = AppData.products().indexWhere((p) => p.name == item.name);
+    return GestureDetector(
+      onTap: globalIndex >= 0 ? () => context.push('/products/$globalIndex') : null,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
         // Image — aspect 3/4
         AspectRatio(
           aspectRatio: 3 / 4,
@@ -149,13 +155,23 @@ class _State extends State<WishlistScreen> {
                 Positioned(
                   bottom: 8, right: 8,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      AppData.addToCart(CartItem(
+                        item.name,
+                        'Standard',
+                        item.price,
+                        item.imageUrl,
+                      ));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                      );
+                    },
                     child: Container(
                       width: 32, height: 32,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
-                        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.10), blurRadius: 4)],
+                        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.10), blurRadius: 4)],
                       ),
                       child: const Icon(Icons.shopping_cart_outlined, size: 16, color: Color(0xFF636E72)),
                     ),
@@ -172,6 +188,7 @@ class _State extends State<WishlistScreen> {
         // Price — font-body text-xs font-medium text-on-surface-variant
         Text(item.price, style: _bvp(12, FontWeight.w500, _onSurfaceVariant)),
       ],
+      ),
     );
   }
 
@@ -182,7 +199,7 @@ class _State extends State<WishlistScreen> {
       margin: const EdgeInsets.only(top: 80),
       padding: const EdgeInsets.only(top: 48),
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: _outlineVariant.withOpacity(0.20))),
+        border: Border(top: BorderSide(color: _outlineVariant.withValues(alpha: 0.20))),
       ),
       child: Column(
         children: [
@@ -207,51 +224,5 @@ class _State extends State<WishlistScreen> {
     );
   }
 
-  // ── Bottom Nav ─────────────────────────────────────────────────────────────
-
-  Widget _bottomNav(BuildContext context) {
-    const items = [
-      (Icons.home_outlined, Icons.home, 'HOME'),
-      (Icons.search, Icons.search, 'EXPLORE'),
-      (Icons.favorite_outline, Icons.favorite, 'FAVOURITE'),
-      (Icons.shopping_cart_outlined, Icons.shopping_cart, 'CART'),
-      (Icons.person_outline, Icons.person, 'PROFILE'),
-    ];
-    return Container(
-      padding: EdgeInsets.only(top: 16, bottom: MediaQuery.of(context).padding.bottom + 16),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(top: BorderSide(color: Color(0xFFF3F3F3))),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(items.length, (i) {
-          final active = i == _navIndex;
-          final color = active ? Colors.black : _onSurfaceVariant.withOpacity(0.40);
-          return GestureDetector(
-            onTap: () {
-              setState(() => _navIndex = i);
-              switch (i) {
-                case 0: context.go(RouteNames.home); break;
-                case 1: context.go(RouteNames.explore); break;
-                case 2: break; // Already here
-                case 3: context.go(RouteNames.cart); break;
-                case 4: context.go(RouteNames.profile); break;
-              }
-            },
-            behavior: HitTestBehavior.opaque,
-            child: SizedBox(
-              width: 64,
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Icon(active ? items[i].$2 : items[i].$1, size: 28, color: color),
-                const SizedBox(height: 4),
-                Text(items[i].$3,
-                    style: _bvp(10, FontWeight.w700, color, ls: 0.8)),
-              ]),
-            ),
-          );
-        }),
-      ),
-    );
-  }
+  // Bottom nav is now handled by BottomNavBar
 }

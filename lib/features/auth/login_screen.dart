@@ -56,12 +56,12 @@ class _LoginScreenState extends State<LoginScreen> {
           Positioned(
             top: -96,
             right: -96,
-            child: _Glow(size: 384, color: AppColors.primaryContainer.withOpacity(0.10), blur: 120),
+            child: _Glow(size: 384, color: AppColors.primaryContainer.withValues(alpha: 0.10), blur: 120),
           ),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.5,
             left: -96,
-            child: _Glow(size: 256, color: AppColors.tertiary.withOpacity(0.05), blur: 100),
+            child: _Glow(size: 256, color: AppColors.tertiary.withValues(alpha: 0.05), blur: 100),
           ),
 
           // ── Scrollable content ──────────────────────────────────────────
@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Icon(
                                   _passwordVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                                   size: 20,
-                                  color: AppColors.onSurfaceVariant.withOpacity(0.60),
+                                  color: AppColors.onSurfaceVariant.withValues(alpha: 0.60),
                                 ),
                               ),
                             ),
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       // ── OR Divider ──────────────────────────────────────
                       Row(
                         children: [
-                          Expanded(child: Container(height: 1, color: AppColors.outlineVariant.withOpacity(0.30))),
+                          Expanded(child: Container(height: 1, color: AppColors.outlineVariant.withValues(alpha: 0.30))),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
@@ -205,12 +205,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: GoogleFonts.beVietnamPro(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.onSurfaceVariant.withOpacity(0.60),
+                                color: AppColors.onSurfaceVariant.withValues(alpha: 0.60),
                                 letterSpacing: 2.0,
                               ),
                             ),
                           ),
-                          Expanded(child: Container(height: 1, color: AppColors.outlineVariant.withOpacity(0.30))),
+                          Expanded(child: Container(height: 1, color: AppColors.outlineVariant.withValues(alpha: 0.30))),
                         ],
                       ),
 
@@ -301,7 +301,7 @@ class _FrostedAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return ClipRect(
       child: Container(
-        color: AppColors.surface.withOpacity(0.80),
+        color: AppColors.surface.withValues(alpha: 0.80),
         child: SafeArea(
           child: SizedBox(
             height: kToolbarHeight,
@@ -319,7 +319,7 @@ class _FrostedAppBar extends StatelessWidget implements PreferredSizeWidget {
                         height: 40,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(color: AppColors.outlineVariant.withOpacity(0.30)),
+                          border: Border.all(color: AppColors.outlineVariant.withValues(alpha: 0.30)),
                         ),
                         child: const Icon(Icons.arrow_back, size: 20, color: AppColors.onSurface),
                       ),
@@ -382,7 +382,7 @@ class _GhostField extends StatelessWidget {
       style: GoogleFonts.beVietnamPro(fontSize: 16, color: AppColors.onSurface),
       decoration: InputDecoration(
         hintText: placeholder,
-        hintStyle: GoogleFonts.beVietnamPro(fontSize: 16, color: AppColors.onSurfaceVariant.withOpacity(0.60)),
+        hintStyle: GoogleFonts.beVietnamPro(fontSize: 16, color: AppColors.onSurfaceVariant.withValues(alpha: 0.60)),
         filled: true,
         fillColor: AppColors.surfaceContainerLowest,
         suffixIcon: suffixIcon != null
@@ -392,11 +392,11 @@ class _GhostField extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.radiusLg),
-          borderSide: BorderSide(color: AppColors.outlineVariant.withOpacity(0.20)),
+          borderSide: BorderSide(color: AppColors.outlineVariant.withValues(alpha: 0.20)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.radiusLg),
-          borderSide: BorderSide(color: AppColors.outlineVariant.withOpacity(0.20)),
+          borderSide: BorderSide(color: AppColors.outlineVariant.withValues(alpha: 0.20)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.radiusLg),
@@ -463,7 +463,7 @@ class _GradientButtonState extends State<_GradientButton> with SingleTickerProvi
               colors: [Color(0xFF914722), Color(0xFFAF5F38)],
             ),
             borderRadius: BorderRadius.circular(AppSizes.radiusFull),
-            boxShadow: [BoxShadow(color: AppColors.primary.withOpacity(0.10), blurRadius: 16, offset: const Offset(0, 4))],
+            boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.10), blurRadius: 16, offset: const Offset(0, 4))],
           ),
           alignment: Alignment.center,
           child: widget.isLoading
@@ -491,7 +491,7 @@ class _SocialButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.surfaceContainerLowest,
           borderRadius: BorderRadius.circular(AppSizes.radiusLg),
-          border: Border.all(color: AppColors.outlineVariant.withOpacity(0.20)),
+          border: Border.all(color: AppColors.outlineVariant.withValues(alpha: 0.20)),
         ),
         alignment: Alignment.center,
         child: child,

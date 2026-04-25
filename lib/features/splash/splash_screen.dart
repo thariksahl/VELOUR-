@@ -161,7 +161,7 @@ class _SplashScreenState extends State<SplashScreen>
                         style: GoogleFonts.newsreader(
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
-                          color: Colors.white.withOpacity(0.90),
+                          color: Colors.white.withValues(alpha: 0.90),
                           letterSpacing: 1.5,
                           shadows: const [
                             Shadow(color: Color(0x1A000000), blurRadius: 12, offset: Offset(0, 4)),
@@ -247,7 +247,7 @@ class _ExploreButtonState extends State<_ExploreButton>
             borderRadius: BorderRadius.circular(9999),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.25),
+                color: Colors.black.withValues(alpha: 0.25),
                 blurRadius: 32,
                 offset: const Offset(0, 8),
               ),

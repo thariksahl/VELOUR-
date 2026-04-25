@@ -152,13 +152,13 @@ class AppTheme {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.radiusMd),
           borderSide: BorderSide(
-            color: AppColors.outlineVariant.withOpacity(0.3),
+            color: AppColors.outlineVariant.withValues(alpha: 0.3),
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizes.radiusMd),
           borderSide: BorderSide(
-            color: AppColors.outlineVariant.withOpacity(0.3),
+            color: AppColors.outlineVariant.withValues(alpha: 0.3),
           ),
         ),
         focusedBorder: OutlineInputBorder(

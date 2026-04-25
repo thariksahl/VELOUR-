@@ -2,20 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../data/app_data.dart';
+import '../../core/widgets/bottom_nav_bar.dart';
 import '../../routes/route_names.dart';
 
 // ── Screen ────────────────────────────────────────────────────────────────────
 
 class MensCategoryScreen extends StatefulWidget {
-  const MensCategoryScreen({super.key});
+  final String? category;
+  const MensCategoryScreen({super.key, this.category});
 
   @override
   State<MensCategoryScreen> createState() => _MensCategoryScreenState();
 }
 
 class _MensCategoryScreenState extends State<MensCategoryScreen> {
-  int _selectedCat = 2; // WOMEN active by default per HTML
+  late int _selectedCat;
   int _navIndex = 1; // EXPLORE active
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.category != null) {
+      final index = AppData.categories.indexWhere(
+          (c) => c.label.toUpperCase() == widget.category!.toUpperCase());
+      _selectedCat = index != -1 ? index : 2;
+    } else {
+      _selectedCat = 2; // WOMEN active by default per HTML
+    }
+  }
 
   // HTML: velour-terracotta #C06C44 / velour-gray #E2E2E2
   static const Color _terracotta = Color(0xFFC06C44);
@@ -63,7 +77,10 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
       ),
 
       // ── Bottom Nav ─────────────────────────────────────────────────────
-      bottomNavigationBar: _buildBottomNav(context),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _navIndex,
+        onTap: (i) => setState(() => _navIndex = i),
+      ),
     );
   }
 
@@ -219,7 +236,7 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
         child: Container(
           // HTML: bg-[#97A7D8], min-h-[220px]
           color: const Color(0xFF97A7D8),
-          constraints: const BoxConstraints(minHeight: 220),
+          height: 220,
           child: Stack(
             children: [
               // Text block — z-10, pl-6, w-3/5
@@ -256,7 +273,7 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
                               'Lorem this design this look made by indian designers themetrial was good',
                               style: GoogleFonts.newsreader(
                                 fontSize: 12,
-                                color: Colors.white.withOpacity(0.90),
+                                color: Colors.white.withValues(alpha: 0.90),
                                 height: 1.4,
                               ),
                               maxLines: 3,
@@ -270,7 +287,7 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
                                 decoration: BoxDecoration(
                                   color: const Color(0xFF2D3E50),
                                   borderRadius: BorderRadius.circular(4),
-                                  border: Border.all(color: Colors.white.withOpacity(0.20)),
+                                  border: Border.all(color: Colors.white.withValues(alpha: 0.20)),
                                 ),
                                 child: Text(
                                   'SHOP NOW',
@@ -314,16 +331,18 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
   // ── Sub-categories ────────────────────────────────────────────────────────
 
   Widget _buildSubCategories() {
-    return Padding(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: _subs.map((sub) {
-          return SizedBox(
-            width: 64,
-            child: Column(
-              children: [
-                Container(
+          return Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: SizedBox(
+              width: 64,
+              child: Column(
+                children: [
+                  Container(
                   width: 56,
                   height: 56,
                   decoration: BoxDecoration(
@@ -351,6 +370,7 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
                 ),
               ],
             ),
+            ),
           );
         }).toList(),
       ),
@@ -359,7 +379,7 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
 
   List<Product> get _filteredProducts {
     final catName = _cats[_selectedCat].label;
-    if (catName == 'NEW IN') return _products;
+    if (catName == 'NEW') return _products;
     return _products.where((p) => p.category == catName).toList();
   }
 
@@ -393,12 +413,24 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
         itemCount: filtered.length,
         itemBuilder: (context, i) {
           final p = filtered[i];
+          final globalIndex = AppData.products().indexOf(p);
           return GestureDetector(
-            onTap: () => context.push('/products/$i'),
+            onTap: () => context.push('/products/$globalIndex'),
             child: _ProductCard(
               product: p,
               cardBg: _cardBg,
               onWishlist: () => setState(() => p.wishlisted = !p.wishlisted),
+              onAddToCart: () {
+                AppData.addToCart(CartItem(
+                  p.name,
+                  'Standard',
+                  p.price,
+                  p.imageUrl,
+                ));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                );
+              },
             ),
           );
         },
@@ -406,67 +438,7 @@ class _MensCategoryScreenState extends State<MensCategoryScreen> {
     );
   }
 
-  // ── Bottom Nav ────────────────────────────────────────────────────────────
-
-  Widget _buildBottomNav(BuildContext context) {
-    const items = [
-      (Icons.home, 'Home'),
-      (Icons.search, 'Explore'),
-      (Icons.favorite_outline, 'Favourite'),
-      (Icons.shopping_cart_outlined, 'Cart'),
-      (Icons.person_outline, 'Profile'),
-    ];
-    return Container(
-      padding: EdgeInsets.only(
-        top: 12,
-        bottom: MediaQuery.of(context).padding.bottom + 12,
-        left: 16,
-        right: 16,
-      ),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(top: BorderSide(color: Color(0xFFF3F3F3))),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(items.length, (i) {
-          final isActive = i == _navIndex;
-          return GestureDetector(
-            onTap: () {
-              setState(() => _navIndex = i);
-              switch (i) {
-                case 0: context.go(RouteNames.home); break;
-                case 1: context.go(RouteNames.explore); break;
-                case 2: context.go(RouteNames.wishlist); break;
-                case 3: context.go(RouteNames.cart); break;
-                case 4: context.go(RouteNames.profile); break;
-              }
-            },
-            behavior: HitTestBehavior.opaque,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  items[i].$1,
-                  size: 24,
-                  color: isActive ? Colors.black : Colors.grey.shade400,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  items[i].$2.toUpperCase(),
-                  style: GoogleFonts.newsreader(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w700,
-                    color: isActive ? Colors.black : Colors.grey.shade400,
-                  ),
-                ),
-              ],
-            ),
-          );
-        }),
-      ),
-    );
-  }
+  // Bottom nav is now handled by BottomNavBar
 }
 
 // ── Product Card ──────────────────────────────────────────────────────────────
@@ -475,11 +447,13 @@ class _ProductCard extends StatelessWidget {
   final Product product;
   final Color cardBg;
   final VoidCallback onWishlist;
+  final VoidCallback onAddToCart;
 
   const _ProductCard({
     required this.product,
     required this.cardBg,
     required this.onWishlist,
+    required this.onAddToCart,
   });
 
   @override
@@ -511,7 +485,7 @@ class _ProductCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.80),
+                        color: Colors.white.withValues(alpha: 0.80),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
@@ -569,7 +543,7 @@ class _ProductCard extends StatelessWidget {
             ),
             // HTML: bg-[#4D4D4D] text-white p-2 rounded-full
             GestureDetector(
-              onTap: () {},
+              onTap: onAddToCart,
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: const BoxDecoration(

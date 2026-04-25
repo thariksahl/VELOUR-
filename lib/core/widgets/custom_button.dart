@@ -95,8 +95,8 @@ class _PrimaryButton extends StatelessWidget {
           gradient: onPressed == null
               ? LinearGradient(
                   colors: [
-                    AppColors.primary.withOpacity(0.5),
-                    AppColors.primaryContainer.withOpacity(0.5),
+                    AppColors.primary.withValues(alpha: 0.5),
+                    AppColors.primaryContainer.withValues(alpha: 0.5),
                   ],
                 )
               : AppColors.primaryGradient,
@@ -167,7 +167,7 @@ class _SecondaryButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           side: BorderSide(
-            color: AppColors.outlineVariant.withOpacity(0.5),
+            color: AppColors.outlineVariant.withValues(alpha: 0.5),
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSizes.radiusFull),

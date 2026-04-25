@@ -12,5 +12,4 @@ abstract class RouteNames {
   static const String orders = '/orders';
   static const String orderConfirmation = '/order-confirmation';
   static const String notifications = '/notifications';
-  static const String editProfile = '/profile/edit';
 }

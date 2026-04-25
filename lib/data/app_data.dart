@@ -27,7 +27,7 @@ class AppData {
   ];
 
   // ── Products ─────────────────────────────────────────────────────────────
-  static List<Product> products() => [
+  static final List<Product> _productsList = [
     Product(name: 'Essential Ribbed Crop Top', category: 'WOMEN', description: 'Modern silhouette with ultra-soft ribbed fabric for everyday comfort.', price: 'LKR 2,450.00', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0ujGTLidAvMTCBfQLRksNXuw9j-EMCvDj_OtZtaTVYZrpRu7L2Hn4n66k-Cwy9mzRUGuXh_DEBYuPfxpPtsNM7eHEpabrrCMJJS2EZhhKevKSOc1lH7_2CiN08CLvX-BhA2j3aTkm3uujPjEXeZGnkS4fqrhptzXSUbAK6XB-ON3ccibnr9lsSlTAO0zqdWLQ3KfyENR1heibbkkpX20yDG2T0d1PBq7qYUOLQTp1nEsvpO2Aj9Q3L8FU3tAjaBd8Uj-Psz_haPcUQ'),
     Product(name: 'Tie-Dye "Happy" Hoodie', category: 'WOMEN', description: 'Vibrant cropped hoodie featuring a playful typographic detail.', price: 'LKR 4,890.00', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0uj1rFrZml3gs_zgFAMy3bdFFM_wMZ9vxGJ1hV7nBJzOsgg6Kpd1VRXw82iK7XQWFtczNPttC6otoqcejxfaV0qhXTLLPYnj4kwQYqMVAgGpbRHBFSeAPQjwcPfDWi_QyCjLHjnhPnogxn1tMqyjX32CPeDXjrI7vyZxVkySadcruYWW_ETnpzaATqz4iaKLY6gVRggDwKJaycJ-Co43PBs1ogIEh8z0RtzwxmZQ9I8d8T8pQKM1p0sZSFLYrSu9I5ufrIWIS-TnMQ'),
     Product(name: 'Monochrome Patterned Blouse', category: 'WOMEN', description: 'Elegant geometric print shirt for a sophisticated professional look.', price: 'LKR 5,390.00', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0ugBczwjG_MjsjCYPai63IaW9T6hRiac0HQOx06A7LLzLRoKwW_-BnBbPqmZ7LtBA0fxiB4OHQUdlaLWMz-edyENsJsknaokdQIkrmsF1c0BoHJjoO5t39f_O3q38G0wM2GBXIW2zXJ0DsXD_Vy21CoB3noj2LkHF5bM1NCd86t4Zy270qrDOfZsY9xjiml450U8QgCX4Oi_o1vYtzxsrR6HQxONe2gKkikVmF8gxPrB2rpRbx-9x4Y-zhXuDTlDEaBnwVIC_cze'),
@@ -41,6 +41,10 @@ class AppData {
     Product(name: 'ELEGANT DRESS (RED)', category: 'WOMEN', price: 'LKR 6500.00', imageUrl: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=800&auto=format&fit=crop'),
     Product(name: 'SUMMER SKIRT (YELLOW)', category: 'WOMEN', price: 'LKR 3200.00', imageUrl: 'https://images.unsplash.com/photo-1583496661160-c588c443c982?q=80&w=800&auto=format&fit=crop'),
   ];
+
+  static List<Product> products() => _productsList;
+
+
 
   // ── Explore Data ─────────────────────────────────────────────────────────
   static const List<ExploreCategory> exploreCategories = [
@@ -58,17 +62,23 @@ class AppData {
   ];
 
   // ── Shop Data (Wishlist, Cart, Orders) ───────────────────────────────────
-  static List<WishlistItem> wishlistItems() => [
-    WishlistItem('Wide-Leg Jeans', 'LKR 4,390.00', 'https://lh3.googleusercontent.com/aida/ADBb0uhn_jiFQoKWt--MifNFU_xIytSD_ieDOpy0ufhzzlYw5gwZH6jqO4C8SES3Gkt8kmYitpFzGoNJ6a6nY7jOnoYnzSs6SjQWJ0M5-Py8kBYkjd2CymeuGC-BUPcRMYWUARNal6-_LBOhkPHUQHdEPE7W0_cVltYoYYYR3mqPRkbHF_Ifty6ahuvC08m_jikOvBGXusV0VmWzgNWWHizu8CIk3G5OpMZHVX_Qs6W--vQvOpZ0drRBOdjih7PPByklWvTQVB2BZhIUgg'),
-    WishlistItem('Classic Light Blue Button-Up', 'LKR 3,840.00', 'https://lh3.googleusercontent.com/aida/ADBb0ujsZzlon7zpU9FeqTwHAJmVFI4Lc1RncOZHIRStIjxzDd8q1IJ7eZl86-XENl_4mkSL2YkoPmnlFVtw1LO9EAAR5HUtCv6HV7K5OADs3n4RMG963zwyeBbD8E5jfDkvzsCJyjlS6BTgQajsF5Cwx2ZBmV59PHAQJPgbhbHzxWIhe0yvP6YG47CxOJXwkinV6nsxyI0KYmOjZBVeJoogpoLwC7ta7vYlE56KTN-yRjk71GyHOQO5jr_KinvICoPxCy6gvDRcgTUjDQ'),
-    WishlistItem('Monochrome Blouse', 'LKR 5,390.00', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC0VrPztXolplO5oELDPzm4x0odFPQRL3lYJp25HVdSg5bECNRYN5L1cY68u122ruhV_Ut9Cs1005OyadCJvYxjm_CLdRuYDrxCeMRmWMZhWqKhPISKgQbgpWc7xpQ4VQVmS4-ER-Xwc_Nvbsp-W9gmfzQxwzv2_xxpRV3kjGhojlPcHQ6qeVJ6zSP-WvJbSj3lQrNdMvH2N7EUS_xCoVnFIXqThMkM19GNUCnbVJtRbwOZnFjmtkHNh32GGb9S2eMcx4KEYD5xDMw'),
-    WishlistItem('Ribbed Crop Top', 'LKR 2,450.00', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDzeUc24guWbfU9rz-QYGrg9htq-ynoQgMfvSIYHby8HAenKfroqPMyN-Lopvkc-jW8JzOM8pGBixxxgROjk1-2xs1hh1JF-mi73NkRZ0HD6TBzT06s4qOJL-DLZXJN-n8x-7wiVCMZUmUZQHarc7U_ZJQbv4l3AA1mBUjmSR2DJjsym9q_SEkvQq6DEQqEh2_g9OP0lIFBs0q5tcwc7XUu9V4-ttFdo1_95hvlIUrq0XPJX9rjJRT3qyRhW_H3k_w5LQWsWKmUSwk'),
+  static final List<Product> _wishlistItemsList = [
+    _productsList[0],
+    _productsList[1],
   ];
 
-  static List<CartItem> cartItems() => [
+  static List<Product> wishlistItems() => _wishlistItemsList;
+
+  static final List<CartItem> _cartItemsList = [
     CartItem('Relaxed Wide-Leg Jeans', 'Washed Blue', 'LKR 5,990.00', 'https://lh3.googleusercontent.com/aida/ADBb0uhn_jiFQoKWt--MifNFU_xIytSD_ieDOpy0ufhzzlYw5gwZH6jqO4C8SES3Gkt8kmYitpFzGoNJ6a6nY7jOnoYnzSs6SjQWJ0M5-Py8kBYkjd2CymeuGC-BUPcRMYWUARNal6-_LBOhkPHUQHdEPE7W0_cVltYoYYYR3mqPRkbHF_Ifty6ahuvC08m_jikOvBGXusV0VmWzgNWWHizu8CIk3G5OpMZHVX_Qs6W--vQvOpZ0drRBOdjih7PPByklWvTQVB2BZhIUgg'),
     CartItem('Essential Cotton Shirt', 'Pastel Blue', 'LKR 4,500.00', 'https://lh3.googleusercontent.com/aida/ADBb0ujsZzlon7zpU9FeqTwHAJmVFI4Lc1RncOZHIRStIjxzDd8q1IJ7eZl86-XENl_4mkSL2YkoPmnlFVtw1LO9EAAR5HUtCv6HV7K5OADs3n4RMG963zwyeBbD8E5jfDkvzsCJyjlS6BTgQajsF5Cwx2ZBmV59PHAQJPgbhbHzxWIhe0yvP6YG47CxOJXwkinV6nsxyI0KYmOjZBVeJoogpoLwC7ta7vYlE56KTN-yRjk71GyHOQO5jr_KinvICoPxCy6gvDRcgTUjDQ'),
   ];
+
+  static List<CartItem> cartItems() => _cartItemsList;
+
+  static void addToCart(CartItem item) {
+    _cartItemsList.add(item);
+  }
 
   static List<NotificationItem> notifications() => [
     const NotificationItem(icon: Icons.description_outlined, iconColor: Color(0xFF059669), bgColor: Color(0xFFECFDF5), title: 'Your order has been shipped!', subtitle: 'Your order #7732 is on its way to you.', time: '2 hours ago', isUnread: true, isFadedText: false),

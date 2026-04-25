@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../auth/auth_provider.dart';
+import '../../core/widgets/bottom_nav_bar.dart';
 import '../../routes/route_names.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -55,7 +58,10 @@ class _State extends State<ProfileScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: _bottomNav(context),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _navIndex,
+        onTap: (i) => setState(() => _navIndex = i),
+      ),
     );
   }
 
@@ -77,7 +83,7 @@ class _State extends State<ProfileScreen> {
               width: 40, height: 40,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: _onSurface.withOpacity(0.10)),
+                border: Border.all(color: _onSurface.withValues(alpha: 0.10)),
               ),
               child: const Icon(Icons.arrow_back, size: 22, color: _onSurface),
             ),
@@ -127,8 +133,8 @@ class _State extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
-                    border: Border.all(color: _outlineVariant.withOpacity(0.20)),
-                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 8)],
+                    border: Border.all(color: _outlineVariant.withValues(alpha: 0.20)),
+                    boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 8)],
                   ),
                   child: const Icon(Icons.edit_outlined, size: 16, color: _onSurface),
                 ),
@@ -158,7 +164,7 @@ class _State extends State<ProfileScreen> {
           padding: const EdgeInsets.only(left: 8, bottom: 24),
           child: Text(
             title.toUpperCase(),
-            style: _bvp(10, FontWeight.w400, _onSurfaceVariant.withOpacity(0.60), ls: 3.2),
+            style: _bvp(10, FontWeight.w400, _onSurfaceVariant.withValues(alpha: 0.60), ls: 3.2),
           ),
         ),
         // Menu rows with hairline dividers
@@ -170,7 +176,7 @@ class _State extends State<ProfileScreen> {
               children: [
                 _menuRow(item),
                 if (i < items.length - 1)
-                  Container(height: 1, color: _outlineVariant.withOpacity(0.10),
+                  Container(height: 1, color: _outlineVariant.withValues(alpha: 0.10),
                       margin: const EdgeInsets.symmetric(horizontal: 16)),
               ],
             );
@@ -221,7 +227,10 @@ class _State extends State<ProfileScreen> {
   Widget _logoutButton(BuildContext context) {
     return Center(
       child: GestureDetector(
-        onTap: () => context.go(RouteNames.login),
+        onTap: () async {
+          await context.read<AuthProvider>().logout();
+          if (context.mounted) context.go(RouteNames.login);
+        },
         child: Text(
           'LOG OUT',
           style: _bvp(13, FontWeight.w700, _primary, ls: 2.0),
@@ -230,53 +239,7 @@ class _State extends State<ProfileScreen> {
     );
   }
 
-  // ── Bottom Nav — PROFILE active ────────────────────────────────────────────
-
-  Widget _bottomNav(BuildContext context) {
-    const items = [
-      (Icons.home_outlined, Icons.home, 'HOME'),
-      (Icons.search, Icons.search, 'EXPLORE'),
-      (Icons.favorite_outline, Icons.favorite, 'FAVOURITE'),
-      (Icons.shopping_cart_outlined, Icons.shopping_cart, 'CART'),
-      (Icons.person_outline, Icons.person, 'PROFILE'),
-    ];
-    return Container(
-      padding: EdgeInsets.only(top: 16, bottom: MediaQuery.of(context).padding.bottom + 16),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(top: BorderSide(color: Color(0xFFF3F3F3))),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(items.length, (i) {
-          final active = i == _navIndex;
-          final color = active ? Colors.black : _onSurfaceVariant.withOpacity(0.40);
-          return GestureDetector(
-            onTap: () {
-              setState(() => _navIndex = i);
-              switch (i) {
-                case 0: context.go(RouteNames.home); break;
-                case 1: context.go(RouteNames.explore); break;
-                case 2: context.go(RouteNames.wishlist); break;
-                case 3: context.go(RouteNames.cart); break;
-                case 4: break;
-              }
-            },
-            behavior: HitTestBehavior.opaque,
-            child: SizedBox(
-              width: 64,
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Icon(active ? items[i].$2 : items[i].$1, size: 28, color: color),
-                const SizedBox(height: 4),
-                Text(items[i].$3,
-                    style: _bvp(10, FontWeight.w700, color, ls: 0.8)),
-              ]),
-            ),
-          );
-        }),
-      ),
-    );
-  }
+  // Bottom nav is now handled by BottomNavBar
 }
 
 // ── Menu Item Model ────────────────────────────────────────────────────────────

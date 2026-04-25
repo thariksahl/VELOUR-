@@ -78,16 +78,17 @@ class AppRouter {
             final category = state.uri.queryParameters['category'];
             return _slideTransition(
               state,
-              const MensCategoryScreen(),
+              MensCategoryScreen(category: category),
             );
           },
         ),
         GoRoute(
           path: RouteNames.productDetail,
           pageBuilder: (context, state) {
+            final id = state.pathParameters['id'];
             return _slideTransition(
               state,
-              const ProductDetailScreen(),
+              ProductDetailScreen(productId: id),
             );
           },
         ),

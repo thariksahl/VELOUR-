@@ -35,7 +35,7 @@ class CategoryChip extends StatelessWidget {
           border: Border.all(
             color: isSelected
                 ? AppColors.primary
-                : AppColors.outlineVariant.withOpacity(0.4),
+                : AppColors.outlineVariant.withValues(alpha: 0.4),
           ),
         ),
         child: Row(

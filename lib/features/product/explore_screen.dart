@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../data/app_data.dart';
+import '../../core/widgets/bottom_nav_bar.dart';
 import '../../routes/route_names.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -62,19 +63,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: _BottomNav(
+      bottomNavigationBar: BottomNavBar(
         currentIndex: _navIndex,
         navBg: Colors.white,
-        onTap: (i) {
-          setState(() => _navIndex = i);
-          switch (i) {
-            case 0: context.go(RouteNames.home); break;
-            case 1: break; // Already on explore
-            case 2: context.go(RouteNames.wishlist); break;
-            case 3: context.go(RouteNames.cart); break;
-            case 4: context.go(RouteNames.profile); break;
-          }
-        },
+        onTap: (i) => setState(() => _navIndex = i),
       ),
     );
   }
@@ -90,7 +82,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
           Text('VELOUR', style: _nr(24, FontWeight.w700, const Color(0xFF1B1C1A), ls: 4.8)),
           GestureDetector(
             onTap: () => context.go(RouteNames.notifications),
-            child: const Icon(Icons.notifications_outlined, size: 24, color: _primary),
+            child: const Icon(Icons.notifications_outlined, size: 24, color: Color.fromARGB(255, 19, 19, 19)),
           ),
         ],
       ),
@@ -108,20 +100,20 @@ class _ExploreScreenState extends State<ExploreScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(9999),
-                border: Border.all(color: const Color(0xFFDAC1B8).withOpacity(0.1)),
-                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 4)],
+                border: Border.all(color: const Color(0xFFDAC1B8).withValues(alpha: 0.1)),
+                boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 4)],
               ),
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  Icon(Icons.search, color: const Color(0xFF54433C).withOpacity(0.5)),
+                  Icon(Icons.search, color: const Color(0xFF54433C).withValues(alpha: 0.5)),
                   const SizedBox(width: 12),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Search for pieces...',
-                        hintStyle: _bvp(14, FontWeight.w400, const Color(0xFF54433C).withOpacity(0.4)),
+                        hintStyle: _bvp(14, FontWeight.w400, const Color(0xFF54433C).withValues(alpha: 0.4)),
                       ),
                       style: _bvp(14, FontWeight.w400, const Color(0xFF1B1C1A)),
                     ),
@@ -141,10 +133,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFFDAC1B8).withOpacity(0.1)),
-                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 4)],
+                border: Border.all(color: const Color(0xFFDAC1B8).withValues(alpha: 0.1)),
+                boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 4)],
               ),
-              child: Icon(Icons.tune, color: const Color(0xFF54433C).withOpacity(0.8)),
+              child: Icon(Icons.tune, color: const Color(0xFF54433C).withValues(alpha: 0.8)),
             ),
           ),
         ],
@@ -237,7 +229,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
-                        colors: [Colors.black.withOpacity(0.6), Colors.transparent],
+                        colors: [Colors.black.withValues(alpha: 0.6), Colors.transparent],
                         stops: const [0.0, 0.5],
                       ),
                     ),
@@ -255,7 +247,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         const SizedBox(height: 4),
                         Text(
                           cat.subtitle,
-                          style: _bvp(10, FontWeight.w700, Colors.white.withOpacity(0.7), ls: 3.0),
+                          style: _bvp(10, FontWeight.w700, Colors.white.withValues(alpha: 0.7), ls: 3.0),
                         ),
                       ],
                     ),
@@ -314,80 +306,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
             },
           ),
         ],
-      ),
-    );
-  }
-}
-
-// ── Bottom Nav ─────────────────────────────────────────────────────────────
-
-class _NavItem {
-  final IconData icon, activeIcon;
-  final String label;
-  const _NavItem({required this.icon, required this.activeIcon, required this.label});
-}
-
-class _BottomNav extends StatelessWidget {
-  final int currentIndex;
-  final Function(int) onTap;
-  final Color navBg;
-
-  const _BottomNav({required this.currentIndex, required this.onTap, required this.navBg});
-
-  static const List<_NavItem> _items = [
-    _NavItem(icon: Icons.home_outlined, activeIcon: Icons.home, label: 'HOME'),
-    _NavItem(icon: Icons.search, activeIcon: Icons.search, label: 'EXPLORE'),
-    _NavItem(icon: Icons.favorite_outline, activeIcon: Icons.favorite, label: 'FAVOURITE'),
-    _NavItem(icon: Icons.shopping_cart_outlined, activeIcon: Icons.shopping_cart, label: 'CART'),
-    _NavItem(icon: Icons.person_outline, activeIcon: Icons.person, label: 'PROFILE'),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: navBg,
-        border: const Border(top: BorderSide(color: Color(0xFFF3F3F3))),
-      ),
-      padding: EdgeInsets.only(
-        top: 12,
-        bottom: MediaQuery.of(context).padding.bottom + 12,
-        left: 8,
-        right: 8,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(_items.length, (i) {
-          final item = _items[i];
-          final isActive = i == currentIndex;
-          return GestureDetector(
-            onTap: () => onTap(i),
-            behavior: HitTestBehavior.opaque,
-            child: SizedBox(
-              width: 64,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    isActive ? item.activeIcon : item.icon,
-                    size: 28,
-                    color: isActive ? Colors.black : const Color(0xFF54433C).withOpacity(0.40),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    item.label,
-                    style: GoogleFonts.beVietnamPro(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.8,
-                      color: isActive ? Colors.black : const Color(0xFF54433C).withOpacity(0.40),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        }),
       ),
     );
   }

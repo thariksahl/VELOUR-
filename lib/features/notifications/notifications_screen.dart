@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../data/app_data.dart';
+import '../../core/widgets/bottom_nav_bar.dart';
 import '../../routes/route_names.dart';
 
 class NotificationsScreen extends StatefulWidget {
@@ -56,7 +57,10 @@ class _State extends State<NotificationsScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: _bottomNav(context),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _navIndex,
+        onTap: (i) => setState(() => _navIndex = i),
+      ),
     );
   }
 
@@ -139,7 +143,6 @@ class _State extends State<NotificationsScreen> {
 
     return Column(
       children: notifications.asMap().entries.map((e) {
-        final i = e.key;
         final n = e.value;
         return Padding(
           padding: const EdgeInsets.only(bottom: 24),
@@ -158,7 +161,7 @@ class _State extends State<NotificationsScreen> {
                 child: Container(
                   padding: const EdgeInsets.only(bottom: 24),
                   decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: _outlineVariant.withOpacity(0.10))),
+                    border: Border(bottom: BorderSide(color: _outlineVariant.withValues(alpha: 0.10))),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,7 +172,7 @@ class _State extends State<NotificationsScreen> {
                           Expanded(
                             child: Text(
                               n.title,
-                              style: _bvp(14, n.isFadedText ? FontWeight.w500 : FontWeight.w600, n.isFadedText ? _onSurface.withOpacity(0.80) : _onSurface),
+                              style: _bvp(14, n.isFadedText ? FontWeight.w500 : FontWeight.w600, n.isFadedText ? _onSurface.withValues(alpha: 0.80) : _onSurface),
                             ),
                           ),
                           if (n.isUnread)
@@ -183,7 +186,7 @@ class _State extends State<NotificationsScreen> {
                       const SizedBox(height: 4),
                       Text(
                         n.subtitle,
-                        style: _bvp(12, FontWeight.w400, n.isFadedText ? _onSurfaceVariant.withOpacity(0.70) : _onSurfaceVariant),
+                        style: _bvp(12, FontWeight.w400, n.isFadedText ? _onSurfaceVariant.withValues(alpha: 0.70) : _onSurfaceVariant),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -207,7 +210,7 @@ class _State extends State<NotificationsScreen> {
     return Container(
       padding: const EdgeInsets.only(top: 48),
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: _outlineVariant.withOpacity(0.10))),
+        border: Border(top: BorderSide(color: _outlineVariant.withValues(alpha: 0.10))),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -231,7 +234,7 @@ class _State extends State<NotificationsScreen> {
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
-                        colors: [Colors.black.withOpacity(0.50), Colors.transparent],
+                        colors: [Colors.black.withValues(alpha: 0.50), Colors.transparent],
                       ),
                     ),
                   ),
@@ -240,7 +243,7 @@ class _State extends State<NotificationsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('THE SUMMER EDIT', style: _bvp(10, FontWeight.w500, Colors.white.withOpacity(0.80), ls: 2.0)),
+                        Text('THE SUMMER EDIT', style: _bvp(10, FontWeight.w500, Colors.white.withValues(alpha: 0.80), ls: 2.0)),
                         const SizedBox(height: 8),
                         Text('Effortless Elegance', style: _nr(30, FontWeight.w400, Colors.white, italic: true)),
                         const SizedBox(height: 16),
@@ -267,52 +270,6 @@ class _State extends State<NotificationsScreen> {
     );
   }
 
-  // ── Bottom Nav ─────────────────────────────────────────────────────────────
-
-  Widget _bottomNav(BuildContext context) {
-    const items = [
-      (Icons.home_outlined, Icons.home, 'HOME'),
-      (Icons.search, Icons.search, 'EXPLORE'),
-      (Icons.favorite_outline, Icons.favorite, 'FAVOURITE'),
-      (Icons.shopping_cart_outlined, Icons.shopping_cart, 'CART'),
-      (Icons.person_outline, Icons.person, 'PROFILE'),
-    ];
-    return Container(
-      padding: EdgeInsets.only(top: 16, bottom: MediaQuery.of(context).padding.bottom + 16),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(top: BorderSide(color: Color(0xFFF3F3F3))),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(items.length, (i) {
-          final active = i == _navIndex;
-          final color = active ? Colors.black : _onSurfaceVariant.withOpacity(0.40);
-          return GestureDetector(
-            onTap: () {
-              setState(() => _navIndex = i);
-              switch (i) {
-                case 0: context.go(RouteNames.home); break;
-                case 1: context.go(RouteNames.explore); break;
-                case 2: context.go(RouteNames.wishlist); break;
-                case 3: context.go(RouteNames.cart); break;
-                case 4: context.go(RouteNames.profile); break;
-              }
-            },
-            behavior: HitTestBehavior.opaque,
-            child: SizedBox(
-              width: 64,
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Icon(active ? items[i].$2 : items[i].$1, size: 28, color: color),
-                const SizedBox(height: 4),
-                Text(items[i].$3,
-                    style: _bvp(10, FontWeight.w700, color, ls: 0.8)),
-              ]),
-            ),
-          );
-        }),
-      ),
-    );
-  }
+  // Bottom nav is now handled by BottomNavBar
 }
 

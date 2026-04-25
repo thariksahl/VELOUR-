@@ -29,10 +29,7 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _passwordVisible = false;
 
   static const Color _brandDark = Color(0xFF5D4925);
-  static const Color _outlineSubtle = Color(0xFFEBE9E4);
   static const Color _onSurfaceVariant = Color(0xFF716E64);
-  static const Color _gradientStart = Color(0xFFC56E42);
-  static const Color _gradientEnd = Color(0xFFBD926E);
 
   @override
   void dispose() {
@@ -93,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: AppColors.onSurface.withOpacity(0.10),
+                              color: AppColors.onSurface.withValues(alpha: 0.10),
                             ),
                           ),
                           child: const Icon(Icons.arrow_back, size: 18, color: AppColors.onSurface),
@@ -181,7 +178,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: Icon(
                               _passwordVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                               size: 20,
-                              color: _onSurfaceVariant.withOpacity(0.60),
+                              color: _onSurfaceVariant.withValues(alpha: 0.60),
                             ),
                           ),
                         ),
@@ -246,7 +243,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   // ── OR Divider ──────────────────────────────────────────
                   Row(
                     children: [
-                      Expanded(child: Container(height: 1, color: AppColors.onSurface.withOpacity(0.05))),
+                      Expanded(child: Container(height: 1, color: AppColors.onSurface.withValues(alpha: 0.05))),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
@@ -259,7 +256,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                       ),
-                      Expanded(child: Container(height: 1, color: AppColors.onSurface.withOpacity(0.05))),
+                      Expanded(child: Container(height: 1, color: AppColors.onSurface.withValues(alpha: 0.05))),
                     ],
                   ),
 
@@ -309,7 +306,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           children: [
                             TextSpan(
                               text: 'Already have an account? ',
-                              style: GoogleFonts.beVietnamPro(fontSize: 14, fontWeight: FontWeight.w500, color: _onSurfaceVariant.withOpacity(0.70)),
+                              style: GoogleFonts.beVietnamPro(fontSize: 14, fontWeight: FontWeight.w500, color: _onSurfaceVariant.withValues(alpha: 0.70)),
                             ),
                             WidgetSpan(
                               child: GestureDetector(
@@ -373,7 +370,7 @@ class _SignupField extends StatelessWidget {
       style: GoogleFonts.beVietnamPro(fontSize: 15, color: const Color(0xFF231F14)),
       decoration: InputDecoration(
         hintText: placeholder,
-        hintStyle: GoogleFonts.beVietnamPro(fontSize: 15, color: const Color(0xFF716E64).withOpacity(0.70)),
+        hintStyle: GoogleFonts.beVietnamPro(fontSize: 15, color: const Color(0xFF716E64).withValues(alpha: 0.70)),
         filled: true,
         fillColor: Colors.white,
         suffixIcon: suffixIcon != null
@@ -434,7 +431,7 @@ class _SignupButtonState extends State<_SignupButton> with SingleTickerProviderS
               colors: [Color(0xFFC56E42), Color(0xFFBD926E)],
             ),
             borderRadius: BorderRadius.circular(9999),
-            boxShadow: [BoxShadow(color: const Color(0xFFC56E42).withOpacity(0.20), blurRadius: 20, offset: const Offset(0, 6))],
+            boxShadow: [BoxShadow(color: const Color(0xFFC56E42).withValues(alpha: 0.20), blurRadius: 20, offset: const Offset(0, 6))],
           ),
           alignment: Alignment.center,
           child: widget.isLoading

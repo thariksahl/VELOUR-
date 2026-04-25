@@ -51,15 +51,6 @@ class CuratedSeries {
   const CuratedSeries({required this.id, required this.title});
 }
 
-/// Wishlist item model.
-class WishlistItem {
-  final String name;
-  final String price;
-  final String imageUrl;
-  bool wishlisted;
-  WishlistItem(this.name, this.price, this.imageUrl, {this.wishlisted = true});
-}
-
 /// Cart item model.
 class CartItem {
   final String name;

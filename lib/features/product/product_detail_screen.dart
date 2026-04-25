@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../routes/route_names.dart';
+import '../../data/app_data.dart';
+import '../cart/cart_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final String? productId;
@@ -36,6 +38,13 @@ class _State extends State<ProductDetailScreen> {
   TextStyle _bvp(double size, FontWeight w, Color c, {double ls = 0}) =>
       GoogleFonts.beVietnamPro(
           fontSize: size, fontWeight: w, color: c, letterSpacing: ls);
+
+  Product? get _product {
+    if (widget.productId == null) return null;
+    final index = int.tryParse(widget.productId!);
+    if (index == null || index < 0 || index >= AppData.products().length) return null;
+    return AppData.products()[index];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +94,7 @@ class _State extends State<ProductDetailScreen> {
     return Container(
       padding:
           EdgeInsets.only(top: topPad + 12, left: 20, right: 20, bottom: 12),
-      color: _bg.withOpacity(0.95),
+      color: _bg.withValues(alpha: 0.95),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -129,11 +138,12 @@ class _State extends State<ProductDetailScreen> {
           fit: StackFit.expand,
           children: [
             Container(color: const Color(0xFFD9D9D9)),
-            Image.network(
-              'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop',
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-            ),
+            if (_product != null)
+              Image.network(
+                _product!.imageUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+              ),
             // Pagination dots — bottom-6 centered
             Positioned(
               bottom: 24,
@@ -151,7 +161,7 @@ class _State extends State<ProductDetailScreen> {
                             shape: BoxShape.circle,
                             color: i == 0
                                 ? _primary
-                                : Colors.white.withOpacity(0.50),
+                                : Colors.white.withValues(alpha: 0.50),
                           ),
                         )),
               ),
@@ -179,7 +189,7 @@ class _State extends State<ProductDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Casual Shirt',
+                    Text(_product?.name ?? 'Casual Shirt',
                         style: _nr(28, FontWeight.w700, _dark)),
                     const SizedBox(height: 4),
                     // Stars
@@ -195,7 +205,7 @@ class _State extends State<ProductDetailScreen> {
                   ],
                 ),
               ),
-              Text('LKR 5999.99',
+              Text(_product?.price ?? 'LKR 5999.99',
                   style: _bvp(22, FontWeight.w700, _dark, ls: -0.5)),
             ],
           ),
@@ -223,7 +233,9 @@ class _State extends State<ProductDetailScreen> {
 
           // Description
           Text(
-            'Discover effortless elegance with our signature piece. Crafted from premium breathable fabrics, this essential combines modern tailoring with timeless comfort for an elevated daily ensemble.',
+            _product?.description.isNotEmpty == true
+                ? _product!.description
+                : 'Discover effortless elegance with our signature piece. Crafted from premium breathable fabrics, this essential combines modern tailoring with timeless comfort for an elevated daily ensemble.',
             style: _bvp(15, FontWeight.w400, Colors.grey.shade600)
                 .copyWith(height: 1.6),
           ),
@@ -297,18 +309,15 @@ class _State extends State<ProductDetailScreen> {
   }
 
   // ── Bottom Actions ─────────────────────────────────────────────────────────
-  // HTML: fixed bottom, px-6 py-6 bg-background/80 backdrop-blur-lg
-  // — w-16 h-16 circle bag icon + flex-1 h-16 #1A1A1A pill "Add to Cart"
-
   Widget _bottomActions(double botPad) {
     return Container(
       padding: EdgeInsets.fromLTRB(24, 16, 24, 16 + botPad),
-      decoration: BoxDecoration(color: _bg.withOpacity(0.80)),
+      decoration: BoxDecoration(color: _bg.withValues(alpha: 0.80)),
       child: Row(
         children: [
-          // Bag circle
+          // Bag circle — direct push to CartScreen
           GestureDetector(
-            onTap: () => context.go(RouteNames.cart),
+            onTap: () => _pushCartScreen(),
             child: Container(
               width: 64,
               height: 64,
@@ -318,7 +327,7 @@ class _State extends State<ProductDetailScreen> {
                 border: Border.all(color: _outline),
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.black.withOpacity(0.06),
+                      color: Colors.black.withValues(alpha: 0.06),
                       blurRadius: 8,
                       offset: const Offset(0, 2))
                 ],
@@ -331,10 +340,90 @@ class _State extends State<ProductDetailScreen> {
           const SizedBox(width: 16),
 
           // Add to Cart pill
-          const Expanded(
-            child: _AddToCartButton(dark: _dark),
+          Expanded(
+            child: _AddToCartButton(
+              dark: _dark,
+              onAdd: () {
+                if (_product != null) {
+                  const colorNames = ['Light Blue', 'Dark Blue', 'Black'];
+                  final colorName = colorNames[_selectedColor];
+                  final size = _sizes[_selectedSize];
+                  AppData.addToCart(CartItem(
+                    _product!.name,
+                    '$colorName • $size',
+                    _product!.price,
+                    _product!.imageUrl,
+                  ));
+                  _showToastThenNavigate();
+                }
+              },
+            ),
           ),
         ],
+      ),
+    );
+  }
+
+  // ── Toast + push ────────────────────────────────────────────────────────────
+  // Shows a slide-down toast for ~900 ms, then iOS-pushes CartScreen.
+
+  void _showToastThenNavigate() {
+    final overlay = Overlay.of(context);
+    late OverlayEntry entry;
+    final controller = AnimationController(
+      vsync: Navigator.of(context),
+      duration: const Duration(milliseconds: 280),
+    );
+
+    entry = OverlayEntry(
+      builder: (ctx) => _ToastOverlay(controller: controller),
+    );
+
+    overlay.insert(entry);
+    controller.forward();
+
+    Future.delayed(const Duration(milliseconds: 600), () async {
+      await controller.reverse();
+      entry.remove();
+      controller.dispose();
+      if (mounted) _pushCartScreen();
+    });
+  }
+
+  void _pushCartScreen() {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 450),
+        reverseTransitionDuration: const Duration(milliseconds: 450),
+        pageBuilder: (_, __, ___) => const CartScreen(),
+        transitionsBuilder: (_, animation, secondaryAnimation, child) {
+          // Current screen slides out to the left
+          final primarySlide = Tween<Offset>(
+            begin: Offset.zero,
+            end: const Offset(-0.30, 0.0),
+          ).animate(CurvedAnimation(
+              parent: secondaryAnimation, curve: Curves.easeInOut));
+
+          // Cart screen slides in from right
+          final cartSlide = Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+              parent: animation, curve: Curves.easeInOut));
+
+          return Stack(
+            children: [
+              SlideTransition(
+                position: primarySlide,
+                child: Container(color: const Color(0xFFF9F9F7)),
+              ),
+              SlideTransition(
+                position: cartSlide,
+                child: child,
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -344,7 +433,8 @@ class _State extends State<ProductDetailScreen> {
 
 class _AddToCartButton extends StatefulWidget {
   final Color dark;
-  const _AddToCartButton({required this.dark});
+  final VoidCallback onAdd;
+  const _AddToCartButton({required this.dark, required this.onAdd});
 
   @override
   State<_AddToCartButton> createState() => _AddToCartButtonState();
@@ -374,7 +464,10 @@ class _AddToCartButtonState extends State<_AddToCartButton>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) => _ctrl.forward(),
-      onTapUp: (_) => _ctrl.reverse(),
+      onTapUp: (_) {
+        _ctrl.reverse();
+        widget.onAdd();
+      },
       onTapCancel: () => _ctrl.reverse(),
       child: ScaleTransition(
         scale: _scale,
@@ -385,7 +478,7 @@ class _AddToCartButtonState extends State<_AddToCartButton>
             borderRadius: BorderRadius.circular(9999),
             boxShadow: [
               BoxShadow(
-                  color: Colors.black.withOpacity(0.25),
+                  color: Colors.black.withValues(alpha: 0.25),
                   blurRadius: 16,
                   offset: const Offset(0, 6))
             ],
@@ -403,6 +496,85 @@ class _AddToCartButtonState extends State<_AddToCartButton>
                     color: Colors.white),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ── Toast Overlay (slide down from top) ──────────────────────────────────────
+
+class _ToastOverlay extends StatelessWidget {
+  final AnimationController controller;
+  const _ToastOverlay({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    final topPad = MediaQuery.of(context).padding.top;
+    final slideAnim = Tween<Offset>(
+      begin: const Offset(0, -1),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.easeOutCubic));
+
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      child: SlideTransition(
+        position: slideAnim,
+        child: SafeArea(
+          bottom: false,
+          child: Padding(
+            padding: EdgeInsets.only(top: topPad > 0 ? 8 : 16),
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1A1A1A),
+                  borderRadius: BorderRadius.circular(9999),
+                  border: Border.all(
+                    color: const Color(0xFF8C4B27).withValues(alpha: 0.60),
+                    width: 1.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.30),
+                      blurRadius: 24,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 22,
+                      height: 22,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xFF8C4B27),
+                      ),
+                      child: const Icon(
+                        Icons.check,
+                        size: 13,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      'Added to cart',
+                      style: GoogleFonts.beVietnamPro(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ),
