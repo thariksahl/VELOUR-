@@ -33,15 +33,29 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _submit() async {
+    if (!_formKey.currentState!.validate()) return;
+
     final auth = context.read<AuthProvider>();
     final email = _emailController.text.trim();
     final password = _passwordController.text;
-    
-    final success = await auth.login(
-      email: email.isEmpty ? 'test@example.com' : email,
-      password: password.isEmpty ? 'password123' : password,
-    );
-    if (success && mounted) context.go(RouteNames.home);
+
+    final success = await auth.login(email: email, password: password);
+
+    if (!mounted) return;
+
+    if (success) {
+      context.go(RouteNames.home);
+    } else if (auth.errorMessage != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(auth.errorMessage!),
+          backgroundColor: const Color(0xFFB3261E),
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(16),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+      );
+    }
   }
 
   @override

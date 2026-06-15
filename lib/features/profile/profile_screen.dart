@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../auth/auth_provider.dart';
+import '../../core/services/firestore_service.dart';
+import '../../core/theme/theme_notifier.dart';
 import '../../core/widgets/bottom_nav_bar.dart';
 import '../../routes/route_names.dart';
 
@@ -13,14 +16,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _State extends State<ProfileScreen> {
-  static const Color _surface = Color(0xFFFAF9F5);
-  static const Color _primary = Color(0xFF914722);
-  static const Color _onSurface = Color(0xFF1B1C1A);
-  static const Color _onSurfaceVariant = Color(0xFF54433C);
-  static const Color _surfaceContainerLow = Color(0xFFF4F4F0);
-  static const Color _outlineVariant = Color(0xFFDAC1B8);
-
   int _navIndex = 4; // PROFILE active
+
+  // ── Theme-aware color helpers ─────────────────────────────────────────────
+  Color get _surface => Theme.of(context).colorScheme.surface;
+  Color get _primary => Theme.of(context).colorScheme.primary;
+  Color get _onSurface => Theme.of(context).colorScheme.onSurface;
+  Color get _onSurfaceVariant => Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _outlineVariant => Theme.of(context).colorScheme.outlineVariant;
 
   TextStyle _nr(double s, FontWeight w, Color c, {double ls = 0}) =>
       GoogleFonts.newsreader(fontSize: s, fontWeight: w, color: c, letterSpacing: ls);
@@ -48,7 +51,7 @@ class _State extends State<ProfileScreen> {
                   const SizedBox(height: 48),
                   _section('Account', _accountItems(context)),
                   const SizedBox(height: 40),
-                  _section('Settings', _settingsItems()),
+                  _section('Settings', _settingsItems(context)),
                   const SizedBox(height: 24),
                   _logoutButton(context),
                   const SizedBox(height: 32),
@@ -85,7 +88,7 @@ class _State extends State<ProfileScreen> {
                 shape: BoxShape.circle,
                 border: Border.all(color: _onSurface.withValues(alpha: 0.10)),
               ),
-              child: const Icon(Icons.arrow_back, size: 22, color: _onSurface),
+              child: Icon(Icons.arrow_back, size: 22, color: _onSurface),
             ),
           ),
           Text('VELOUR', style: _nr(24, FontWeight.w700, _onSurface, ls: 4.8)),
@@ -95,63 +98,111 @@ class _State extends State<ProfileScreen> {
     );
   }
 
-  // ── Profile Hero ─────────────────────────────────────────────────────────
-  // HTML: w-32 h-32 rounded-full border-4 border-surface-container-low p-1 + edit button
+  // ── Profile Hero ──────────────────────────────────────────────────────────
 
   Widget _profileHero() {
-    return Column(
-      children: [
-        Center(
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              // Avatar ring
-              Container(
-                width: 128, height: 128,
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: _surfaceContainerLow, width: 4),
-                  color: Colors.white,
-                ),
-                child: ClipOval(
-                  child: Image.network(
-                    'https://lh3.googleusercontent.com/aida-public/AB6AXuCwUCO1Q2-6GqH78G1ZB_AqPZ1VuIKCLIfs7mwmmIc6qxLhoMiCrSTiONNBcYkTO0dQwkillDLfM9rRWu92pVUtKXPrPLo1SBEZ2xkcsFu2JBVgAK4LCHcirGmszAYP7mYLjSJe1u6OcX18lN1AgamHCbbRTBxIU3b_YuhFw4QEmruyHMw6IuD6KzaSh9LyzZzPLa2eSfh7kAEbeAWxd73c3pZf0CeD8mwu4ivXZx6Yg_tH6itVoINkz-Y9zYiykfwVLKy2a-k66K4',
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      color: _surfaceContainerLow,
-                      child: const Icon(Icons.person, size: 56, color: _onSurfaceVariant),
+    final authUser = fb_auth.FirebaseAuth.instance.currentUser;
+
+    return StreamBuilder<Map<String, dynamic>?>(
+      stream: FirestoreService.instance.userProfileStream(),
+      builder: (context, snap) {
+        final profile = snap.data;
+
+        // Resolve display name: Firestore > Auth.displayName > email prefix
+        String displayName;
+        if (profile != null &&
+            (profile['firstName'] != null || profile['lastName'] != null)) {
+          final first = profile['firstName'] as String? ?? '';
+          final last = profile['lastName'] as String? ?? '';
+          displayName = '$first $last'.trim();
+        } else if (authUser?.displayName != null &&
+            authUser!.displayName!.isNotEmpty) {
+          displayName = authUser.displayName!;
+        } else if (authUser?.email != null) {
+          displayName = authUser!.email!.split('@').first;
+        } else {
+          displayName = 'Guest';
+        }
+
+        final email =
+            profile?['email'] as String? ?? authUser?.email ?? '';
+
+        final photoUrl =
+            profile?['photoUrl'] as String? ?? authUser?.photoURL;
+
+        return Column(
+          children: [
+            Center(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  // Avatar ring
+                  Container(
+                    width: 128,
+                    height: 128,
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .surfaceContainerHighest,
+                        width: 4,
+                      ),
+                      color: Theme.of(context).colorScheme.surface,
+                    ),
+                    child: ClipOval(
+                      child: photoUrl != null
+                          ? Image.network(
+                              photoUrl,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) => _avatarPlaceholder(),
+                            )
+                          : _avatarPlaceholder(),
                     ),
                   ),
-                ),
-              ),
-              // Edit button — bottom-1 right-1
-              Positioned(
-                bottom: 4, right: 4,
-                child: Container(
-                  width: 32, height: 32,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                    border: Border.all(color: _outlineVariant.withValues(alpha: 0.20)),
-                    boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 8)],
+                  // Edit button — bottom-1 right-1
+                  Positioned(
+                    bottom: 4,
+                    right: 4,
+                    child: Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).colorScheme.surface,
+                        border: Border.all(
+                            color: _outlineVariant.withValues(alpha: 0.20)),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.08),
+                              blurRadius: 8)
+                        ],
+                      ),
+                      child: Icon(Icons.edit_outlined,
+                          size: 16, color: _onSurface),
+                    ),
                   ),
-                  child: const Icon(Icons.edit_outlined, size: 16, color: _onSurface),
-                ),
+                ],
               ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 24),
-        // Name — Newsreader bold 30px
-        Text('Sarah', style: _nr(30, FontWeight.w700, _onSurface)),
-        const SizedBox(height: 4),
-        // Email — body sm on-surface-variant
-        Text('sarahvelour01@gmail.com',
-            style: _bvp(14, FontWeight.w400, _onSurfaceVariant, ls: 0.3)),
-      ],
+            ),
+            const SizedBox(height: 24),
+            Text(displayName,
+                style: _nr(30, FontWeight.w700, _onSurface)),
+            const SizedBox(height: 4),
+            Text(email,
+                style: _bvp(14, FontWeight.w400, _onSurfaceVariant,
+                    ls: 0.3)),
+          ],
+        );
+      },
     );
   }
+
+  Widget _avatarPlaceholder() => Container(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        child: Icon(Icons.person, size: 56, color: _onSurfaceVariant),
+      );
 
   // ── Section Builder ────────────────────────────────────────────────────────
 
@@ -159,7 +210,6 @@ class _State extends State<ProfileScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Section label — text-[10px] tracking-[0.2em] uppercase opacity-60
         Padding(
           padding: const EdgeInsets.only(left: 8, bottom: 24),
           child: Text(
@@ -167,7 +217,6 @@ class _State extends State<ProfileScreen> {
             style: _bvp(10, FontWeight.w400, _onSurfaceVariant.withValues(alpha: 0.60), ls: 3.2),
           ),
         ),
-        // Menu rows with hairline dividers
         Column(
           children: items.asMap().entries.map((e) {
             final i = e.key;
@@ -176,8 +225,11 @@ class _State extends State<ProfileScreen> {
               children: [
                 _menuRow(item),
                 if (i < items.length - 1)
-                  Container(height: 1, color: _outlineVariant.withValues(alpha: 0.10),
-                      margin: const EdgeInsets.symmetric(horizontal: 16)),
+                  Container(
+                    height: 1,
+                    color: _outlineVariant.withValues(alpha: 0.10),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                  ),
               ],
             );
           }).toList(),
@@ -188,7 +240,7 @@ class _State extends State<ProfileScreen> {
 
   Widget _menuRow(_MenuItem item) {
     return GestureDetector(
-      onTap: item.onTap,
+      onTap: item.trailing == null ? item.onTap : null,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(
@@ -200,7 +252,8 @@ class _State extends State<ProfileScreen> {
             Icon(item.icon, size: 24, color: _onSurfaceVariant),
             const SizedBox(width: 16),
             Expanded(child: Text(item.label, style: _bvp(15, FontWeight.w400, _onSurface))),
-            const Icon(Icons.chevron_right, size: 20, color: _primary),
+            item.trailing ??
+                Icon(Icons.chevron_right, size: 20, color: _primary),
           ],
         ),
       ),
@@ -209,17 +262,32 @@ class _State extends State<ProfileScreen> {
 
   // ── Menu Items ─────────────────────────────────────────────────────────────
 
-  List<_MenuItem> _accountItems(BuildContext context) => [
-    _MenuItem(Icons.receipt_long_outlined, 'My Orders', () => context.go(RouteNames.orders)),
-    _MenuItem(Icons.person_outline, 'My Details', () {}),
-    _MenuItem(Icons.local_shipping_outlined, 'Shipping Address', () {}),
-    _MenuItem(Icons.credit_card_outlined, 'Payment Methods', () {}),
-  ];
+  List<_MenuItem> _accountItems(BuildContext context) {
+    final themeNotifier = context.watch<ThemeNotifier>();
+    return [
+      _MenuItem(Icons.receipt_long_outlined, 'My Orders', () => context.go(RouteNames.orders)),
+      _MenuItem(Icons.person_outline, 'My Details', () {}),
+      _MenuItem(Icons.local_shipping_outlined, 'Shipping Address', () => context.push(RouteNames.shippingAddress)),
+      // ── Dark Mode toggle ───────────────────────────────────────────────────
+      _MenuItem(
+        Icons.dark_mode_outlined,
+        'Dark Mode',
+        () {},
+        trailing: Switch(
+          value: themeNotifier.isDark,
+          activeThumbColor: const Color(0xFFC1622A),
+          activeTrackColor: const Color(0xFFC1622A).withValues(alpha: 0.40),
+          onChanged: (v) => themeNotifier.toggle(v),
+        ),
+      ),
+      _MenuItem(Icons.credit_card_outlined, 'Payment Methods', () => context.push(RouteNames.paymentMethods)),
+    ];
+  }
 
-  List<_MenuItem> _settingsItems() => [
-    _MenuItem(Icons.notifications_outlined, 'Notifications', () {}),
-    _MenuItem(Icons.language_outlined, 'Language', () {}),
-    _MenuItem(Icons.gavel_outlined, 'Privacy Policy', () {}),
+  List<_MenuItem> _settingsItems(BuildContext context) => [
+    _MenuItem(Icons.notifications_outlined, 'Notifications', () => context.push(RouteNames.notificationSettings)),
+    _MenuItem(Icons.language_outlined, 'Language', () => context.push(RouteNames.language)),
+    _MenuItem(Icons.gavel_outlined, 'Privacy Policy', () => context.push(RouteNames.privacyPolicy)),
   ];
 
   // ── Log Out ────────────────────────────────────────────────────────────────
@@ -238,8 +306,6 @@ class _State extends State<ProfileScreen> {
       ),
     );
   }
-
-  // Bottom nav is now handled by BottomNavBar
 }
 
 // ── Menu Item Model ────────────────────────────────────────────────────────────
@@ -248,5 +314,6 @@ class _MenuItem {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
-  const _MenuItem(this.icon, this.label, this.onTap);
+  final Widget? trailing;
+  const _MenuItem(this.icon, this.label, this.onTap, {this.trailing});
 }

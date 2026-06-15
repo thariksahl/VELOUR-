@@ -5,18 +5,20 @@ import 'package:intl/intl.dart';
 abstract class AppHelpers {
   // ─── Currency ──────────────────────────────────────────────────────────────
   static String formatPrice(double price, {String currency = 'USD'}) {
-    final formatter = NumberFormat.currency(
-      symbol: currency == 'USD' ? '\$' : '£',
-      decimalDigits: 2,
-    );
-    return formatter.format(price);
+    // If the input is in USD, apply the conversion multiplier (280)
+    final double lkrPrice = currency == 'USD' ? price * 280 : price;
+    final rounded = lkrPrice.round();
+    final reg = RegExp(r'\B(?=(\d{3})+(?!\d))');
+    final formatted = rounded.toString().replaceAll(reg, ',');
+    return 'LKR $formatted';
   }
 
   static String formatCompactPrice(double price) {
+    // Assuming price is in LKR for compact representation, format it
     if (price >= 1000) {
-      return '\$${(price / 1000).toStringAsFixed(1)}k';
+      return 'LKR ${(price / 1000).toStringAsFixed(1)}k';
     }
-    return '\$${price.toStringAsFixed(0)}';
+    return 'LKR ${price.toStringAsFixed(0)}';
   }
 
   // ─── Date & Time ──────────────────────────────────────────────────────────

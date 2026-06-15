@@ -207,22 +207,25 @@ abstract class AppTextStyles {
 }
 
 /// TextTheme factory for Material 3
-TextTheme buildVelourTextTheme() {
+TextTheme buildVelourTextTheme({bool isDark = false}) {
+  final Color text = isDark ? const Color(0xFFF5F0EB) : AppColors.onSurface;
+  final Color textVariant = isDark ? const Color(0xFFA09890) : AppColors.onSurfaceVariant;
   return TextTheme(
-    displayLarge: AppTextStyles.displayLarge,
-    displayMedium: AppTextStyles.displayMedium,
-    displaySmall: AppTextStyles.displaySmall,
-    headlineLarge: AppTextStyles.headlineLarge,
-    headlineMedium: AppTextStyles.headlineMedium,
-    headlineSmall: AppTextStyles.headlineSmall,
-    titleLarge: AppTextStyles.titleLarge,
-    titleMedium: AppTextStyles.titleMedium,
-    titleSmall: AppTextStyles.titleSmall,
-    bodyLarge: AppTextStyles.bodyLarge,
-    bodyMedium: AppTextStyles.bodyMedium,
-    bodySmall: AppTextStyles.bodySmall,
-    labelLarge: AppTextStyles.labelLarge,
-    labelMedium: AppTextStyles.labelMedium,
-    labelSmall: AppTextStyles.labelSmall,
+    displayLarge: AppTextStyles.displayLarge.copyWith(color: text),
+    displayMedium: AppTextStyles.displayMedium.copyWith(color: text),
+    displaySmall: AppTextStyles.displaySmall.copyWith(color: text),
+    headlineLarge: AppTextStyles.headlineLarge.copyWith(color: text),
+    headlineMedium: AppTextStyles.headlineMedium.copyWith(color: text),
+    headlineSmall: AppTextStyles.headlineSmall.copyWith(color: text),
+    titleLarge: AppTextStyles.titleLarge.copyWith(color: text),
+    titleMedium: AppTextStyles.titleMedium.copyWith(color: text),
+    titleSmall: AppTextStyles.titleSmall.copyWith(color: text),
+    bodyLarge: AppTextStyles.bodyLarge.copyWith(color: text),
+    bodyMedium: AppTextStyles.bodyMedium.copyWith(color: isDark ? textVariant : text),
+    bodySmall: AppTextStyles.bodySmall.copyWith(color: textVariant),
+    labelLarge: AppTextStyles.labelLarge.copyWith(color: text),
+    labelMedium: AppTextStyles.labelMedium.copyWith(color: text),
+    labelSmall: AppTextStyles.labelSmall.copyWith(color: textVariant),
   );
 }
+

@@ -10,12 +10,19 @@ import '../features/home/home_screen.dart';
 import '../features/product/explore_screen.dart';
 import '../features/product/product_list_screen.dart';
 import '../features/product/product_detail_screen.dart'; // BoysPantsScreen
+import '../data/app_data.dart'; // Product type for extra-based route
+import '../features/product/explore_collection_detail_screen.dart';
 import '../features/cart/cart_screen.dart';
 import '../features/wishlist/wishlist_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/orders/orders_screen.dart';
 import '../features/orders/order_confirmation_screen.dart';
 import '../features/notifications/notifications_screen.dart';
+import '../features/profile/shipping_address_screen.dart';
+import '../features/profile/payment_methods_screen.dart';
+import '../features/profile/notification_settings_screen.dart';
+import '../features/profile/language_screen.dart';
+import '../features/profile/privacy_policy_screen.dart';
 
 class AppRouter {
   static GoRouter createRouter(BuildContext context) {
@@ -76,9 +83,20 @@ class AppRouter {
           path: RouteNames.productList,
           pageBuilder: (context, state) {
             final category = state.uri.queryParameters['category'];
+            final title = state.uri.queryParameters['title'];
             return _slideTransition(
               state,
-              MensCategoryScreen(category: category),
+              MensCategoryScreen(category: category, title: title),
+            );
+          },
+        ),
+        GoRoute(
+          path: RouteNames.exploreCollectionDetail,
+          pageBuilder: (context, state) {
+            final idx = int.tryParse(state.pathParameters['index'] ?? '0') ?? 0;
+            return _slideTransition(
+              state,
+              ExploreCollectionDetailScreen(collectionIndex: idx),
             );
           },
         ),
@@ -89,6 +107,18 @@ class AppRouter {
             return _slideTransition(
               state,
               ProductDetailScreen(productId: id),
+            );
+          },
+        ),
+        // New route: passes a Product object directly via GoRouter extra.
+        // Used by all product grids to avoid index-based lookup bugs.
+        GoRoute(
+          path: RouteNames.productDetailExtra,
+          pageBuilder: (context, state) {
+            final product = state.extra as Product;
+            return _slideTransition(
+              state,
+              ProductDetailScreen(product: product),
             );
           },
         ),
@@ -111,6 +141,41 @@ class AppRouter {
           pageBuilder: (context, state) => _slideTransition(
             state,
             const ProfileScreen(),
+          ),
+        ),
+        GoRoute(
+          path: RouteNames.shippingAddress,
+          pageBuilder: (context, state) => _slideTransition(
+            state,
+            const ShippingAddressScreen(),
+          ),
+        ),
+        GoRoute(
+          path: RouteNames.paymentMethods,
+          pageBuilder: (context, state) => _slideTransition(
+            state,
+            const PaymentMethodsScreen(),
+          ),
+        ),
+        GoRoute(
+          path: RouteNames.notificationSettings,
+          pageBuilder: (context, state) => _slideTransition(
+            state,
+            const NotificationSettingsScreen(),
+          ),
+        ),
+        GoRoute(
+          path: RouteNames.language,
+          pageBuilder: (context, state) => _slideTransition(
+            state,
+            const LanguageScreen(),
+          ),
+        ),
+        GoRoute(
+          path: RouteNames.privacyPolicy,
+          pageBuilder: (context, state) => _slideTransition(
+            state,
+            const PrivacyPolicyScreen(),
           ),
         ),
         GoRoute(

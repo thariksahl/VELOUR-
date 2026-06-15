@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../data/app_data.dart';
+import 'package:provider/provider.dart';
+import '../../core/services/firestore_service.dart';
 import '../../core/widgets/bottom_nav_bar.dart';
+import '../../data/app_data.dart';
 import '../../routes/route_names.dart';
-
-// ── Screen ────────────────────────────────────────────────────────────────────
+import '../../core/theme/theme_notifier.dart';
+import 'favourites_provider.dart';
+import '../cart/cart_provider.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
@@ -15,58 +18,88 @@ class WishlistScreen extends StatefulWidget {
 }
 
 class _State extends State<WishlistScreen> {
-  // HTML Tokens
-  static const Color _surface = Color(0xFFFAF9F5);
-  static const Color _onSurface = Color(0xFF1B1C1A);
-  static const Color _onSurfaceVariant = Color(0xFF54433C);
-  static const Color _surfaceContainerLow = Color(0xFFF4F4F0);
-  static const Color _outlineVariant = Color(0xFFDAC1B8);
-  static const Color _primary = Color(0xFF914722);
-  static const Color _primaryContainer = Color(0xFFDAC1B8);
-
-  final List<Product> _items = AppData.wishlistItems();
-  int _navIndex = 2; // FAVOURITE active
-
-  TextStyle _nr(double s, FontWeight w, Color c, {double ls = 0}) =>
-      GoogleFonts.newsreader(fontSize: s, fontWeight: w, color: c, letterSpacing: ls);
+  final int _navIndex = 2; // FAVOURITES active
 
   TextStyle _bvp(double s, FontWeight w, Color c, {double ls = 0}) =>
       GoogleFonts.beVietnamPro(fontSize: s, fontWeight: w, color: c, letterSpacing: ls);
 
   @override
   Widget build(BuildContext context) {
+    context.watch<ThemeNotifier>();
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: _surface,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Column(
         children: [
           _header(context),
           Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(16, 24, 16, 80 + MediaQuery.of(context).padding.bottom),
-              child: Column(
-                children: [
-                  _titleSection(),
-                  const SizedBox(height: 32),
-                  _productGrid(),
-                  _emptyStateSuggestion(context),
-                ],
-              ),
+            // Real-time stream: emits Set<String> of wishlisted doc keys.
+            // Cross-reference with Firestore products stream so cards reflect
+            // live data. Falls back to local AppData while Firestore loads.
+            child: StreamBuilder<Set<String>>(
+              stream: FirestoreService.instance.wishlistStream(),
+              builder: (context, wishSnap) {
+                return StreamBuilder<List<Product>>(
+                  stream: FirestoreService.instance.productsStream(),
+                  builder: (context, prodSnap) {
+                    // Show loader only while both streams are waiting
+                    if (wishSnap.connectionState == ConnectionState.waiting &&
+                        !wishSnap.hasData) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    final wishlistKeys = wishSnap.data ?? {};
+
+                    // Build cross-referenced product list
+                    final allProducts = (prodSnap.hasData && prodSnap.data!.isNotEmpty)
+                        ? prodSnap.data!
+                        : AppData.products();
+
+                    final favouritedProducts = allProducts
+                        .where((p) =>
+                            wishlistKeys.contains(p.id.isNotEmpty ? p.id : _sanitise(p.name)))
+                        .toList();
+
+                    return SingleChildScrollView(
+                      padding: EdgeInsets.fromLTRB(
+                          16, 24, 16, 80 + MediaQuery.of(context).padding.bottom),
+                      child: Column(
+                        children: [
+                          _titleSection(),
+                          const SizedBox(height: 32),
+                          if (favouritedProducts.isEmpty)
+                            _buildEmptyState()
+                          else
+                            _productGrid(favouritedProducts),
+                          _emptyStateSuggestion(context),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         ],
       ),
       bottomNavigationBar: BottomNavBar(
         currentIndex: _navIndex,
-        onTap: (i) => setState(() => _navIndex = i),
+        onTap: (i) => setState(() {}),
       ),
     );
   }
 
-  // ── Header ─────────────────────────────────────────────────────────────────
+  // ── Helpers ─────────────────────────────────────────────────────────────────
+
+  String _sanitise(String name) => name.replaceAll(RegExp(r'[^\w]'), '_');
+
+  // ── Header ──────────────────────────────────────────────────────────────────
 
   Widget _header(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
-      color: _surface,
+      color: theme.scaffoldBackgroundColor,
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top + 16,
         left: 24, right: 24, bottom: 16,
@@ -76,37 +109,73 @@ class _State extends State<WishlistScreen> {
         children: [
           GestureDetector(
             onTap: () => context.go(RouteNames.home),
-            child: const Icon(Icons.arrow_back, size: 24, color: _onSurface),
+            child: Icon(Icons.arrow_back, size: 24, color: theme.iconTheme.color),
           ),
-          // HTML: style="color: #8B6914;" serif-bold text-2xl tracking-[0.1em]
-          Text('VELOUR', style: _nr(24, FontWeight.w700, const Color(0xFF8B6914), ls: 2.4)),
+          Text(
+            'VELOUR',
+            style: GoogleFonts.beVietnamPro(
+              fontSize: 24,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 4.8,
+              color: theme.textTheme.headlineLarge?.color ?? const Color(0xFF111111),
+            ),
+          ),
           GestureDetector(
             onTap: () => context.go(RouteNames.cart),
-            child: const Icon(Icons.shopping_bag_outlined, size: 24, color: _onSurface),
+            child: Icon(Icons.shopping_bag_outlined, size: 24, color: theme.iconTheme.color),
           ),
         ],
       ),
     );
   }
 
-  // ── Title ──────────────────────────────────────────────────────────────────
+  // ── Title ────────────────────────────────────────────────────────────────────
 
   Widget _titleSection() {
+    final theme = Theme.of(context);
     return Column(
       children: [
         Text(
           'CURATED COLLECTION',
-          style: _bvp(10, FontWeight.w400, _onSurfaceVariant.withValues(alpha: 0.60), ls: 2.0),
+          style: _bvp(10, FontWeight.w800,
+              theme.textTheme.bodyMedium?.color ?? Colors.grey.shade600, ls: 2.0),
         ),
         const SizedBox(height: 4),
-        Text('Your Saved Pieces', style: _nr(24, FontWeight.w400, _onSurface)),
+        Text(
+          'Your Saved Pieces',
+          style: GoogleFonts.beVietnamPro(
+            fontSize: 24,
+            fontWeight: FontWeight.w800,
+            color: theme.textTheme.headlineLarge?.color ?? const Color(0xFF111111),
+          ),
+        ),
       ],
     );
   }
 
-  // ── Grid ───────────────────────────────────────────────────────────────────
+  // ── Empty State ──────────────────────────────────────────────────────────────
 
-  Widget _productGrid() {
+  Widget _buildEmptyState() {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 48),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.favorite_border, size: 48, color: theme.hintColor),
+          const SizedBox(height: 16),
+          Text(
+            'No saved pieces yet',
+            style: _bvp(16, FontWeight.w600, theme.hintColor),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── Grid ─────────────────────────────────────────────────────────────────────
+
+  Widget _productGrid(List<Product> items) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -114,96 +183,135 @@ class _State extends State<WishlistScreen> {
         crossAxisCount: 2,
         crossAxisSpacing: 16,
         mainAxisSpacing: 32,
-        childAspectRatio: 0.58, // aspect-[3/4] + space for text
+        childAspectRatio: 0.58,
       ),
-      itemCount: _items.length,
-      itemBuilder: (_, i) => _productCard(_items[i]),
+      itemCount: items.length,
+      itemBuilder: (_, i) => _productCard(items[i]),
     );
   }
 
   Widget _productCard(Product item) {
-    final globalIndex = AppData.products().indexWhere((p) => p.name == item.name);
+    final theme = Theme.of(context);
+    final favs = context.read<FavouritesProvider>();
+
     return GestureDetector(
-      onTap: globalIndex >= 0 ? () => context.push('/products/$globalIndex') : null,
+      onTap: () => context.push(RouteNames.productDetailExtra, extra: item),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        // Image — aspect 3/4
-        AspectRatio(
-          aspectRatio: 3 / 4,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Container(color: _surfaceContainerLow),
-                Image.network(item.imageUrl, fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const SizedBox.shrink()),
-                // Favorite heart — top-2 right-2
-                Positioned(
-                  top: 8, right: 8,
-                  child: GestureDetector(
-                    onTap: () => setState(() => item.wishlisted = !item.wishlisted),
-                    child: Icon(
-                      item.wishlisted ? Icons.favorite : Icons.favorite_border,
-                      size: 20,
-                      color: item.wishlisted ? Colors.black : Colors.black,
-                    ),
+          // Image — aspect 3/4
+          AspectRatio(
+            aspectRatio: 3 / 4,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(color: theme.cardColor),
+                  Image.network(
+                    item.imageUrl,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(color: theme.dividerColor),
                   ),
-                ),
-                // Cart button — bottom-2 right-2
-                Positioned(
-                  bottom: 8, right: 8,
-                  child: GestureDetector(
-                    onTap: () {
-                      AppData.addToCart(CartItem(
-                        item.name,
-                        'Standard',
-                        item.price,
-                        item.imageUrl,
-                      ));
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
-                      );
-                    },
-                    child: Container(
-                      width: 32, height: 32,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.10), blurRadius: 4)],
+                  // Favourite heart — tapping removes from wishlist
+                  Positioned(
+                    top: 8, right: 8,
+                    child: GestureDetector(
+                      onTap: () => favs.removeFavourite(item),
+                      child: Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: theme.cardColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.favorite,
+                          size: 20,
+                          color: Color(0xFFC1633A),
+                        ),
                       ),
-                      child: const Icon(Icons.shopping_cart_outlined, size: 16, color: Color(0xFF636E72)),
                     ),
                   ),
-                ),
-              ],
+                  // Cart button
+                  Positioned(
+                    bottom: 8, right: 8,
+                    child: Consumer<CartProvider>(
+                      builder: (context, cart, _) {
+                        final inCart = cart.isInCart(item.name);
+                        return GestureDetector(
+                          onTap: () {
+                            final cartItem = CartItem(
+                              item.name, 'M', item.price, item.imageUrl,
+                            );
+                            FirestoreService.instance.addToCart(cartItem);
+                            cart.addItem(cartItem);
+                          },
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: theme.cardColor,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.08),
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Icon(
+                              Icons.shopping_cart_outlined,
+                              size: 16,
+                              color: inCart ? const Color(0xFFC1633A) : theme.hintColor,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 12),
-        // Name — serif-regular text-sm
-        Text(item.name, style: _nr(14, FontWeight.w400, _onSurface), maxLines: 1, overflow: TextOverflow.ellipsis),
-        const SizedBox(height: 2),
-        // Price — font-body text-xs font-medium text-on-surface-variant
-        Text(item.price, style: _bvp(12, FontWeight.w500, _onSurfaceVariant)),
-      ],
+          const SizedBox(height: 12),
+          Text(
+            item.name,
+            style: _bvp(14, FontWeight.w700,
+                theme.textTheme.bodyLarge?.color ?? Colors.black),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 2),
+          Text(
+            item.price,
+            style: _bvp(12, FontWeight.w600, const Color(0xFFC1633A)),
+          ),
+        ],
       ),
     );
   }
 
-  // ── Empty State Suggestion ─────────────────────────────────────────────────
+  // ── Empty State Suggestion ───────────────────────────────────────────────────
 
   Widget _emptyStateSuggestion(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.only(top: 80),
       padding: const EdgeInsets.only(top: 48),
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: _outlineVariant.withValues(alpha: 0.20))),
+        border: Border(top: BorderSide(color: theme.dividerColor, width: 1.0)),
       ),
       child: Column(
         children: [
-          Text('Discover more of Velour', style: _nr(20, FontWeight.w400, _onSurface)),
+          Text(
+            'Discover more of Velour',
+            style: GoogleFonts.beVietnamPro(
+              fontSize: 20,
+              fontWeight: FontWeight.w800,
+              color: theme.textTheme.headlineMedium?.color ?? const Color(0xFF111111),
+            ),
+          ),
           const SizedBox(height: 24),
           GestureDetector(
             onTap: () => context.go(RouteNames.home),
@@ -211,11 +319,11 @@ class _State extends State<WishlistScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(9999),
-                gradient: const LinearGradient(colors: [_primary, _primaryContainer]),
+                color: const Color(0xFFC1633A),
               ),
               child: Text(
                 'CONTINUE SHOPPING',
-                style: _bvp(12, FontWeight.w400, Colors.white, ls: 2.0),
+                style: _bvp(12, FontWeight.w700, Colors.white, ls: 2.0),
               ),
             ),
           ),
@@ -223,6 +331,4 @@ class _State extends State<WishlistScreen> {
       ),
     );
   }
-
-  // Bottom nav is now handled by BottomNavBar
 }

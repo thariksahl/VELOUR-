@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "193753426658",
+    "project_id": "velour-8002d",
+    "storage_bucket": "velour-8002d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193753426658:android:f8f4aa201b5ac23424ccbb",
+        "android_client_info": {
+          "package_name": "com.example.velour02"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193753426658-fvt5c9ekmm1e7a8tkeg0hob5gn2inbua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwWaC65w-IHKEop7L0Dq7tmk-XuktMN6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193753426658-fvt5c9ekmm1e7a8tkeg0hob5gn2inbua.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "193753426658-h17obfikts80ds9sad0onniafphsmg20.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.velour02"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

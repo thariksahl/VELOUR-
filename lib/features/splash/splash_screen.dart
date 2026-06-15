@@ -121,9 +121,9 @@ class _SplashScreenState extends State<SplashScreen>
           ),
 
           // ── Top app bar ─────────────────────────────────────────────────
-          SafeArea(
+          const SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
               ),

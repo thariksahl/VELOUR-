@@ -4,54 +4,677 @@ export 'models.dart';
 
 /// Centralized data layer for the entire application.
 class AppData {
-  // ── Categories ───────────────────────────────────────────────────────────
   static const List<Category> categories = [
-    Category('NEW'),
-    Category('MEN'),
-    Category('WOMEN'),
-    Category('BEAUTY'),
-    Category('KIDS'),
+    Category('All'),
+    Category('Shirts'),
+    Category('T-Shirts'),
+    Category('Jeans'),
+    Category('Outerwear'),
+    Category('Summer'),
+    Category('Tops'),
+    Category('Sarees'),
+    Category('Skirts'),
+    Category('Kids'),
   ];
 
-  // ── Sub-Categories ───────────────────────────────────────────────────────
   static const List<SubCategory> subCategories = [
-    SubCategory('Shirts & t-shirts', 'https://lh3.googleusercontent.com/aida-public/AB6AXuA7AbG6W2UjYoTIu_NKf2snUzrilDvfou31ndhXovlmSbmUxKCjy37UEJRBIImOsMXbhFQlXn838BCIUGWlfRUe1dQXY_2d4eyKYaGMsDqtnWDuLVrLal_nlw5-k0CKlbnxcgI7SyVgw0AG3y5MXmHr1z28tFkqXFVWtHIZKybiWLYZ6x4yHeagO5Rh4ECnAi1z3THParxUnItCq3L0H2gL6pZcNma0GZLlYzG451CXuHm4fSWhoIRQ0zrh4BLNAesfr5U1_eToId0'),
-    SubCategory('Tops', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBTqhdDGvYQ4bG_jf-V7l7iobpjyxChnR_RKqqi5wUmnJE5dFyaa0JwuYED7UilnMxTaainncZDd32zB1jCNOOBwn80AeENF929ds_tdqGSKCfgmFyrsOQqIpkM7zPUI3_g1IdfctvXu-6Xb8qk9C6U32cuNqzK2mXvfj0AM72bgHlw3kOw4qMpqOfxRN7JPY9m5CO4_7FhikAmGEx3Oq9YKNMSyE5Yop1sujjoj4gaToBd2_zRrp3g4YXg6yS_y_DalSHVU9xUdMM'),
-    SubCategory('Jeans', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAB-kDTl04AXVJBK65Wvfe3YW89cryb5kvbeIvn6ZhEy7pTq5RJHnkNASK5uo6TJT9TYSmvfKppdKrMV84s3Olwr3_NfTxR4Bn9bxlnUf7oFSgZHDDce_2RABc89QRYA7xByB6MiWrOK83GGHA-9QnUgS_kmM0gt_fKJV1bKyMCY8-_bP4XugJAH7TUo0vNZmyoMNr2yXzZ8luxfTYgYz4-sIXVcAEFn57eSHSKSgPjzTmwbIEvRWhQhVyRJLtj7PVr9YmIzRXcOAg'),
-    SubCategory('Inner wear', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCJFcT-W9sYOz-xEeQRgIepLyfCtXa_jQGYGKDZN8seUwozapKdLVpULG6xkR469_VNHaY-b_CnOqc5oAZtRwyqsP98PmN_TsfiJkqnUKoHiTsBJeB8-K6iwdPJlhCScic60OnsauKjQSuSx5F7aFwPZLfgSfRaS_ElInDJldL-Pl9aH7mpVFeVSAfLCj-q3Hk02K4df-qdrzpYG2lEzHydvTCjpH-wAqnN6ffdhNvzQIb3tcFe5lfebp4V-LZqSgF_nqrEDZoKUVc'),
-    SubCategory('Sarees', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBGOQpn7UooNycDDUt29NNnpd9xlNp8zDC7exP8PgHHXzR5Ui88_FaQ0QPzNmaWGVueWU0Ml2YARE9Lyp6QlCvHwToWwOYSQPgXDzb81SF30oe5VZkNK_8B91hf48WY-Rt_B7gnfTHLvP0fhrLjkTO58oUz9sK84T2iUB9wzDljVUxmpCEEf1UfQuwhexZieOIQ2wThssBUbjrovuXf_xeUnALTTBNrRg-jpnt3Q68DvAuAgNrZNCFR9BvRU_beVE5gZGPijTImMZY'),
-    SubCategory('SHIRTS', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiWaE7CicWf0lpYWri0WIhiJ3k5-jnQznlHQ8I5mOL7upMZ2hIQIH2IPYCSLzD_8M4J-n5agjKyoL-RKYkbXtFyFFeyf-2vF5H5gyK5nVnFhp4KtQqG-2WtlN5nfSAu9nASPVS92iu7RHHNeCHXyVilF0z1GxP2DYu7JL6flocEfuiS5KehNee-fKMsW_FpnNQOkAUeUznT-EOBp_-uuXGDF5gVAPy-uPf73eO8_PbD4MKjuvo19Uv5FUl0KBxaZ69-mVjHark21U'),
-    SubCategory('T-SHIRT', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDfmymYd3uHUW4Ovhp_uI_ycoTB9Nmp-c7dyWXv-cYsLcg-brU2I0qzXD3gf_g7UHclYd4GITjF-ML3Z4LfbzQ_u5SGglw0rzNq8qTAhnhXzxpkap_1N2CMOmVhupPXzw7kVCNGi4cIy6aITgeGVT_9ftdUyw1Uxxt9eNKvVdO1Yz9KqjPkjgSMijcWI1Rw9Dj0ro2oXtEl2XUxHAVmAZ78okWwYUxcXF49GE__2lpNR3udbRneVVM_7rFXtrBvoCOFKoOuuPj3YXI'),
-    SubCategory('JEANS', 'https://lh3.googleusercontent.com/aida-public/AB6AXuB6YKPjTBr8edBozAVH9gYXinDgdD1n8sNULJvtJ9vCbbUJthgqJplDGkmgF8_RfWw6UFRk6zZEQhjJ2b8z06BKsteZu6aLePoEhwCuUNaiTR_DSmKp8vNjajcGDlXsHCF6Qr8fobA2itGePJOLZZytuoUQ_Lt2nG5tDPgPf5KalWM0a4-ZVHg-8aRIItKmGAp3U5mZPUe5exmrmjQ7pzYzorrpYkcKmGNMHmHBa73TH-_sn5yOMxdfWgGyMxq5CkrJyUyu62tyMOg'),
-    SubCategory('INNER WEARS', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAixXwLbPkRBQ1RIU7Rs97vLqvjv55tFttRSTqrLyhdt1kBJeMFLOem737m4hf9BUdcFfVzZJthkD0P-BTUpkN7CgUA5r1vR9A0ExqCjFxZtU9tioG7lCjnADEiUgaNLZ3ybuLw0C_8SJZt2BMGPjauujQ3AUNPeYRGqgDJT00ujecJ-t7HvsbRAAZuRpdzy-Af_762NfmiuRl88S7sMAcU7i01uiWRmp15jI7ZzpO2cwlKk42C9xyC5gNmp88s1hEGeQcusRjHZbw'),
+    SubCategory('Shirts', 'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400'),
+    SubCategory('T-Shirts', 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400'),
+    SubCategory('Jeans', 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400'),
+    SubCategory('Tops', 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400'),
   ];
 
-  // ── Products ─────────────────────────────────────────────────────────────
+  // Helper to generate the standard 5 color variants for a product
+  static List<ColorVariant> _genColors(String mainUrl) {
+    return [
+      ColorVariant(name: 'Black', color: const Color(0xFF222222), imageUrl: mainUrl),
+      const ColorVariant(name: 'White', color: Color(0xFFF5F5F5), imageUrl: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400'),
+      const ColorVariant(name: 'Navy', color: Color(0xFF1A2A5A), imageUrl: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400'),
+      const ColorVariant(name: 'Red', color: Color(0xFFC0392B), imageUrl: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400'),
+      const ColorVariant(name: 'Beige', color: Color(0xFFE8D5B0), imageUrl: 'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=400'),
+    ];
+  }
+
   static final List<Product> _productsList = [
-    Product(name: 'Essential Ribbed Crop Top', category: 'WOMEN', description: 'Modern silhouette with ultra-soft ribbed fabric for everyday comfort.', price: 'LKR 2,450.00', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0ujGTLidAvMTCBfQLRksNXuw9j-EMCvDj_OtZtaTVYZrpRu7L2Hn4n66k-Cwy9mzRUGuXh_DEBYuPfxpPtsNM7eHEpabrrCMJJS2EZhhKevKSOc1lH7_2CiN08CLvX-BhA2j3aTkm3uujPjEXeZGnkS4fqrhptzXSUbAK6XB-ON3ccibnr9lsSlTAO0zqdWLQ3KfyENR1heibbkkpX20yDG2T0d1PBq7qYUOLQTp1nEsvpO2Aj9Q3L8FU3tAjaBd8Uj-Psz_haPcUQ'),
-    Product(name: 'Tie-Dye "Happy" Hoodie', category: 'WOMEN', description: 'Vibrant cropped hoodie featuring a playful typographic detail.', price: 'LKR 4,890.00', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0uj1rFrZml3gs_zgFAMy3bdFFM_wMZ9vxGJ1hV7nBJzOsgg6Kpd1VRXw82iK7XQWFtczNPttC6otoqcejxfaV0qhXTLLPYnj4kwQYqMVAgGpbRHBFSeAPQjwcPfDWi_QyCjLHjnhPnogxn1tMqyjX32CPeDXjrI7vyZxVkySadcruYWW_ETnpzaATqz4iaKLY6gVRggDwKJaycJ-Co43PBs1ogIEh8z0RtzwxmZQ9I8d8T8pQKM1p0sZSFLYrSu9I5ufrIWIS-TnMQ'),
-    Product(name: 'Monochrome Patterned Blouse', category: 'WOMEN', description: 'Elegant geometric print shirt for a sophisticated professional look.', price: 'LKR 5,390.00', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0ugBczwjG_MjsjCYPai63IaW9T6hRiac0HQOx06A7LLzLRoKwW_-BnBbPqmZ7LtBA0fxiB4OHQUdlaLWMz-edyENsJsknaokdQIkrmsF1c0BoHJjoO5t39f_O3q38G0wM2GBXIW2zXJ0DsXD_Vy21CoB3noj2LkHF5bM1NCd86t4Zy270qrDOfZsY9xjiml450U8QgCX4Oi_o1vYtzxsrR6HQxONe2gKkikVmF8gxPrB2rpRbx-9x4Y-zhXuDTlDEaBnwVIC_cze'),
-    Product(name: 'Classic Light Blue Button-Up', category: 'MEN', description: 'Tailored cotton blend shirt in a timeless pastel blue shade.', price: 'LKR 3,840.00', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0ujBGpreqlTv40Fe3hnF-eECHLQbGHfVAcG29PIWRlP6y1z3FA6Q_LxBhF4ilma8M2fU4syl-v1K3gliNqjdHOI92DgxcUdh0lpjmvSETm0hkQl14B1k-vflPkKQtWgT4yHZrx-yyIhmrW_N7MnBwvC4dnHpy85yC6J4gYFRAdVT73Ip1uZ8Zfwtw4NSSIf3GvFOvakpV3FmRvjGFJb8Z5T6vNJAmV-5OirvGuIkstJz_S9mjY7nPva5I-uF0MnDHNdIYyEQKBVXaQ'),
-    Product(name: 'Everyday Chinos', category: 'MEN', description: 'Comfortable stretch chinos for an effortless look.', price: 'LKR 4,100.00', imageUrl: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop'),
-    Product(name: 'Casual Henley Shirt', category: 'MEN', description: 'Soft cotton henley with a three-button placket.', price: 'LKR 2,900.00', imageUrl: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=800&auto=format&fit=crop'),
-    Product(name: 'CASUAL SHIRT (GREEN)', category: 'MEN', price: 'LKR 5890.00', imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBemrxXDrZs69OwV-KX-NFoObNg1vCMQ6gRP309pEud_3BBeyRCKPWtI0tAafBa7mXkLjC13B7R2_EZuFT-amTsMLIs8Z-M6VEJUHrLJoXGxkv1YGcIi9vEnlwlJ-0rqzqyYA24NRdCS6NT6gqxVxYcchfyKeE_Xhk7zhAB19NLi2GN5RpoLPka7wg-ni_MD3zuXOh1c0iuiFk0sKVmg5S0x0ObvUCQ550hLvnVbpD4IHd82O-cj4WaIIlp1TGFillRdzlg5s8mOtI'),
-    Product(name: 'WIDE-LEG JEANS (BLUE)', category: 'MEN', price: 'LKR 7250.00', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0uiWaKgas07cnYTWqqJeTwJknwHpl8BEO91vZi3aUDkbL5u3dR6idk_t-R3JVcYzhwtCk9WeT0VOphD0KKihBH9lgB8AgkSjTWcRssm_5RTAtS-emNr42D8aVpFUyhb3qGgbcZdU5Lbls79YNOgWPrIuuNd1PPjj1pLOhJx8fmWEjwMkkycV7yQkxs_7VQn-YfyzrCRyVkRbJgPri8JxnDR1t3Dk5kaCMCtYkrnKll7dRBF6KM-bnl-R6craizwd9W_0Tc1Ffwoh4g'),
-    Product(name: 'DRESS SHIRT (WHITE)', category: 'MEN', price: 'LKR 4990.00', imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDr6ebLnPshE5jXzcevjfSyN_m6aZRjcFVMs1NaY-NhRHFY00JZJJWR9KC9EpRHqyQITuF5j_AZxubm9bw29IEntY47xIWR7MzN-LSJin2_E7z3G6L6H0Q9nQRoUf2Wv6JWzLIaJ9Ulx3ZRTiUFaBrNrv12fTMIT9_xg7wGUEc2pbPZaWve2KSv4YxuqHG77opENWih3A_7p0PT1uHjhHSpd3kbz8rxw5vC4JvHzTXSXXGTHZRsMDLl1lcsId_FzZbMrpeFxbWM34Y'),
-    Product(name: 'BASIC TEE (BLACK)', category: 'MEN', price: 'LKR 2850.00', imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUIkIVfGDlgJDNjoW4S70cAA0p4qyMJ50Wt5KYZNjshe_9Vf0wZTA5X8Xf57acIXrcympQRU1psFR8NfpDg77xIDza-FZsXeUKW54FEQ4fsyBJkXlUdnsLn09ylQ6BHIg6z55j_QVmd5Az6dBujzHhUHRipXKwiyhRZQ6iYjYG03vPXyq8_Pl7BbNQ_yWda3YCpbiyaqwX-5y5qoSLYzHws3Wth9Wbj4eXy858_PL6h0MCByzE-m69R21In_dp7rnmn6OjBpionK0'),
-    Product(name: 'ELEGANT DRESS (RED)', category: 'WOMEN', price: 'LKR 6500.00', imageUrl: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=800&auto=format&fit=crop'),
-    Product(name: 'SUMMER SKIRT (YELLOW)', category: 'WOMEN', price: 'LKR 3200.00', imageUrl: 'https://images.unsplash.com/photo-1583496661160-c588c443c982?q=80&w=800&auto=format&fit=crop'),
+    // ── SHIRTS ───────────────────────────────────────────────────────────────
+    Product(
+      name: 'White Formal Shirt',
+      category: 'Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 9,800',
+      imageUrl: 'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400'),
+    ),
+    Product(
+      name: 'Blue Oxford Shirt',
+      category: 'Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 11,760',
+      imageUrl: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400'),
+    ),
+    Product(
+      name: 'Black Slim Shirt',
+      category: 'Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 10,640',
+      imageUrl: 'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=400'),
+    ),
+    Product(
+      name: 'Striped Cotton Shirt',
+      category: 'Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 9,240',
+      imageUrl: 'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=400'),
+    ),
+    Product(
+      name: 'Navy Linen Shirt',
+      category: 'Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 12,600',
+      imageUrl: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=400'),
+    ),
+    Product(
+      name: 'Grey Casual Shirt',
+      category: 'Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 8,120',
+      imageUrl: 'https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=400'),
+    ),
+    Product(
+      name: 'White Dress Shirt',
+      category: 'Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 15,400',
+      imageUrl: 'https://images.unsplash.com/photo-1563630423918-b58f07336ac5?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1563630423918-b58f07336ac5?w=400'),
+    ),
+    Product(
+      name: 'Checked Flannel Shirt',
+      category: 'Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 10,360',
+      imageUrl: 'https://images.unsplash.com/photo-1542060748-10c28b62716f?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1542060748-10c28b62716f?w=400'),
+    ),
+
+    // ── T-SHIRTS ─────────────────────────────────────────────────────────────
+    Product(
+      name: 'Black Round Neck Tee',
+      category: 'T-Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 7,000',
+      imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400'),
+    ),
+    Product(
+      name: 'White Basic Tee',
+      category: 'T-Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 5,600',
+      imageUrl: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=400'),
+    ),
+    Product(
+      name: 'Navy Polo Tee',
+      category: 'T-Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 8,400',
+      imageUrl: 'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=400'),
+    ),
+    Product(
+      name: 'Grey Graphic Tee',
+      category: 'T-Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 7,560',
+      imageUrl: 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400'),
+    ),
+    Product(
+      name: 'Red Oversized Tee',
+      category: 'T-Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 8,960',
+      imageUrl: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400'),
+    ),
+    Product(
+      name: 'Green Crew Neck Tee',
+      category: 'T-Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 6,720',
+      imageUrl: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=400'),
+    ),
+    Product(
+      name: 'Yellow Printed Tee',
+      category: 'T-Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 6,160',
+      imageUrl: 'https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400'),
+    ),
+    Product(
+      name: 'Brown Vintage Tee',
+      category: 'T-Shirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 7,840',
+      imageUrl: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400'),
+    ),
+
+    // ── JEANS ────────────────────────────────────────────────────────────────
+    Product(
+      name: 'Slim Fit Blue Jeans',
+      category: 'Jeans',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 13,720',
+      imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1542272604-787c3835535d?w=400'),
+    ),
+    Product(
+      name: 'Black Skinny Jeans',
+      category: 'Jeans',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 14,560',
+      imageUrl: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400'),
+    ),
+    Product(
+      name: 'Light Wash Jeans',
+      category: 'Jeans',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 12,880',
+      imageUrl: 'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1475178626620-a4d074967452?w=400'),
+    ),
+    Product(
+      name: 'Ripped Denim Jeans',
+      category: 'Jeans',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 16,240',
+      imageUrl: 'https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=400'),
+    ),
+    Product(
+      name: 'Dark Indigo Jeans',
+      category: 'Jeans',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 15,120',
+      imageUrl: 'https://images.unsplash.com/photo-1604176354204-9268737828e4?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1604176354204-9268737828e4?w=400'),
+    ),
+    Product(
+      name: 'Grey Straight Jeans',
+      category: 'Jeans',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 13,160',
+      imageUrl: 'https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=400'),
+    ),
+    Product(
+      name: 'Cropped White Jeans',
+      category: 'Jeans',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 12,320',
+      imageUrl: 'https://images.unsplash.com/photo-1600717535275-0b18ede2f7fc?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1600717535275-0b18ede2f7fc?w=400'),
+    ),
+    Product(
+      name: 'Bootcut Brown Jeans',
+      category: 'Jeans',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 14,280',
+      imageUrl: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400'),
+    ),
+
+    // ── TOPS ─────────────────────────────────────────────────────────────────
+    Product(
+      name: 'Floral Chiffon Top',
+      category: 'Tops',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 7,840',
+      imageUrl: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400'),
+    ),
+    Product(
+      name: 'White Crop Top',
+      category: 'Tops',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 6,160',
+      imageUrl: 'https://images.unsplash.com/photo-1594938298603-c8148c4b4168?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1594938298603-c8148c4b4168?w=400'),
+    ),
+    Product(
+      name: 'Black Off-Shoulder Top',
+      category: 'Tops',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 9,520',
+      imageUrl: 'https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=400'),
+    ),
+    Product(
+      name: 'Striped Knit Top',
+      category: 'Tops',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 8,400',
+      imageUrl: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=400'),
+    ),
+    Product(
+      name: 'Pink Ruffle Top',
+      category: 'Tops',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 7,280',
+      imageUrl: 'https://images.unsplash.com/photo-1566206091558-7f218b696731?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1566206091558-7f218b696731?w=400'),
+    ),
+    Product(
+      name: 'Beige Linen Top',
+      category: 'Tops',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 8,960',
+      imageUrl: 'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=400'),
+    ),
+    Product(
+      name: 'Red Halter Top',
+      category: 'Tops',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 8,120',
+      imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400'),
+    ),
+    Product(
+      name: 'Green Wrap Top',
+      category: 'Tops',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 7,560',
+      imageUrl: 'https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400'),
+    ),
+
+    // ── SAREES ───────────────────────────────────────────────────────────────
+    Product(
+      name: 'Red Silk Saree',
+      category: 'Sarees',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 24,920',
+      imageUrl: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400'),
+    ),
+    Product(
+      name: 'Blue Banarasi Saree',
+      category: 'Sarees',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 33,600',
+      imageUrl: 'https://images.unsplash.com/photo-1617627143233-a775eb1ce7b6?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1617627143233-a775eb1ce7b6?w=400'),
+    ),
+    Product(
+      name: 'Green Kanjivaram Saree',
+      category: 'Sarees',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 37,800',
+      imageUrl: 'https://images.unsplash.com/photo-1614886137799-03c78b4e45cd?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1614886137799-03c78b4e45cd?w=400'),
+    ),
+    Product(
+      name: 'Yellow Georgette Saree',
+      category: 'Sarees',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 21,000',
+      imageUrl: 'https://images.unsplash.com/photo-1609357605129-4a2ff1b5af27?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1609357605129-4a2ff1b5af27?w=400'),
+    ),
+    Product(
+      name: 'Pink Chiffon Saree',
+      category: 'Sarees',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 19,040',
+      imageUrl: 'https://images.unsplash.com/photo-1622495966027-e0173192c728?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1622495966027-e0173192c728?w=400'),
+    ),
+    Product(
+      name: 'Purple Embroidered Saree',
+      category: 'Sarees',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 40,600',
+      imageUrl: 'https://images.unsplash.com/photo-1583391733956-6c78276477e1?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1583391733956-6c78276477e1?w=400'),
+    ),
+    Product(
+      name: 'Orange Printed Saree',
+      category: 'Sarees',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 22,960',
+      imageUrl: 'https://images.unsplash.com/photo-1602516563-5b2a5c42f9d0?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1602516563-5b2a5c42f9d0?w=400'),
+    ),
+    Product(
+      name: 'White Cotton Saree',
+      category: 'Sarees',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 16,520',
+      imageUrl: 'https://images.unsplash.com/photo-1618898909019-010e4e234c55?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1618898909019-010e4e234c55?w=400'),
+    ),
+
+    // ── SKIRTS ───────────────────────────────────────────────────────────────
+    Product(
+      name: 'Pleated Mini Skirt',
+      category: 'Skirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 8,960',
+      imageUrl: 'https://images.unsplash.com/photo-1583496661160-fb5974ca9f65?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1583496661160-fb5974ca9f65?w=400'),
+    ),
+    Product(
+      name: 'Denim A-Line Skirt',
+      category: 'Skirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 10,640',
+      imageUrl: 'https://images.unsplash.com/photo-1572804013427-4d7ca7268217?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1572804013427-4d7ca7268217?w=400'),
+    ),
+    Product(
+      name: 'Floral Midi Skirt',
+      category: 'Skirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 11,760',
+      imageUrl: 'https://images.unsplash.com/photo-1561677843-39dee7a319ca?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1561677843-39dee7a319ca?w=400'),
+    ),
+    Product(
+      name: 'Black Wrap Skirt',
+      category: 'Skirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 9,800',
+      imageUrl: 'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=400'),
+    ),
+    Product(
+      name: 'White Lace Skirt',
+      category: 'Skirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 13,440',
+      imageUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400'),
+    ),
+    Product(
+      name: 'Red Slit Skirt',
+      category: 'Skirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 12,320',
+      imageUrl: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400'),
+    ),
+    Product(
+      name: 'Brown Suede Skirt',
+      category: 'Skirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 15,400',
+      imageUrl: 'https://images.unsplash.com/photo-1592301933927-35b597393c0a?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1592301933927-35b597393c0a?w=400'),
+    ),
+    Product(
+      name: 'Pink Tulle Skirt',
+      category: 'Skirts',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 10,920',
+      imageUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400'),
+    ),
+
+    // ── KIDS ─────────────────────────────────────────────────────────────────
+    Product(
+      name: 'Boys Graphic Tee',
+      category: 'Kids',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 5,040',
+      imageUrl: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=400'),
+    ),
+    Product(
+      name: 'Girls Floral Frock',
+      category: 'Kids',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 6,160',
+      imageUrl: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400'),
+    ),
+    Product(
+      name: 'Boys Denim Shorts',
+      category: 'Kids',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 5,600',
+      imageUrl: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400'),
+    ),
+    Product(
+      name: 'Girls Pink Top',
+      category: 'Kids',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 5,320',
+      imageUrl: 'https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?w=400'),
+    ),
+    Product(
+      name: 'Boys Striped Shirt',
+      category: 'Kids',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 6,720',
+      imageUrl: 'https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=400'),
+    ),
+    Product(
+      name: 'Girls Denim Skirt',
+      category: 'Kids',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 5,880',
+      imageUrl: 'https://images.unsplash.com/photo-1604488573878-b5f92595c5b3?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1604488573878-b5f92595c5b3?w=400'),
+    ),
+    Product(
+      name: 'Boys Hoodie',
+      category: 'Kids',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 9,800',
+      imageUrl: 'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400'),
+    ),
+    Product(
+      name: 'Girls Party Dress',
+      category: 'Kids',
+      description: 'Premium quality fabric, modern fit. Perfect for everyday wear.',
+      price: 'LKR 12,600',
+      imageUrl: 'https://images.unsplash.com/photo-1476234251651-f353703a034d?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1476234251651-f353703a034d?w=400'),
+    ),
+    Product(
+      name: 'Classic Trench Coat',
+      category: 'Outerwear',
+      description: 'Double-breasted trench coat with a belt. Premium cotton blend.',
+      price: 'LKR 28,500',
+      imageUrl: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400'),
+    ),
+    Product(
+      name: 'Suede Bomber Jacket',
+      category: 'Outerwear',
+      description: 'Soft suede jacket with ribbed cuffs and collar.',
+      price: 'LKR 32,000',
+      imageUrl: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400'),
+    ),
+    Product(
+      name: 'Linen Summer Dress',
+      category: 'Summer',
+      description: 'Lightweight linen dress with tie straps.',
+      price: 'LKR 14,800',
+      imageUrl: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400'),
+    ),
+    Product(
+      name: 'Floral Summer Romper',
+      category: 'Summer',
+      description: 'Comfortable cotton romper with a vibrant floral print.',
+      price: 'LKR 11,500',
+      imageUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400',
+      colorVariants: _genColors('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400'),
+    ),
+
+    // ── SKINCARE ─────────────────────────────────────────────────────────────
+    Product(
+      name: 'Hydrating Face Moisturizer',
+      category: 'Skincare',
+      description: 'Deep hydration formula for all skin types. Dermatologist tested.',
+      price: 'LKR 3,920',
+      imageUrl: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Vitamin C Serum',
+      category: 'Skincare',
+      description: 'Brightening serum with 20% Vitamin C. Reduces dark spots.',
+      price: 'LKR 5,600',
+      imageUrl: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'SPF 50 Sunscreen',
+      category: 'Skincare',
+      description: 'Lightweight sunscreen with broad spectrum UVA/UVB protection.',
+      price: 'LKR 2,800',
+      imageUrl: 'https://images.unsplash.com/photo-1526758097130-bab247274f58?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Retinol Night Cream',
+      category: 'Skincare',
+      description: 'Anti-aging night cream with retinol and hyaluronic acid.',
+      price: 'LKR 6,720',
+      imageUrl: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Rose Water Toner',
+      category: 'Skincare',
+      description: 'Balancing toner with pure rose water. Refreshes and hydrates.',
+      price: 'LKR 2,240',
+      imageUrl: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Gentle Foam Cleanser',
+      category: 'Skincare',
+      description: 'Soap-free cleanser that removes impurities without stripping moisture.',
+      price: 'LKR 1,960',
+      imageUrl: 'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400',
+      colorVariants: [],
+    ),
+
+    // ── MAKEUP ───────────────────────────────────────────────────────────────
+    Product(
+      name: 'Matte Lipstick — Ruby Red',
+      category: 'Makeup',
+      description: 'Long-wearing matte formula. Rich pigment, comfortable wear.',
+      price: 'LKR 2,520',
+      imageUrl: 'https://images.unsplash.com/photo-1586495777744-4e6232bf4868?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Full Coverage Foundation',
+      category: 'Makeup',
+      description: 'Buildable coverage with a natural finish. SPF 15.',
+      price: 'LKR 4,480',
+      imageUrl: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Volumising Mascara',
+      category: 'Makeup',
+      description: 'Dramatic volume and length. Smudge-proof, 24-hour wear.',
+      price: 'LKR 3,360',
+      imageUrl: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Highlighter Palette',
+      category: 'Makeup',
+      description: 'Four shades of luminous highlight for a radiant glow.',
+      price: 'LKR 3,920',
+      imageUrl: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400',
+      colorVariants: [],
+    ),
+
+    // ── FRAGRANCE ────────────────────────────────────────────────────────────
+    Product(
+      name: 'Floral Eau de Parfum',
+      category: 'Fragrance',
+      description: 'A bouquet of rose, jasmine and peony. Feminine and long-lasting.',
+      price: 'LKR 14,000',
+      imageUrl: 'https://images.unsplash.com/photo-1541643600914-78b084683702?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Woody Oud Cologne',
+      category: 'Fragrance',
+      description: 'Bold oud and sandalwood accord with citrus top notes.',
+      price: 'LKR 18,200',
+      imageUrl: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Fresh Citrus Mist',
+      category: 'Fragrance',
+      description: 'Light body mist with lemon, bergamot and green tea.',
+      price: 'LKR 4,200',
+      imageUrl: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400',
+      colorVariants: [],
+    ),
+
+    // ── HAIR ─────────────────────────────────────────────────────────────────
+    Product(
+      name: 'Argan Oil Hair Serum',
+      category: 'Hair',
+      description: 'Frizz-control serum with pure Moroccan argan oil. Adds shine.',
+      price: 'LKR 3,080',
+      imageUrl: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Repair & Restore Shampoo',
+      category: 'Hair',
+      description: 'Strengthening shampoo for damaged and colour-treated hair.',
+      price: 'LKR 2,240',
+      imageUrl: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400',
+      colorVariants: [],
+    ),
+    Product(
+      name: 'Deep Conditioning Mask',
+      category: 'Hair',
+      description: 'Intensive weekly treatment. Restores moisture and elasticity.',
+      price: 'LKR 3,640',
+      imageUrl: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?w=400',
+      colorVariants: [],
+    ),
   ];
 
   static List<Product> products() => _productsList;
 
-
-
   // ── Explore Data ─────────────────────────────────────────────────────────
   static const List<ExploreCategory> exploreCategories = [
-    ExploreCategory(title: 'Denim & Jeans', subtitle: 'HERITAGE INDIGO', imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=800&auto=format&fit=crop'),
-    ExploreCategory(title: 'Tailored Classics', subtitle: 'PRECISION CUTS', imageUrl: 'https://images.unsplash.com/photo-1594938298598-70f70f666752?q=80&w=800&auto=format&fit=crop'),
-    ExploreCategory(title: 'Outerwear', subtitle: 'THE SEASONAL COAT', imageUrl: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800&auto=format&fit=crop'),
-    ExploreCategory(title: 'Little Velour', subtitle: 'MINIATURE LUXURY', imageUrl: 'https://images.unsplash.com/photo-1519238263530-99eaa1121d1e?q=80&w=800&auto=format&fit=crop'),
+    ExploreCategory(title: 'Denim & Jeans', subtitle: 'HERITAGE INDIGO', imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400'),
+    ExploreCategory(title: 'Tailored Classics', subtitle: 'PRECISION CUTS', imageUrl: 'https://images.unsplash.com/photo-1594938298598-70f70f666752?w=400'),
+    ExploreCategory(title: 'Outerwear', subtitle: 'THE SEASONAL COAT', imageUrl: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400'),
+    ExploreCategory(title: 'Little Velour', subtitle: 'MINIATURE LUXURY', imageUrl: 'https://images.unsplash.com/photo-1519238263530-99eaa1121d1e?w=400'),
   ];
 
   static const List<CuratedSeries> curatedSeries = [
@@ -62,17 +685,11 @@ class AppData {
   ];
 
   // ── Shop Data (Wishlist, Cart, Orders) ───────────────────────────────────
-  static final List<Product> _wishlistItemsList = [
-    _productsList[0],
-    _productsList[1],
-  ];
+  static final List<Product> _wishlistItemsList = [];
 
   static List<Product> wishlistItems() => _wishlistItemsList;
 
-  static final List<CartItem> _cartItemsList = [
-    CartItem('Relaxed Wide-Leg Jeans', 'Washed Blue', 'LKR 5,990.00', 'https://lh3.googleusercontent.com/aida/ADBb0uhn_jiFQoKWt--MifNFU_xIytSD_ieDOpy0ufhzzlYw5gwZH6jqO4C8SES3Gkt8kmYitpFzGoNJ6a6nY7jOnoYnzSs6SjQWJ0M5-Py8kBYkjd2CymeuGC-BUPcRMYWUARNal6-_LBOhkPHUQHdEPE7W0_cVltYoYYYR3mqPRkbHF_Ifty6ahuvC08m_jikOvBGXusV0VmWzgNWWHizu8CIk3G5OpMZHVX_Qs6W--vQvOpZ0drRBOdjih7PPByklWvTQVB2BZhIUgg'),
-    CartItem('Essential Cotton Shirt', 'Pastel Blue', 'LKR 4,500.00', 'https://lh3.googleusercontent.com/aida/ADBb0ujsZzlon7zpU9FeqTwHAJmVFI4Lc1RncOZHIRStIjxzDd8q1IJ7eZl86-XENl_4mkSL2YkoPmnlFVtw1LO9EAAR5HUtCv6HV7K5OADs3n4RMG963zwyeBbD8E5jfDkvzsCJyjlS6BTgQajsF5Cwx2ZBmV59PHAQJPgbhbHzxWIhe0yvP6YG47CxOJXwkinV6nsxyI0KYmOjZBVeJoogpoLwC7ta7vYlE56KTN-yRjk71GyHOQO5jr_KinvICoPxCy6gvDRcgTUjDQ'),
-  ];
+  static final List<CartItem> _cartItemsList = [];
 
   static List<CartItem> cartItems() => _cartItemsList;
 
@@ -82,14 +699,9 @@ class AppData {
 
   static List<NotificationItem> notifications() => [
     const NotificationItem(icon: Icons.description_outlined, iconColor: Color(0xFF059669), bgColor: Color(0xFFECFDF5), title: 'Your order has been shipped!', subtitle: 'Your order #7732 is on its way to you.', time: '2 hours ago', isUnread: true, isFadedText: false),
-    NotificationItem(icon: Icons.sell_outlined, iconColor: Colors.amber[600]!, bgColor: Colors.amber[50]!, title: 'Flash Sale! 40% Off Dresses', subtitle: "Don't miss out on our biggest sale of the season.", time: '2 hours ago', isUnread: true, isFadedText: false),
-    NotificationItem(icon: Icons.star, iconColor: Colors.blue[600]!, bgColor: Colors.blue[50]!, title: 'New Arrivals Just Dropped', subtitle: 'Check out our latest collection of sustainable fabrics.', time: 'Yesterday', isUnread: false, isFadedText: true),
-    const NotificationItem(icon: Icons.local_shipping_outlined, iconColor: Color(0xFF059669), bgColor: Color(0xFFECFDF5), title: 'Your order has been shipped!', subtitle: 'Order #6921 is being delivered today.', time: '2 days ago', isUnread: false, isFadedText: true),
-    NotificationItem(icon: Icons.trending_down, iconColor: Colors.amber[600]!, bgColor: Colors.amber[50]!, title: 'Price Drop Alert!', subtitle: 'Items in your cart are now at a lower price.', time: '3 days ago', isUnread: false, isFadedText: true),
   ];
 
   static const List<OrderSummaryItem> orderSummaryItems = [
-    OrderSummaryItem(name: 'Cashmere Blend Sweater', variant: 'Beige • M', price: 'LKR 7,885', imageUrl: 'https://lh3.googleusercontent.com/aida/ADBb0uj81_RL4tEc_W36ziECyvFjbyr4lB7NyQzMdv8qeZbs3VWMsx7qOYvVz5D6QuNz7bVAc4pYzSckU3lCDbFa-VXr9CMPfRyT_yp1Oy0scmqAUS9OvbMYQpK-JKo7_AR8e7OxSXgpg_pQb43kpIHKlYIK1Ng6LHKPOG0lrotXU1vm8k8AJFqTS3nch75RtrBVCyijvzNDbL77bOosmRTmU_HWdzRUA-vZ_ZngqBVhwwMZVOkizJIHjX3cdHrfCSak7a7Qpnq7GmfcUg'),
-    OrderSummaryItem(name: 'Artisan Leather Sneakers', variant: 'White • 43', price: 'LKR 5,345', imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDBsiC8RU1Hh89IpZzUrDZBeb4rc1aw5XQz5jHbHhP7bpxXhX-JXYD9t46AeDuequvWOP87bUiDILZhFpH_siLTn7rZyrga-IihpKruICOIBRI0aYuCKKkagUMEUHswbj_4Ge53QNHK6lQg2AID0-Okaj5mHyImd_eC-21HYTkA_k-rJXiDiUjl2vbc7KnLuCt6pqSv2Bx6LIYCcDvxU738Rgf3Fh9h8YKD_pr95Ydmri5uzLegs0DWu6XMenHvETBieqCx50NOYbg'),
+    OrderSummaryItem(name: 'Cashmere Blend Sweater', variant: 'Beige • M', price: 'LKR 21,840', imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400'),
   ];
 }

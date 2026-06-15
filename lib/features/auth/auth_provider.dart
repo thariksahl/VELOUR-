@@ -41,7 +41,8 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      _setError('Invalid email or password. Please try again.');
+      // e is a friendly String thrown by AuthService
+      _setError(e is String ? e : 'Invalid email or password. Please try again.');
       return false;
     }
   }
@@ -65,7 +66,8 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      _setError('Could not create account. Please try again.');
+      // e is a friendly String thrown by AuthService
+      _setError(e is String ? e : 'Could not create account. Please try again.');
       return false;
     }
   }

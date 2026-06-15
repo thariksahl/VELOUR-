@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../data/app_data.dart';
 import '../../routes/route_names.dart';
+import '../../core/widgets/bottom_nav_bar.dart';
+import '../../core/services/firestore_service.dart';
+import '../notifications/notification_provider.dart';
 
 // ── Screen ────────────────────────────────────────────────────────────────────
 
@@ -13,19 +17,20 @@ class CartScreen extends StatefulWidget {
 }
 
 class _State extends State<CartScreen> {
-  // Design tokens
-  static const Color _surface = Color(0xFFFAF9F5);
-  static const Color _primary = Color(0xFF914722);
-  static const Color _tertiary = Color(0xFF745726);
-  static const Color _onSurface = Color(0xFF1B1C1A);
-  static const Color _onSurfaceVariant = Color(0xFF54433C);
-  static const Color _surfaceContainerLow = Color(0xFFF4F4F0);
-  static const Color _outlineVariant = Color(0xFFDAC1B8);
-
   final _promoController = TextEditingController();
-
-  late List<CartItem> _items;
   bool _isEditing = false;
+
+  // ── Theme-aware color helpers ────────────────────────────────────────────
+  Color get _surface => Theme.of(context).colorScheme.surface;
+  Color get _primary => Theme.of(context).colorScheme.primary;
+  Color get _tertiary => Theme.of(context).colorScheme.tertiary;
+  Color get _onSurface => Theme.of(context).colorScheme.onSurface;
+  Color get _onSurfaceVariant =>
+      Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _outlineVariant => Theme.of(context).colorScheme.outlineVariant;
+  Color get _cardBg => Theme.of(context).brightness == Brightness.dark
+      ? const Color(0xFF2A2A2A)
+      : Colors.white;
 
   TextStyle _nr(double s, FontWeight w, Color c,
           {bool italic = false, double ls = 0}) =>
@@ -46,18 +51,10 @@ class _State extends State<CartScreen> {
   }
 
   String _formatPrice(double val) {
-    final parts = val.toStringAsFixed(2).split('.');
-    String intPart = parts[0];
+    final rounded = val.round();
     final reg = RegExp(r'\B(?=(\d{3})+(?!\d))');
-    intPart = intPart.replaceAll(reg, ',');
-    return 'LKR $intPart.${parts[1]}';
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Take a live reference so qty changes reflect globally
-    _items = AppData.cartItems();
+    final formatted = rounded.toString().replaceAll(reg, ',');
+    return 'LKR $formatted';
   }
 
   @override
@@ -79,14 +76,30 @@ class _State extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _surface,
-      body: Column(
-        children: [
-          _header(context),
-          Container(height: 1, color: _surfaceContainerLow),
-          Expanded(
-            child: _items.isEmpty ? _emptyCart() : _cartList(context),
-          ),
-        ],
+      body: StreamBuilder<List<CartItem>>(
+        stream: FirestoreService.instance.cartStream(),
+        builder: (context, snap) {
+          final items = snap.data ?? [];
+          return Column(
+            children: [
+              _header(context),
+              Container(
+                  height: 1,
+                  color: _outlineVariant.withValues(alpha: 0.15)),
+              Expanded(
+                child: items.isEmpty
+                    ? _emptyCart()
+                    : _cartList(context, items),
+              ),
+            ],
+          );
+        },
+      ),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: 3, // CART tab active
+        onTap: (i) {
+          if (i != 3) context.go(BottomNavBar.routeForIndex(i));
+        },
       ),
     );
   }
@@ -112,20 +125,20 @@ class _State extends State<CartScreen> {
   }
 
   // ── Scrollable cart list ────────────────────────────────────────────────────
-  Widget _cartList(BuildContext context) {
+  Widget _cartList(BuildContext context, List<CartItem> items) {
     return SingleChildScrollView(
       padding: EdgeInsets.fromLTRB(
           24, 32, 24, 24 + MediaQuery.of(context).padding.bottom),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _cartItems(),
+          _cartItems(items),
           const SizedBox(height: 32),
           _promoCode(),
           const SizedBox(height: 32),
-          _orderSummary(),
+          _orderSummary(items),
           const SizedBox(height: 24),
-          _checkoutButton(context),
+          _checkoutButton(context, items),
           const SizedBox(height: 16),
         ],
       ),
@@ -154,16 +167,17 @@ class _State extends State<CartScreen> {
                   height: 40,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey.shade100),
+                    color: _cardBg,
+                    border: Border.all(
+                        color: _outlineVariant.withValues(alpha: 0.20)),
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withValues(alpha: 0.04),
                           blurRadius: 4)
                     ],
                   ),
-                  child: const Icon(Icons.arrow_back,
-                      size: 18, color: Colors.black),
+                  child: Icon(Icons.arrow_back,
+                      size: 18, color: _onSurface),
                 ),
               ),
               const SizedBox(width: 16),
@@ -183,23 +197,23 @@ class _State extends State<CartScreen> {
   }
 
   // ── Cart Items ─────────────────────────────────────────────────────────────
-  Widget _cartItems() {
+  Widget _cartItems(List<CartItem> items) {
     return Column(
-      children: _items.asMap().entries.map((e) {
+      children: items.asMap().entries.map((e) {
         final i = e.key;
         final item = e.value;
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          margin: EdgeInsets.only(bottom: i < _items.length - 1 ? 16 : 0),
+          margin: EdgeInsets.only(bottom: i < items.length - 1 ? 16 : 0),
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: _cardBg,
             borderRadius: BorderRadius.circular(16),
-            border:
-                Border.all(color: _outlineVariant.withValues(alpha: 0.10)),
+            border: Border.all(
+                color: _outlineVariant.withValues(alpha: 0.10)),
             boxShadow: [
               BoxShadow(
-                  color: const Color(0xFF1B1C1A).withValues(alpha: 0.02),
+                  color: Colors.black.withValues(alpha: 0.02),
                   blurRadius: 24,
                   offset: const Offset(0, 4))
             ],
@@ -233,8 +247,8 @@ class _State extends State<CartScreen> {
                         overflow: TextOverflow.ellipsis),
                     const SizedBox(height: 3),
                     Text(item.variant,
-                        style:
-                            _bvp(13, FontWeight.w400, _onSurfaceVariant)),
+                        style: _bvp(13, FontWeight.w400,
+                            _onSurfaceVariant)),
                     const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -244,7 +258,7 @@ class _State extends State<CartScreen> {
                               _parsePrice(item.price) * item.qty),
                           style: _bvp(15, FontWeight.w600, _primary),
                         ),
-                        // Quantity stepper
+                        // Quantity stepper — writes directly to Firestore
                         _quantityStepper(item),
                       ],
                     ),
@@ -253,8 +267,8 @@ class _State extends State<CartScreen> {
               ),
               if (_isEditing)
                 GestureDetector(
-                  onTap: () =>
-                      setState(() => AppData.cartItems().removeAt(i)),
+                  onTap: () => FirestoreService.instance
+                      .removeFromCart(item.name, item.variant),
                   child: const Padding(
                     padding: EdgeInsets.only(left: 12),
                     child: Icon(Icons.delete_outline,
@@ -272,7 +286,7 @@ class _State extends State<CartScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       decoration: BoxDecoration(
-        color: _surfaceContainerLow,
+        color: _outlineVariant.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(9999),
       ),
       child: Row(
@@ -280,9 +294,8 @@ class _State extends State<CartScreen> {
         children: [
           _stepperButton(
             icon: Icons.remove,
-            onTap: () {
-              if (item.qty > 1) setState(() => item.qty--);
-            },
+            onTap: () => FirestoreService.instance
+                .updateCartQty(item.name, item.variant, item.qty - 1),
           ),
           SizedBox(
             width: 32,
@@ -293,7 +306,8 @@ class _State extends State<CartScreen> {
           ),
           _stepperButton(
             icon: Icons.add,
-            onTap: () => setState(() => item.qty++),
+            onTap: () => FirestoreService.instance
+                .updateCartQty(item.name, item.variant, item.qty + 1),
           ),
         ],
       ),
@@ -309,7 +323,7 @@ class _State extends State<CartScreen> {
         height: 28,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.white,
+          color: _cardBg,
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withValues(alpha: 0.06),
@@ -334,7 +348,7 @@ class _State extends State<CartScreen> {
               hintText: 'Enter promo code',
               hintStyle: _bvp(15, FontWeight.w400, _onSurfaceVariant),
               filled: true,
-              fillColor: Colors.white,
+              fillColor: _cardBg,
               contentPadding: const EdgeInsets.symmetric(
                   horizontal: 20, vertical: 16),
               border: OutlineInputBorder(
@@ -347,7 +361,7 @@ class _State extends State<CartScreen> {
                       color: _outlineVariant.withValues(alpha: 0.20))),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: _primary)),
+                  borderSide: BorderSide(color: _primary)),
             ),
           ),
         ),
@@ -358,16 +372,16 @@ class _State extends State<CartScreen> {
           decoration: BoxDecoration(
               color: _primary, borderRadius: BorderRadius.circular(12)),
           alignment: Alignment.center,
-          child:
-              Text('Apply', style: _bvp(15, FontWeight.w600, Colors.white)),
+          child: Text('Apply',
+              style: _bvp(15, FontWeight.w600, Colors.white)),
         ),
       ],
     );
   }
 
   // ── Order Summary ──────────────────────────────────────────────────────────
-  Widget _orderSummary() {
-    final subtotal = _items.fold(
+  Widget _orderSummary(List<CartItem> items) {
+    final subtotal = items.fold(
         0.0, (sum, item) => sum + _parsePrice(item.price) * item.qty);
     const shippingThreshold = 5000.0;
     final shipping =
@@ -377,9 +391,10 @@ class _State extends State<CartScreen> {
     return Container(
       padding: const EdgeInsets.all(28),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: _cardBg,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: _outlineVariant.withValues(alpha: 0.10)),
+        border:
+            Border.all(color: _outlineVariant.withValues(alpha: 0.10)),
         boxShadow: [
           BoxShadow(
               color: const Color(0xFF1B1C1A).withValues(alpha: 0.03),
@@ -409,12 +424,14 @@ class _State extends State<CartScreen> {
           ],
           const SizedBox(height: 20),
           Divider(
-              color: _outlineVariant.withValues(alpha: 0.25), thickness: 1),
+              color: _outlineVariant.withValues(alpha: 0.25),
+              thickness: 1),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Total', style: _bvp(18, FontWeight.w600, _onSurface)),
+              Text('Total',
+                  style: _bvp(18, FontWeight.w600, _onSurface)),
               Text(_formatPrice(total),
                   style: _bvp(22, FontWeight.w700, _tertiary)),
             ],
@@ -437,9 +454,20 @@ class _State extends State<CartScreen> {
       );
 
   // ── Checkout Button ─────────────────────────────────────────────────────────
-  Widget _checkoutButton(BuildContext context) {
+  Widget _checkoutButton(BuildContext context, List<CartItem> items) {
+    final subtotal = items.fold(
+        0.0, (sum, item) => sum + _parsePrice(item.price) * item.qty);
+    final total = subtotal + (subtotal >= 5000.0 ? 0.0 : 350.0);
+
     return GestureDetector(
-      onTap: () => context.go(RouteNames.orderConfirmation),
+      onTap: () async {
+        // Place order in Firestore (saves snapshot + clears cart)
+        await FirestoreService.instance.placeOrder(items, total);
+        if (context.mounted) {
+          context.read<NotificationProvider>().addOrderNotification();
+          context.go(RouteNames.orderConfirmation);
+        }
+      },
       child: Container(
         width: double.infinity,
         height: 64,

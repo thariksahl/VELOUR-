@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../data/app_data.dart';
+import 'package:provider/provider.dart';
 import '../../core/widgets/bottom_nav_bar.dart';
 import '../../routes/route_names.dart';
+import 'notification_provider.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -12,15 +13,6 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _State extends State<NotificationsScreen> {
-  // HTML Tokens
-  static const Color _surface = Color(0xFFFAF9F5);
-  static const Color _onSurface = Color(0xFF1B1C1A);
-  static const Color _onSurfaceVariant = Color(0xFF54433C);
-  static const Color _surfaceContainerLow = Color(0xFFF4F4F0);
-  static const Color _outlineVariant = Color(0xFFDAC1B8);
-  static const Color _outline = Color(0xFF87736B);
-  static const Color _primary = Color(0xFF914722);
-
   int _selectedFilter = 1; // "Orders"
   int _navIndex = 0; // HOME active
 
@@ -32,8 +24,9 @@ class _State extends State<NotificationsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: _surface,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Column(
         children: [
           _header(context),
@@ -67,8 +60,9 @@ class _State extends State<NotificationsScreen> {
   // ── Header ─────────────────────────────────────────────────────────────────
 
   Widget _header(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
-      color: _surface,
+      color: theme.scaffoldBackgroundColor,
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top + 16,
         left: 24, right: 24, bottom: 16,
@@ -86,19 +80,26 @@ class _State extends State<NotificationsScreen> {
                     context.go(RouteNames.home);
                   }
                 },
-                child: const Icon(Icons.arrow_back, size: 28, color: _onSurface),
+                child: Icon(Icons.arrow_back, size: 28, color: theme.iconTheme.color),
               ),
               const SizedBox(width: 16),
-              // HTML: text-2xl font-newsreader italic tracking-widest text-[#1b1c1a]
-              Text('Notifications', style: _nr(24, FontWeight.w400, _onSurface, ls: 2.4, italic: true)),
+              Text(
+                'Notifications',
+                style: _nr(
+                  24,
+                  FontWeight.w400,
+                  theme.textTheme.headlineMedium?.color ?? theme.colorScheme.onSurface,
+                  ls: 2.4,
+                  italic: true,
+                ),
+              ),
             ],
           ),
-          // HTML: text-[#C06C44] text-[10px] font-bold tracking-widest uppercase
           GestureDetector(
             onTap: () {},
             child: Text(
               'MARK ALL READ',
-              style: _bvp(10, FontWeight.w700, const Color(0xFFC06C44), ls: 1.0),
+              style: _bvp(10, FontWeight.w700, const Color(0xFFC1633A), ls: 1.0),
             ),
           ),
         ],
@@ -109,6 +110,7 @@ class _State extends State<NotificationsScreen> {
   // ── Category Filter ────────────────────────────────────────────────────────
 
   Widget _categoryFilter() {
+    final theme = Theme.of(context);
     final filters = ['All', 'Orders', 'Offers', 'New Arrivals'];
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -122,12 +124,18 @@ class _State extends State<NotificationsScreen> {
               margin: EdgeInsets.only(right: i < filters.length - 1 ? 12 : 0),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
               decoration: BoxDecoration(
-                color: active ? _primary : _surfaceContainerLow,
+                color: active ? const Color(0xFFC1633A) : theme.cardColor,
                 borderRadius: BorderRadius.circular(9999),
               ),
               child: Text(
                 e.value,
-                style: _bvp(12, FontWeight.w500, active ? Colors.white : _onSurfaceVariant),
+                style: _bvp(
+                  12,
+                  FontWeight.w500,
+                  active
+                      ? Colors.white
+                      : (theme.textTheme.bodyMedium?.color ?? const Color(0xFF54433C)),
+                ),
               ),
             ),
           );
@@ -139,113 +147,167 @@ class _State extends State<NotificationsScreen> {
   // ── Notification List ──────────────────────────────────────────────────────
 
   Widget _notificationList() {
-    final notifications = AppData.notifications();
+    final theme = Theme.of(context);
+    final notifications =
+        context.watch<NotificationProvider>().notifications;
 
-    return Column(
-      children: notifications.asMap().entries.map((e) {
-        final n = e.value;
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 24),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Icon circle
-              Container(
-                width: 48, height: 48,
-                decoration: BoxDecoration(shape: BoxShape.circle, color: n.bgColor),
-                child: Icon(n.icon, color: n.iconColor, size: 24),
-              ),
-              const SizedBox(width: 16),
-              // Content
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.only(bottom: 24),
+    return Container(
+      decoration: BoxDecoration(
+        color: theme.cardColor,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        children: notifications.asMap().entries.map((e) {
+          final n = e.value;
+          final isLast = e.key == notifications.length - 1;
+          return Container(
+            color: theme.cardColor,
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Icon circle
+                Container(
+                  width: 48,
+                  height: 48,
                   decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: _outlineVariant.withValues(alpha: 0.10))),
+                    shape: BoxShape.circle,
+                    color: theme.cardColor,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              n.title,
-                              style: _bvp(14, n.isFadedText ? FontWeight.w500 : FontWeight.w600, n.isFadedText ? _onSurface.withValues(alpha: 0.80) : _onSurface),
+                  child: Icon(n.icon, color: theme.iconTheme.color, size: 24),
+                ),
+                const SizedBox(width: 16),
+                // Content
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      border: isLast
+                          ? null
+                          : Border(bottom: BorderSide(color: theme.dividerColor)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                n.title,
+                                style: _bvp(
+                                  14,
+                                  n.isFadedText ? FontWeight.w500 : FontWeight.w600,
+                                  theme.textTheme.bodyLarge?.color ?? Colors.black,
+                                ),
+                              ),
                             ),
+                            if (n.isUnread)
+                              Container(
+                                margin: const EdgeInsets.only(top: 4, left: 8),
+                                width: 8,
+                                height: 8,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(0xFFC1633A),
+                                ),
+                              ),
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          n.subtitle,
+                          style: _bvp(
+                            12,
+                            FontWeight.w400,
+                            theme.textTheme.bodyMedium?.color ?? Colors.black54,
                           ),
-                          if (n.isUnread)
-                            Container(
-                              margin: const EdgeInsets.only(top: 4, left: 8),
-                              width: 8, height: 8,
-                              decoration: const BoxDecoration(shape: BoxShape.circle, color: _primary),
-                            ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        n.subtitle,
-                        style: _bvp(12, FontWeight.w400, n.isFadedText ? _onSurfaceVariant.withValues(alpha: 0.70) : _onSurfaceVariant),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        n.time.toUpperCase(),
-                        style: _bvp(10, FontWeight.w400, _outline, ls: 1.0),
-                      ),
-                    ],
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          n.time.toUpperCase(),
+                          style: _bvp(10, FontWeight.w400, theme.hintColor, ls: 1.0),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      }).toList(),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 
   // ── Recommended Section ────────────────────────────────────────────────────
 
   Widget _recommendedSection() {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.only(top: 48),
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: _outlineVariant.withValues(alpha: 0.10))),
+        border: Border(top: BorderSide(color: theme.dividerColor)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Recommended for You', style: _nr(30, FontWeight.w400, _onSurface, italic: true)),
+          Text(
+            'Recommended for You',
+            style: _nr(
+              30,
+              FontWeight.w400,
+              theme.textTheme.headlineMedium?.color ?? theme.colorScheme.onSurface,
+              italic: true,
+            ),
+          ),
           const SizedBox(height: 24),
-          AspectRatio(
-            aspectRatio: 3 / 4,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: AspectRatio(
+              aspectRatio: 3 / 4,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
                   Image.network(
-                    'https://lh3.googleusercontent.com/aida/ADBb0ujUHpHWWX9qoA_oexBa6lfoi_EZfkyyXm2wn9DSR3oSQ_9PD0jx3OEwbgbIL3tFgeuczRnX8QXTIkKWO3WBqG3vFQCG-x_q8JuXwZpkhmP0d-mcUBbuNBbgo2TvumUHy1G9pY3DwQN9AxAEerCrXgIACFbtQ6bnR4wcAE5pjrIk9zX2_EOsvlkyLz5fcan4b5sPMJi4Mw3MC55veYWE7zk5RSxP_U8zLUNpEHdyvx1gw5-uyUXVa9hYM0WqbL2mShxFf7lH8UuiGw',
+                    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800',
                     fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      color: const Color(0xFFD9D9D9),
+                      child: const Center(
+                        child: Icon(Icons.image_not_supported, size: 48, color: Colors.grey),
+                      ),
+                    ),
                   ),
-                  // Gradient bottom
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
-                        colors: [Colors.black.withValues(alpha: 0.50), Colors.transparent],
+                        colors: [
+                          Colors.black.withValues(alpha: 0.65),
+                          Colors.transparent,
+                        ],
+                        stops: const [0.0, 0.55],
                       ),
                     ),
                   ),
                   Positioned(
-                    bottom: 32, left: 32, right: 32,
+                    bottom: 32,
+                    left: 24,
+                    right: 24,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('THE SUMMER EDIT', style: _bvp(10, FontWeight.w500, Colors.white.withValues(alpha: 0.80), ls: 2.0)),
+                        Text(
+                          'DRESS TO IMPRESS',
+                          style: _bvp(10, FontWeight.w700, Colors.white.withValues(alpha: 0.80), ls: 2.0),
+                        ),
                         const SizedBox(height: 8),
-                        Text('Effortless Elegance', style: _nr(30, FontWeight.w400, Colors.white, italic: true)),
+                        Text(
+                          'Party Wear',
+                          style: _nr(30, FontWeight.w400, Colors.white, italic: true),
+                        ),
                         const SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: () {},
@@ -269,7 +331,4 @@ class _State extends State<NotificationsScreen> {
       ),
     );
   }
-
-  // Bottom nav is now handled by BottomNavBar
 }
-

@@ -137,7 +137,7 @@ class OrderConfirmationScreen extends StatelessWidget {
       final value = double.tryParse(raw) ?? 0;
       total += value * item.qty;
     }
-    final totalStr = 'LKR ${total.toStringAsFixed(2).replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (m) => '${m[1]},')}' ;
+    final totalStr = 'LKR ${total.round().toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (m) => '${m[1]},')}';
 
     if (cartItems.isEmpty) {
       return Container(

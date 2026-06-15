@@ -1,3 +1,3 @@
-# velour02
+# velour
 
 A new Flutter project.

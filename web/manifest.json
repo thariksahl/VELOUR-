@@ -1,11 +1,11 @@
 {
-    "name": "velour02",
-    "short_name": "velour02",
+    "name": "velour",
+    "short_name": "velour",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "VELOUR — Luxury Fashion E-Commerce App",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

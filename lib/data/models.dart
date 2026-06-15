@@ -2,20 +2,37 @@ import 'package:flutter/material.dart';
 
 /// Shared product model used across Home, ProductList, and Explore screens.
 class Product {
+  final String id;
   final String name;
   final String description;
   final String price;
   final String imageUrl;
   final String category;
   bool wishlisted;
+  /// Color variants: each entry is { 'name': String, 'color': Color, 'imageUrl': String }
+  final List<ColorVariant> colorVariants;
 
   Product({
+    this.id = '',
     required this.name,
     this.description = '',
     required this.price,
     required this.imageUrl,
     this.category = 'MEN', // Default category for safety
     this.wishlisted = false,
+    this.colorVariants = const [],
+  });
+}
+
+/// Color variant for product detail screen.
+class ColorVariant {
+  final String name;
+  final Color color;
+  final String imageUrl;
+  const ColorVariant({
+    required this.name,
+    required this.color,
+    required this.imageUrl,
   });
 }
 

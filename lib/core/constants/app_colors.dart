@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// Rooted in the "Earth & Paper" concept from the design system.
 abstract class AppColors {
   // ─── Primary / Terracotta ──────────────────────────────────────────────────
-  static const Color primary = Color(0xFF914722);
+  static const Color primary = Color(0xFFC1622A);
   static const Color primaryContainer = Color(0xFFAF5F38);
   static const Color primaryFixed = Color(0xFFFFDBCC);
   static const Color primaryFixedDim = Color(0xFFFFB595);
@@ -26,8 +26,8 @@ abstract class AppColors {
   static const Color onTertiaryContainer = Color(0xFFFFFBFF);
 
   // ─── Surface / Background ──────────────────────────────────────────────────
-  static const Color surface = Color(0xFFFAF9F5);
-  static const Color surfaceBright = Color(0xFFFAF9F5);
+  static const Color surface = Color(0xFFF0EDE6);
+  static const Color surfaceBright = Color(0xFFF0EDE6);
   static const Color surfaceContainer = Color(0xFFEFEEEA);
   static const Color surfaceContainerHigh = Color(0xFFE9E8E4);
   static const Color surfaceContainerHighest = Color(0xFFE3E2DF);
@@ -55,7 +55,7 @@ abstract class AppColors {
   static const Color onErrorContainer = Color(0xFF93000A);
 
   // ─── Custom Override (matches Stitch design system) ───────────────────────
-  static const Color brand = Color(0xFFC06C44);
+  static const Color brand = Color(0xFFC1622A);
   static const Color brandSecondary = Color(0xFF5D4037);
   static const Color brandTertiary = Color(0xFFB08D57);
   static const Color brandNeutral = Color(0xFFF9F8F4);

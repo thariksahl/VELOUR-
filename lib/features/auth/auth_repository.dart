@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'auth_service.dart';
 import 'user_model.dart';
+import '../../core/services/firestore_service.dart';
 
 /// Auth repository — dummy implementation.
 /// Replace with Firebase Auth or REST API in production.
@@ -15,27 +18,38 @@ abstract class IAuthRepository {
 }
 
 class AuthRepository implements IAuthRepository {
-  // Simulated logged-in user state
-  UserModel? _currentUser;
+  final AuthService _authService = AuthService.instance;
+
+  /// Converts a Firebase [User] into our app's [UserModel].
+  UserModel _toUserModel(User user, {String? firstName, String? lastName}) {
+    final displayName = user.displayName ?? '';
+    final parts = displayName.split(' ');
+    return UserModel(
+      id: user.uid,
+      email: user.email ?? '',
+      firstName: firstName ?? (parts.isNotEmpty ? parts.first : ''),
+      lastName: lastName ??
+          (parts.length > 1 ? parts.sublist(1).join(' ') : ''),
+      createdAt: user.metadata.creationTime,
+    );
+  }
 
   @override
   Future<UserModel> login({
     required String email,
     required String password,
   }) async {
-    await _delay();
-
-    // No password validation required for prototype
-
-
-    _currentUser = UserModel(
-      id: 'u_${DateTime.now().millisecondsSinceEpoch}',
+    final credential = await _authService.login(
       email: email,
-      firstName: 'Alex',
-      lastName: 'Laurent',
-      createdAt: DateTime.now(),
+      password: password,
     );
-    return _currentUser!;
+    final userModel = _toUserModel(credential.user!);
+    // Upsert the Firestore profile document
+    await FirestoreService.instance.upsertUserProfile(
+      uid: credential.user!.uid,
+      email: credential.user!.email ?? '',
+    );
+    return userModel;
   }
 
   @override
@@ -45,30 +59,36 @@ class AuthRepository implements IAuthRepository {
     required String email,
     required String password,
   }) async {
-    await _delay(ms: 800);
+    final credential = await _authService.signUp(
+      email: email,
+      password: password,
+    );
 
-    _currentUser = UserModel(
-      id: 'u_${DateTime.now().millisecondsSinceEpoch}',
+    // Store the display name on the Firebase user profile
+    await credential.user!.updateDisplayName('$firstName $lastName');
+
+    final userModel = _toUserModel(
+      credential.user!,
+      firstName: firstName,
+      lastName: lastName,
+    );
+    // Upsert the Firestore profile document with name
+    await FirestoreService.instance.upsertUserProfile(
+      uid: credential.user!.uid,
       email: email,
       firstName: firstName,
       lastName: lastName,
-      createdAt: DateTime.now(),
     );
-    return _currentUser!;
+    return userModel;
   }
 
   @override
-  Future<void> logout() async {
-    await _delay(ms: 300);
-    _currentUser = null;
-  }
+  Future<void> logout() => _authService.logout();
 
   @override
   Future<UserModel?> getCurrentUser() async {
-    await _delay(ms: 200);
-    return _currentUser;
+    final user = _authService.currentUser;
+    if (user == null) return null;
+    return _toUserModel(user);
   }
-
-  Future<void> _delay({int ms = 600}) =>
-      Future.delayed(Duration(milliseconds: ms));
 }
